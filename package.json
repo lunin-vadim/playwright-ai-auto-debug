@@ -1,0 +1,48 @@
+{
+  "name": "@playwright-ai/auto-debug",
+  "version": "1.0.0",
+  "description": "Автоматическая отладка Playwright тестов с помощью Mistral AI",
+  "type": "module",
+  "main": "lib/index.js",
+  "bin": {
+    "playwright-ai": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:local": "node test-local.js",
+    "clean:test": "node clean-test.js",
+    "demo": "npm run clean:test && npm run test:local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lunin/playwright-ai-auto-debug.git"
+  },
+  "homepage": "https://github.com/lunin/playwright-ai-auto-debug#readme",
+  "bugs": {
+    "url": "https://github.com/lunin/playwright-ai-auto-debug/issues"
+  },
+  "keywords": [
+    "playwright",
+    "ai",
+    "debug",
+    "mistral",
+    "testing",
+    "automation",
+    "e2e"
+  ],
+  "author": "lunin",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "glob": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md"
+  ]
+}
