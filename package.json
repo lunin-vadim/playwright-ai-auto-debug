@@ -15,11 +15,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lunin/playwright-ai-auto-debug.git"
+    "url": "git+https://github.com/lunin-vadim/playwright-ai-auto-debug.git"
   },
-  "homepage": "https://github.com/lunin/playwright-ai-auto-debug#readme",
+  "homepage": "https://github.com/lunin-vadim/playwright-ai-auto-debug#readme",
   "bugs": {
-    "url": "https://github.com/lunin/playwright-ai-auto-debug/issues"
+    "url": "https://github.com/lunin-vadim/playwright-ai-auto-debug/issues"
   },
   "keywords": [
     "playwright",
