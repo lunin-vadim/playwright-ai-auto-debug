@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-// Локальный тест библиотеки
+// Local library test
 import { debugPlaywrightTests } from './lib/index.js';
 
-console.log('🧪 Локальное тестирование библиотеки...\n');
+console.log('🧪 Local library testing...\n');
 
 try {
   await debugPlaywrightTests();
-  console.log('\n✅ Тест прошел успешно!');
+  console.log('\n✅ Test completed successfully!');
 } catch (error) {
-  console.error('❌ Ошибка при тестировании:', error.message);
+  console.error('❌ Error during testing:', error.message);
   process.exit(1);
 } 

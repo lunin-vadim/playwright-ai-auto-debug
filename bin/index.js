@@ -4,11 +4,11 @@ import { debugPlaywrightTests } from '../lib/index.js';
 
 async function main() {
   try {
-    console.log('🚀 Запуск автоматической отладки Playwright тестов...\n');
+    console.log('🚀 Starting automatic Playwright test debugging...\n');
     await debugPlaywrightTests();
-    console.log('\n✅ Отладка завершена успешно!');
+    console.log('\n✅ Debugging completed successfully!');
   } catch (error) {
-    console.error('❌ Ошибка при выполнении отладки:', error.message);
+    console.error('❌ Error during debugging execution:', error.message);
     process.exit(1);
   }
 }

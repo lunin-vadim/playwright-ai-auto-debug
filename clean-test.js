@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import * as cheerio from 'cheerio';
 import { glob } from 'glob';
 
-console.log('🧹 Очистка AI-блоков из HTML отчетов...');
+console.log('🧹 Cleaning AI blocks from HTML reports...');
 
 try {
   const htmlFiles = await glob('test-results/**/index.html');
@@ -13,14 +13,14 @@ try {
     const content = await readFile(htmlFile, 'utf-8');
     const $ = cheerio.load(content);
     
-    // Удаляем AI debug блоки
+    // Remove AI debug blocks
     $('.ai-debug').remove();
     
     await writeFile(htmlFile, $.html(), 'utf-8');
-    console.log(`✅ Очищен: ${htmlFile}`);
+    console.log(`✅ Cleaned: ${htmlFile}`);
   }
   
-  console.log('\n🎉 Очистка завершена!');
+  console.log('\n🎉 Cleaning completed!');
 } catch (error) {
-  console.error('❌ Ошибка при очистке:', error.message);
+  console.error('❌ Error during cleaning:', error.message);
 } 

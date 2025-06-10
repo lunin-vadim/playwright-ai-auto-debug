@@ -1,7 +1,7 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  // Обычные настройки Playwright
+  // Regular Playwright settings
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -14,40 +14,40 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  // Конфигурация AI для автоматической отладки
-  // Для TypeScript проектов: установите playwright-ai-auto-debug и типы будут подключены автоматически
+  // AI configuration for automatic debugging
+  // For TypeScript projects: install playwright-ai-auto-debug and types will be connected automatically
   ai_conf: {
-    // Обязательные параметры
-    api_key: '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl', // Ваш API ключ
+    // Required parameters
+    api_key: '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl', // Your API key
     
-    // Опциональные параметры (значения по умолчанию)
-    ai_server: 'https://api.mistral.ai',        // URL AI сервера
-    model: 'mistral-medium',                    // Модель AI
-    results_dir: 'test-results',                // Папка с результатами тестов
-    report_dir: 'playwright-report',            // Папка с HTML отчетами
-    max_prompt_length: 2000,                    // Максимальная длина промпта
-    request_delay: 1000,                        // Задержка между запросами (мс)
+    // Optional parameters (default values)
+    ai_server: 'https://api.mistral.ai',        // AI server URL
+    model: 'mistral-medium',                    // AI model
+    results_dir: 'test-results',                // Test results folder
+    report_dir: 'playwright-report',            // HTML reports folder
+    max_prompt_length: 2000,                    // Maximum prompt length
+    request_delay: 1000,                        // Delay between requests (ms)
     
-    // Паттерны файлов с ошибками для поиска (опционально)
+    // Error file patterns to search for (optional)
     error_file_patterns: [
-      'copy-prompt.txt',      // Стандартный файл Playwright
-      'error-context.md',     // Альтернативный формат (новый)
-      'error.txt',            // Простой текстовый файл
-      'test-error.md',        // Markdown с ошибкой
-      '*-error.txt',          // Файлы заканчивающиеся на -error.txt
-      '*-error.md'            // Файлы заканчивающиеся на -error.md
+      'copy-prompt.txt',      // Standard Playwright file
+      'error-context.md',     // Alternative format (new)
+      'error.txt',            // Simple text file
+      'test-error.md',        // Markdown with error
+      '*-error.txt',          // Files ending with -error.txt
+      '*-error.md'            // Files ending with -error.md
     ],
     
-    // Кастомные сообщения для AI (опционально)
+    // Custom AI messages (optional)
     messages: [
       {
         role: 'system',
-        content: 'Ты AI помощник по отладке Playwright тестов. Анализируй ошибки и предлагай конкретные решения на русском языке. Отвечай кратко и по делу.'
+        content: 'You are an AI assistant for debugging Playwright tests. Analyze errors and suggest specific solutions in English. Be concise and to the point.'
       },
-      // Можно добавить дополнительные системные сообщения
+      // You can add additional system messages
       {
         role: 'system', 
-        content: 'При анализе ошибок учитывай специфику нашего проекта: используем React, TypeScript и тестируем e-commerce функционал.'
+        content: 'When analyzing errors, consider our project specifics: we use React, TypeScript and test e-commerce functionality.'
       }
     ]
   }

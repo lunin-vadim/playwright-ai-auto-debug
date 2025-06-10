@@ -1,9 +1,9 @@
 import type { AiConfig } from './index';
 
-// Расширяем глобальные типы Playwright для поддержки ai_conf
+// Extend global Playwright types to support ai_conf
 declare module '@playwright/test' {
   interface PlaywrightTestConfig {
-    /** Конфигурация AI для автоматической отладки */
+    /** AI configuration for automatic debugging */
     ai_conf?: AiConfig;
   }
 } 

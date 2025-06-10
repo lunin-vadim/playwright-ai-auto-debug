@@ -1,95 +1,100 @@
 # @playwright-ai/auto-debug
 
-🤖 Автоматическая отладка Playwright тестов с помощью AI
+🤖 Automatic Playwright test debugging with AI assistance
 
-## 📦 Установка
+## 📦 Installation
 
 ```bash
 npm install @playwright-ai/auto-debug
 ```
 
-## 🔧 Настройка
+## 🔧 Configuration
 
-### Конфигурация через playwright.config.js (рекомендуется)
+### Configuration via playwright.config.js (recommended)
 
-Добавьте секцию `ai_conf` в ваш `playwright.config.js`:
+Add the `ai_conf` section to your `playwright.config.js`:
 
 ```javascript
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  // Обычные настройки Playwright
+  // Regular Playwright settings
   testDir: './tests',
   reporter: 'html',
   
-  // Конфигурация AI для автоматической отладки
+  // AI configuration for automatic debugging
   ai_conf: {
-    // Обязательные параметры
-    api_key: 'ваш_api_ключ_здесь',
+    // Required parameters
+    api_key: 'your_api_key_here',
     
-    // Опциональные параметры
-    ai_server: 'https://api.mistral.ai',        // URL AI сервера
-    model: 'mistral-medium',                    // Модель AI
-    results_dir: 'test-results',                // Папка с результатами тестов
-    max_prompt_length: 2000,                    // Максимальная длина промпта
-    request_delay: 1000,                        // Задержка между запросами (мс)
+    // Optional parameters
+    ai_server: 'https://api.mistral.ai',        // AI server URL
+    model: 'mistral-medium',                    // AI model
+    results_dir: 'test-results',                // Test results folder
+    max_prompt_length: 2000,                    // Maximum prompt length
+    request_delay: 1000,                        // Delay between requests (ms)
     
-    // Кастомные сообщения для AI (опционально)
+    // Custom AI messages (optional)
     messages: [
       {
         role: 'system',
-        content: 'Ты AI помощник по отладке Playwright тестов. Анализируй ошибки и предлагай конкретные решения на русском языке.'
+        content: 'You are an AI assistant for debugging Playwright tests. Analyze errors and suggest specific solutions in English. Be concise and to the point.'
+      },
+      // You can add additional system messages
+      {
+        role: 'system', 
+        content: 'When analyzing errors, consider our project specifics: we use React, TypeScript and test e-commerce functionality.'
       }
     ]
   }
 });
 ```
 
-### TypeScript поддержка
+### TypeScript Support
 
-Для TypeScript проектов библиотека автоматически предоставляет типы. После установки добавьте импорт в ваш `playwright.config.ts`:
+For TypeScript projects, the library automatically provides types. After installation, add the import to your `playwright.config.ts`:
 
 ```typescript
 import { defineConfig } from '@playwright/test';
-// Импортируем типы для поддержки ai_conf
+// Import types for ai_conf support
 import 'playwright-ai-auto-debug';
 
 export default defineConfig({
-  // Обычные настройки Playwright
+  // Regular Playwright settings
   testDir: './tests',
   reporter: 'html',
   
-  // ai_conf теперь поддерживается с автодополнением
+  // ai_conf now supports autocompletion
   ai_conf: {
-    api_key: process.env.MISTRAL_API_KEY || 'your_api_key_here',
-    // ... остальные параметры с автодополнением
+    api_key: process.env.API_KEY || 'your_api_key_here',
+    // ... other parameters with autocompletion
   }
 });
 ```
 
-> 💡 **Совет**: После импорта `playwright-ai-auto-debug` TypeScript будет предоставлять автодополнение для всех параметров `ai_conf`
+> 💡 **Tip**: After importing `playwright-ai-auto-debug`, TypeScript will provide autocompletion for all `ai_conf` parameters
 
-### Альтернативная настройка через .env
+### Alternative configuration via .env
 
-Создайте файл `.env` в корне проекта:
+Create a `.env` file in the project root:
 
 ```env
-MISTRAL_API_KEY=ваш_api_ключ_здесь
+API_KEY=your_api_key_here
 ```
 
-> ⚠️ При использовании конфигурации через `playwright.config.js` настройки из `.env` игнорируются
+> ⚠️ When using configuration via `playwright.config.js`, settings from `.env` are ignored
 
-## 🚀 Использование
+## 🚀 Usage
 
-### CLI команда
+### CLI command
 
 ```bash
 npx playwright-ai
 ```
 
-### Через npm scripts
+### Via npm scripts
 
-Добавьте в `package.json`:
+Add to `package.json`:
 
 ```json
 {
@@ -99,59 +104,59 @@ npx playwright-ai
 }
 ```
 
-Затем запустите:
+Then run:
 
 ```bash
 npm run debug:ai
 ```
 
-## ⚙️ Параметры конфигурации
+## ⚙️ Configuration Parameters
 
-| Параметр | Тип | Обязательный | По умолчанию | Описание |
-|----------|-----|--------------|--------------|----------|
-| `api_key` | string | ✅ | - | API ключ для AI сервиса |
-| `ai_server` | string | ❌ | `https://api.mistral.ai` | URL AI сервера |
-| `model` | string | ❌ | `mistral-medium` | Модель AI для анализа |
-| `results_dir` | string | ❌ | `test-results` | Папка с результатами тестов |
-| `report_dir` | string | ❌ | `playwright-report` | Папка с HTML отчетами |
-| `max_prompt_length` | number | ❌ | `2000` | Максимальная длина промпта |
-| `request_delay` | number | ❌ | `1000` | Задержка между запросами (мс) |
-| `error_file_patterns` | array | ❌ | См. ниже | Паттерны файлов с ошибками |
-| `messages` | array | ❌ | Системное сообщение | Кастомные сообщения для AI |
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `api_key` | string | ✅ | - | API key for AI service |
+| `ai_server` | string | ❌ | `https://api.mistral.ai` | AI server URL |
+| `model` | string | ❌ | `mistral-medium` | AI model for analysis |
+| `results_dir` | string | ❌ | `test-results` | Test results folder |
+| `report_dir` | string | ❌ | `playwright-report` | HTML reports folder |
+| `max_prompt_length` | number | ❌ | `2000` | Maximum prompt length |
+| `request_delay` | number | ❌ | `1000` | Delay between requests (ms) |
+| `error_file_patterns` | array | ❌ | See below | Error file patterns |
+| `messages` | array | ❌ | System message | Custom AI messages |
 
-### Поиск HTML отчетов
+### HTML Reports Search
 
-Библиотека автоматически ищет HTML отчеты в следующих местах (в порядке приоритета):
+The library automatically searches for HTML reports in the following locations (in priority order):
 
-1. `playwright-report/index.html` - стандартное расположение Playwright
-2. `index.html` - в корне проекта  
-3. `test-results/index.html` - в папке с результатами
-4. В той же папке что и файл с ошибкой
-5. В родительской папке файла с ошибкой
-6. Альтернативные названия: `report.html`, `test-report.html`
+1. `playwright-report/index.html` - standard Playwright location
+2. `index.html` - in project root  
+3. `test-results/index.html` - in results folder
+4. In the same folder as the error file
+5. In the parent folder of the error file
+6. Alternative names: `report.html`, `test-report.html`
 
-Вы можете настроить папку с отчетами через параметр `report_dir`:
+You can configure the reports folder via the `report_dir` parameter:
 
 ```javascript
 ai_conf: {
   api_key: 'your_key',
-  report_dir: 'my-custom-reports',  // Будет искать в my-custom-reports/index.html
+  report_dir: 'my-custom-reports',  // Will search in my-custom-reports/index.html
   results_dir: 'test-results'
 }
 ```
 
-### Поддерживаемые файлы с ошибками
+### Supported Error Files
 
-По умолчанию библиотека ищет следующие типы файлов:
+By default, the library searches for the following file types:
 
-- `copy-prompt.txt` - стандартный файл Playwright
-- `error-context.md` - альтернативный формат с контекстом ошибки
-- `error.txt` - простой текстовый файл с ошибкой
-- `test-error.md` - Markdown файл с описанием ошибки
-- `*-error.txt` - любые файлы заканчивающиеся на `-error.txt`
-- `*-error.md` - любые файлы заканчивающиеся на `-error.md`
+- `copy-prompt.txt` - standard Playwright file
+- `error-context.md` - alternative format with error context
+- `error.txt` - simple text file with error
+- `test-error.md` - Markdown file with error description
+- `*-error.txt` - any files ending with `-error.txt`
+- `*-error.md` - any files ending with `-error.md`
 
-Вы можете настроить собственные паттерны через параметр `error_file_patterns`:
+You can configure custom patterns via the `error_file_patterns` parameter:
 
 ```javascript
 ai_conf: {
@@ -164,82 +169,82 @@ ai_conf: {
 }
 ```
 
-## 🔍 Как это работает
+## 🔍 How It Works
 
-1. **Загрузка конфигурации**: Читает настройки из `playwright.config.js`
-2. **Поиск ошибок**: Автоматически находит все файлы `copy-prompt.txt` в указанной папке
-3. **AI анализ**: Отправляет содержимое ошибок в AI для получения решений
-4. **Обновление отчетов**: Добавляет блок с ошибкой и решением в HTML отчеты Playwright
+1. **Load Configuration**: Reads settings from `playwright.config.js`
+2. **Find Errors**: Automatically finds all `copy-prompt.txt` files in the specified folder
+3. **AI Analysis**: Sends error content to AI for solutions
+4. **Update Reports**: Adds error and solution block to Playwright HTML reports
 
-## 📋 Пример результата
+## 📋 Example Result
 
-После выполнения команды в ваших HTML отчетах появится стильный блок, интегрированный в дизайн Playwright:
+After running the command, a stylish block integrated with Playwright design will appear in your HTML reports:
 
 ```html
 <div class="ai-debug-section">
   <h2 class="ai-debug-header">🤖 AI Debug Assistant</h2>
   <div class="ai-debug-content">
     <div class="ai-error-section">
-      <div class="ai-section-title">❌ Обнаруженная ошибка</div>
+      <div class="ai-section-title">❌ Detected Error</div>
       <div class="ai-error-details">Error: Timeout while waiting for selector...</div>
     </div>
     <div class="ai-solution-section">
-      <div class="ai-section-title ai-solution-title">💡 Рекомендуемое решение</div>
+      <div class="ai-section-title ai-solution-title">💡 Recommended Solution</div>
       <div class="ai-solution-content">
-        <p>Попробуйте добавить ожидание перед этим шагом...</p>
+        <p>Try adding a wait before this step...</p>
       </div>
     </div>
   </div>
 </div>
 ```
 
-### 🎨 Особенности дизайна
+### 🎨 Design Features
 
-- **Интеграция с Playwright**: Блок использует те же стили и цветовую схему что и стандартные отчеты
-- **Адаптивность**: Автоматически подстраивается под размер экрана
-- **Форматирование кода**: Поддержка markdown, подсветка кода в обратных кавычках
-- **Читаемость**: Четкое разделение ошибки и решения с цветовым кодированием
-- **Современный дизайн**: Градиенты, тени и скругленные углы в стиле Playwright
+- **Playwright Integration**: Block uses the same styles and color scheme as standard reports
+- **Responsive**: Automatically adapts to screen size
+- **Code Formatting**: Markdown support, code highlighting in backticks
+- **Readability**: Clear separation of error and solution with color coding
+- **Modern Design**: Gradients, shadows and rounded corners in Playwright style
 
-## 📊 Логи выполнения
+## 📊 Execution Logs
 
 ```bash
-🚀 Запуск автоматической отладки Playwright тестов...
+🚀 Starting automatic Playwright test debugging...
 
-⚙️  Загрузка конфигурации AI...
-✅ Конфигурация AI загружена из playwright.config.js
+⚙️  Loading AI configuration...
+✅ AI configuration loaded from playwright.config.js
 
-🔍 Поиск файлов с ошибками...
-✅ Найден prompt: test-results/test1/copy-prompt.txt
-✅ Найден prompt: test-results/test2/copy-prompt.txt
-📋 Найдено 2 файл(ов) с ошибками
+🔍 Searching for error files...
+✅ Found prompt: test-results/test1/copy-prompt.txt
+✅ Found prompt: test-results/test2/copy-prompt.txt
+📋 Found 2 error file(s)
 
-📝 Обработка 1/2: test-results/test1/copy-prompt.txt
-🔁 Отправлено в AI...
-✅ Ответ получен
-💾 HTML обновлён: test-results/test1/index.html
+📝 Processing 1/2: test-results/test1/copy-prompt.txt
+🔁 Sent to AI...
+✅ Response received
+💾 HTML updated: test-results/test1/index.html
 
-📝 Обработка 2/2: test-results/test2/copy-prompt.txt
-🔁 Отправлено в AI...
-✅ Ответ получен
-💾 HTML обновлён: test-results/test2/index.html
+📝 Processing 2/2: test-results/test2/copy-prompt.txt
+🔁 Sent to AI...
+✅ Response received
+💾 HTML updated: test-results/test2/index.html
 
-✅ Отладка завершена успешно!
+✅ Debugging completed successfully!
 ```
 
-## ⚙️ Требования
+## ⚙️ Requirements
 
 - Node.js >= 16.0.0
-- API ключ для AI сервиса
-- Playwright тесты с сгенерированными отчетами
-- Файл `playwright.config.js` с секцией `ai_conf`
+- API key for AI service
+- Playwright tests with generated reports
+- `playwright.config.js` file with `ai_conf` section
 
-## 🔒 Безопасность
+## 🔒 Security
 
-- API ключ хранится в конфигурации проекта
-- Добавьте `playwright.config.js` в `.gitignore` если используете приватные ключи
-- Соблюдается rate limiting для API запросов
+- API key is stored in project configuration
+- Add `playwright.config.js` to `.gitignore` if using private keys
+- Rate limiting is respected for API requests
 
-## 📄 Лицензия
+## 📄 License
 
 MIT 

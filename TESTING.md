@@ -1,108 +1,108 @@
-# 🧪 Локальное тестирование библиотеки
+# 🧪 Local Library Testing
 
-## 📋 Быстрый старт
+## 📋 Quick Start
 
-1. **Установка зависимостей**:
+1. **Install dependencies**:
    ```bash
    npm install
    ```
 
-2. **Настройка API ключа**:
+2. **Set up API key**:
    ```bash
-   echo "MISTRAL_API_KEY=ваш_ключ" > .env
+   echo "API_KEY=your_key" > .env
    ```
 
-3. **Запуск полного теста**:
+3. **Run full test**:
    ```bash
    npm run demo
    ```
 
-## 🔧 Доступные команды
+## 🔧 Available Commands
 
-### Основные команды
-- `npm run test:local` - запуск библиотеки с тестовыми данными
-- `npm run clean:test` - очистка AI-блоков из HTML отчетов
-- `npm run demo` - полный цикл: очистка + тестирование
+### Main Commands
+- `npm run test:local` - run library with test data
+- `npm run clean:test` - clean AI blocks from HTML reports
+- `npm run demo` - full cycle: clean + test
 
-### CLI команды
-- `npx playwright-ai` - запуск через npm link
-- `node test-local.js` - прямой запуск без npm link
+### CLI Commands
+- `npx playwright-ai` - run via npm link
+- `node test-local.js` - direct run without npm link
 
-## 📁 Тестовые данные
+## 📁 Test Data
 
-Проект содержит готовые тестовые данные:
+The project contains ready test data:
 
 ```
 test-results/
 ├── test-example-1/
-│   ├── copy-prompt.txt    # Ошибка timeout
-│   └── index.html         # HTML отчет
+│   ├── copy-prompt.txt    # Timeout error
+│   └── index.html         # HTML report
 └── test-example-2/
-    ├── copy-prompt.txt    # Ошибка assertion
-    └── index.html         # HTML отчет
+    ├── copy-prompt.txt    # Assertion error
+    └── index.html         # HTML report
 ```
 
-## ✅ Что проверить
+## ✅ What to Check
 
-1. **Поиск файлов**: Библиотека находит все `copy-prompt.txt`
-2. **API запросы**: Успешные запросы к Mistral AI
-3. **HTML обновление**: AI-блоки добавляются в отчеты
-4. **Логирование**: Подробные сообщения о процессе
+1. **File Search**: Library finds all `copy-prompt.txt` files
+2. **API Requests**: Successful requests to AI
+3. **HTML Updates**: AI blocks are added to reports
+4. **Logging**: Detailed process messages
 
-## 🎯 Ожидаемый результат
+## 🎯 Expected Result
 
-После запуска в HTML отчетах появятся блоки:
+After running, AI blocks will appear in HTML reports:
 
 ```html
 <div class="ai-debug">
   <h3>🔍 AI Debug</h3>
-  <div>Ошибка: [текст ошибки]</div>
-  <div>Решение от AI: [конкретные рекомендации]</div>
+  <div>Error: [error text]</div>
+  <div>AI Solution: [specific recommendations]</div>
 </div>
 ```
 
-## 🔍 Проверка в браузере
+## 🔍 Browser Verification
 
-Откройте HTML файлы в браузере:
+Open HTML files in browser:
 ```bash
 open test-results/test-example-1/index.html
 open test-results/test-example-2/index.html
 ```
 
-## 🐛 Отладка
+## 🐛 Debugging
 
-### Проблемы с API
-- Проверьте `.env` файл с MISTRAL_API_KEY
-- Убедитесь в наличии интернет-соединения
+### API Issues
+- Check `.env` file with API_KEY
+- Ensure internet connection
 
-### Проблемы с файлами
-- Убедитесь что папка `test-results/` существует
-- Проверьте права доступа к файлам
+### File Issues
+- Make sure `test-results/` folder exists
+- Check file access permissions
 
-### Проблемы с зависимостями
+### Dependency Issues
 ```bash
 rm -rf node_modules package-lock.json
 npm install
 ```
 
-## 📊 Пример успешного вывода
+## 📊 Example Successful Output
 
 ```
-🚀 Запуск автоматической отладки Playwright тестов...
+🚀 Starting automatic Playwright test debugging...
 
-🔍 Поиск файлов с ошибками...
-✅ Найден prompt: test-results/test-example-1/copy-prompt.txt
-✅ Найден prompt: test-results/test-example-2/copy-prompt.txt
-📋 Найдено 2 файл(ов) с ошибками
+🔍 Searching for error files...
+✅ Found prompt: test-results/test-example-1/copy-prompt.txt
+✅ Found prompt: test-results/test-example-2/copy-prompt.txt
+📋 Found 2 error file(s)
 
-📝 Обработка 1/2: test-results/test-example-1/copy-prompt.txt
-🔁 Отправлено в Mistral...
-✅ Ответ получен
-💾 HTML обновлён: test-results/test-example-1/index.html
+📝 Processing 1/2: test-results/test-example-1/copy-prompt.txt
+🔁 Sent to AI...
+✅ Response received
+💾 HTML updated: test-results/test-example-1/index.html
 
-📝 Обработка 2/2: test-results/test-example-2/copy-prompt.txt
-🔁 Отправлено в Mistral...
-✅ Ответ получен
-💾 HTML обновлён: test-results/test-example-2/index.html
+📝 Processing 2/2: test-results/test-example-2/copy-prompt.txt
+🔁 Sent to AI...
+✅ Response received
+💾 HTML updated: test-results/test-example-2/index.html
 
-✅ Отладка завершена успешно! 
+✅ Debugging completed successfully! 

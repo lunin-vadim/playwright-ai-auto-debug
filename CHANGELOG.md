@@ -1,146 +1,165 @@
 # Changelog
 
-Все значимые изменения в проекте будут документированы в этом файле.
+All notable changes to this project will be documented in this file.
 
-Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.0.0/),
-и проект следует [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.1.0] - 2024-12-19
+
+### Added
+- 🌍 **Full English Translation**: Complete project localization
+  - All documentation translated to English (README.md, CHANGELOG.md, architecture.md, TESTING.md)
+  - Code comments and console messages in English
+  - AI system messages now in English by default
+  - Error messages and user-facing text in English
+
+### Changed
+- 🔄 **Updated Default AI Messages**: System prompts now use English
+- 📝 **Enhanced Package Description**: More descriptive package.json
+- 🏷️ **Extended Keywords**: Added more relevant npm keywords for better discoverability
+
+### Technical
+- 💬 **Localized Console Output**: All logging messages now in English
+- 🤖 **AI Prompt Updates**: Default AI assistant messages in English
+- 📋 **HTML Block Labels**: Error and solution labels in English ("Detected Error", "Recommended Solution")
 
 ## [1.0.5] - 2024-12-19
 
-### Добавлено
-- 🎨 **Новый дизайн AI блока**: Полная интеграция со стилями Playwright
-  - Современный градиентный заголовок в стиле Playwright
-  - Адаптивный дизайн с поддержкой мобильных устройств
-  - Семантическая HTML разметка с правильными классами
-  - Цветовое кодирование ошибок и решений
+### Added
+- 🎨 **New AI Block Design**: Full integration with Playwright styles
+  - Modern gradient header in Playwright style
+  - Responsive design with mobile device support
+  - Semantic HTML markup with proper classes
+  - Color coding for errors and solutions
 
-- 🔧 **Улучшенное форматирование контента**
-  - Автоматическая обработка markdown в решениях AI
-  - Подсветка кода в обратных кавычках
-  - Форматирование блоков кода с синтаксисом
-  - Разбивка текста на параграфы для лучшей читаемости
+- 🔧 **Enhanced Content Formatting**
+  - Automatic markdown processing in AI solutions
+  - Code highlighting in backticks
+  - Code block formatting with syntax
+  - Text splitting into paragraphs for better readability
 
-- 🎯 **Умное размещение блоков**
-  - Автоматический поиск оптимального места для вставки
-  - Приоритетная вставка после блоков с результатами тестов
-  - Fallback механизм для различных структур HTML
+- 🎯 **Smart Block Placement**
+  - Automatic search for optimal insertion point
+  - Priority insertion after test result blocks
+  - Fallback mechanism for various HTML structures
 
-### Изменено
-- ♻️ **Полностью переработан updateHtml.js**
-  - Новая архитектура с отдельными функциями форматирования
-  - Улучшенная система поиска места вставки
-  - Более безопасное экранирование HTML
+### Changed
+- ♻️ **Completely Refactored updateHtml.js**
+  - New architecture with separate formatting functions
+  - Improved insertion point search system
+  - Safer HTML escaping
 
-- 🎨 **Обновлены CSS стили**
-  - Совместимость с цветовой схемой Playwright
-  - Использование CSS переменных и современных техник
-  - Responsive дизайн с медиа-запросами
+- 🎨 **Updated CSS Styles**
+  - Compatibility with Playwright color scheme
+  - Use of CSS variables and modern techniques
+  - Responsive design with media queries
 
-### Исправлено
-- 🐛 **Корректная интеграция в DOM**: Блок теперь органично встраивается в структуру отчета
-- 📱 **Мобильная совместимость**: Корректное отображение на всех размерах экрана
-- 🔧 **Безопасность**: Улучшенное экранирование специальных символов
+### Fixed
+- 🐛 **Correct DOM Integration**: Block now organically integrates into report structure
+- 📱 **Mobile Compatibility**: Correct display on all screen sizes
+- 🔧 **Security**: Improved escaping of special characters
 
 ## [1.0.4] - 2024-12-19
 
-### Добавлено
-- 📄 **Улучшенный поиск HTML отчетов**
-  - Поддержка стандартной папки `playwright-report/index.html`
-  - Конфигурируемый параметр `report_dir`
-  - Поиск в 7 различных возможных местах
-  - Альтернативные названия файлов отчетов
+### Added
+- 📄 **Enhanced HTML Report Search**
+  - Support for standard `playwright-report/index.html` folder
+  - Configurable `report_dir` parameter
+  - Search in 7 different possible locations
+  - Alternative report file names
 
-### Исправлено
-- 🐛 **Проблема с поиском HTML отчетов**: Теперь находит отчеты в `playwright-report/`
-- 🔧 **Улучшена логика поиска**: Приоритетный поиск в стандартных местах
+### Fixed
+- 🐛 **HTML Report Search Issue**: Now finds reports in `playwright-report/`
+- 🔧 **Improved Search Logic**: Priority search in standard locations
 
-### Изменено
-- 📝 **Обновлена документация**: Добавлено описание поиска HTML отчетов
-- ⚙️ **Расширена конфигурация**: Новый параметр `report_dir`
+### Changed
+- 📝 **Updated Documentation**: Added HTML report search description
+- ⚙️ **Extended Configuration**: New `report_dir` parameter
 
 ## [1.0.3] - 2024-12-19
 
-### Добавлено
-- 🔍 **Расширенный поиск файлов с ошибками**
-  - Поддержка `error-context.md` файлов
-  - Поддержка wildcard паттернов (`*-error.txt`, `*-error.md`)
-  - Конфигурируемые паттерны файлов через `error_file_patterns`
-  - Автоматический поиск HTML отчетов в разных папках
+### Added
+- 🔍 **Extended Error File Search**
+  - Support for `error-context.md` files
+  - Support for wildcard patterns (`*-error.txt`, `*-error.md`)
+  - Configurable file patterns via `error_file_patterns`
+  - Automatic HTML report search in different folders
 
-### Исправлено
-- 🐛 **Проблема с поиском файлов**: Библиотека теперь находит `error-context.md` и другие форматы
-- 🔧 **Улучшена логика поиска HTML отчетов**: Поиск в текущей и родительских папках
+### Fixed
+- 🐛 **File Search Issue**: Library now finds `error-context.md` and other formats
+- 🔧 **Improved HTML Report Search Logic**: Search in current and parent folders
 
-### Изменено
-- 📝 **Обновлена документация**: Добавлено описание поддерживаемых типов файлов
-- ⚙️ **Расширена конфигурация**: Новый параметр `error_file_patterns`
+### Changed
+- 📝 **Updated Documentation**: Added description of supported file types
+- ⚙️ **Extended Configuration**: New `error_file_patterns` parameter
 
 ## [1.0.2] - 2024-12-19
 
-### Добавлено
-- 🔷 **TypeScript поддержка**
-  - Добавлены типы для конфигурации `ai_conf`
-  - Автодополнение и проверка типов в IDE
-  - Расширение интерфейса `PlaywrightTestConfig`
+### Added
+- 🔷 **TypeScript Support**
+  - Added types for `ai_conf` configuration
+  - Autocompletion and type checking in IDE
+  - Extended `PlaywrightTestConfig` interface
 
-### Исправлено
-- 🐛 **Ошибка TypeScript**: "ai_conf не существует в типе Config"
-  - Добавлено module augmentation для @playwright/test
-  - Создан интерфейс AiConfig с полным описанием типов
-  - Обновлена документация с примерами для TypeScript
+### Fixed
+- 🐛 **TypeScript Error**: "ai_conf does not exist on type Config"
+  - Added module augmentation for @playwright/test
+  - Created AiConfig interface with full type descriptions
+  - Updated documentation with TypeScript examples
 
 ## [1.0.1] - 2024-12-19
 
-### Добавлено
-- 🔧 **Система конфигурации через playwright.config.js**
-  - Полная конфигурация AI через секцию `ai_conf`
-  - Валидация обязательных параметров
-  - Значения по умолчанию для всех опциональных настроек
+### Added
+- 🔧 **Configuration System via playwright.config.js**
+  - Full AI configuration through `ai_conf` section
+  - Required parameter validation
+  - Default values for all optional settings
   
-- 📋 **Архитектурная документация**
-  - Создан `architecture.md` с техническими стандартами
-  - Документированы принципы кодирования
-  - Описан жизненный цикл выполнения
+- 📋 **Architectural Documentation**
+  - Created `architecture.md` with technical standards
+  - Documented coding principles
+  - Described execution lifecycle
   
-- ⚙️ **Расширенные возможности конфигурации**
-  - Настраиваемый AI сервер и модель
-  - Кастомные сообщения для AI
-  - Конфигурируемая папка результатов
-  - Настройка лимитов промптов и задержек
+- ⚙️ **Extended Configuration Capabilities**
+  - Configurable AI server and model
+  - Custom AI messages
+  - Configurable results folder
+  - Prompt limits and delay settings
 
-### Изменено
-- 🔄 **Рефакторинг архитектуры**
-  - Выделен отдельный модуль конфигурации (`lib/config.js`)
-  - Убран хардкод настроек из `sendToMistral.js`
-  - Обновлена система поиска файлов для использования конфигурации
+### Changed
+- 🔄 **Architecture Refactoring**
+  - Separated configuration module (`lib/config.js`)
+  - Removed hardcoded settings from `sendToAI.js`
+  - Updated file search system to use configuration
   
-- 📚 **Обновлена документация**
-  - README.md с подробным описанием новой системы конфигурации
-  - Добавлена таблица параметров конфигурации
-  - Создан пример конфигурации (`playwright.config.example.js`)
+- 📚 **Updated Documentation**
+  - README.md with detailed new configuration system description
+  - Added configuration parameters table
+  - Created configuration example (`playwright.config.example.js`)
 
-### Исправлено
-- 🐛 **Улучшена обработка ошибок**
-  - Graceful handling отсутствующих файлов конфигурации
-  - Информативные сообщения об ошибках валидации
-  - Корректная обработка отсутствующих директорий
+### Fixed
+- 🐛 **Improved Error Handling**
+  - Graceful handling of missing configuration files
+  - Informative validation error messages
+  - Correct handling of missing directories
 
 ## [1.0.0] - 2024-12-18
 
-### Добавлено
-- 🚀 **Первый релиз библиотеки**
-  - Автоматический поиск файлов с ошибками Playwright
-  - Интеграция с Mistral AI для анализа ошибок
-  - Обновление HTML отчетов с решениями от AI
-  - CLI интерфейс для запуска
+### Added
+- 🚀 **First Library Release**
+  - Automatic Playwright error file search
+  - AI integration for error analysis
+  - HTML report updates with AI solutions
+  - CLI interface for execution
   
-- 🔧 **Базовая функциональность**
-  - Рекурсивный поиск `copy-prompt.txt` файлов
-  - Streaming обработка ответов от AI
-  - Встраивание AI блоков в HTML отчеты
-  - Rate limiting для API запросов
+- 🔧 **Basic Functionality**
+  - Recursive search for `copy-prompt.txt` files
+  - Streaming AI response processing
+  - AI block embedding in HTML reports
+  - Rate limiting for API requests
   
-- 📦 **Инфраструктура**
-  - NPM пакет с CLI командой
-  - Поддержка ES6 модулей
-  - Базовая документация и примеры 
+- 📦 **Infrastructure**
+  - NPM package with CLI command
+  - ES6 modules support
+  - Basic documentation and examples 

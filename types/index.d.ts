@@ -1,37 +1,37 @@
 /**
- * Конфигурация AI для автоматической отладки
+ * AI configuration for automatic debugging
  */
 export interface AiConfig {
-  /** API ключ для AI сервиса (обязательно) */
+  /** API key for AI service (required) */
   api_key: string;
   
-  /** URL AI сервера (по умолчанию: 'https://api.mistral.ai') */
+  /** AI server URL (default: 'https://api.mistral.ai') */
   ai_server?: string;
   
-  /** Модель AI для анализа (по умолчанию: 'mistral-medium') */
+  /** AI model for analysis (default: 'mistral-medium') */
   model?: string;
   
-  /** Папка с результатами тестов (по умолчанию: 'test-results') */
+  /** Test results folder (default: 'test-results') */
   results_dir?: string;
   
-  /** Папка с HTML отчетами (по умолчанию: 'playwright-report') */
+  /** HTML reports folder (default: 'playwright-report') */
   report_dir?: string;
   
-  /** Максимальная длина промпта (по умолчанию: 2000) */
+  /** Maximum prompt length (default: 2000) */
   max_prompt_length?: number;
   
-  /** Задержка между запросами в мс (по умолчанию: 1000) */
+  /** Delay between requests in ms (default: 1000) */
   request_delay?: number;
   
-  /** Паттерны файлов с ошибками для поиска (по умолчанию: ['copy-prompt.txt', 'error-context.md', ...]) */
+  /** Error file patterns to search for (default: ['copy-prompt.txt', 'error-context.md', ...]) */
   error_file_patterns?: string[];
   
-  /** Кастомные сообщения для AI */
+  /** Custom AI messages */
   messages?: Array<{
     role: 'system' | 'user' | 'assistant';
     content: string;
   }>;
 }
 
-// Подключаем глобальные типы
+// Connect global types
 import './global'; 
