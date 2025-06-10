@@ -14,6 +14,9 @@ export interface AiConfig {
   /** Папка с результатами тестов (по умолчанию: 'test-results') */
   results_dir?: string;
   
+  /** Папка с HTML отчетами (по умолчанию: 'playwright-report') */
+  report_dir?: string;
+  
   /** Максимальная длина промпта (по умолчанию: 2000) */
   max_prompt_length?: number;
   

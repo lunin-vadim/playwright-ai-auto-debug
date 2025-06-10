@@ -24,6 +24,7 @@ export default defineConfig({
     ai_server: 'https://api.mistral.ai',        // URL AI сервера
     model: 'mistral-medium',                    // Модель AI
     results_dir: 'test-results',                // Папка с результатами тестов
+    report_dir: 'playwright-report',            // Папка с HTML отчетами
     max_prompt_length: 2000,                    // Максимальная длина промпта
     request_delay: 1000,                        // Задержка между запросами (мс)
     

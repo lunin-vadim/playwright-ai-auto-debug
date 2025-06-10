@@ -1,6 +1,6 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Автоматическая отладка Playwright тестов с помощью Mistral AI",
   "type": "module",
   "main": "lib/index.js",

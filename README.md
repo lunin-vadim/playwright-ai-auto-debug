@@ -113,10 +113,32 @@ npm run debug:ai
 | `ai_server` | string | ❌ | `https://api.mistral.ai` | URL AI сервера |
 | `model` | string | ❌ | `mistral-medium` | Модель AI для анализа |
 | `results_dir` | string | ❌ | `test-results` | Папка с результатами тестов |
+| `report_dir` | string | ❌ | `playwright-report` | Папка с HTML отчетами |
 | `max_prompt_length` | number | ❌ | `2000` | Максимальная длина промпта |
 | `request_delay` | number | ❌ | `1000` | Задержка между запросами (мс) |
 | `error_file_patterns` | array | ❌ | См. ниже | Паттерны файлов с ошибками |
 | `messages` | array | ❌ | Системное сообщение | Кастомные сообщения для AI |
+
+### Поиск HTML отчетов
+
+Библиотека автоматически ищет HTML отчеты в следующих местах (в порядке приоритета):
+
+1. `playwright-report/index.html` - стандартное расположение Playwright
+2. `index.html` - в корне проекта  
+3. `test-results/index.html` - в папке с результатами
+4. В той же папке что и файл с ошибкой
+5. В родительской папке файла с ошибкой
+6. Альтернативные названия: `report.html`, `test-report.html`
+
+Вы можете настроить папку с отчетами через параметр `report_dir`:
+
+```javascript
+ai_conf: {
+  api_key: 'your_key',
+  report_dir: 'my-custom-reports',  // Будет искать в my-custom-reports/index.html
+  results_dir: 'test-results'
+}
+```
 
 ### Поддерживаемые файлы с ошибками
 
