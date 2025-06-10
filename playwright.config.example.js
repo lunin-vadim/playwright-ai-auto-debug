@@ -15,6 +15,7 @@ export default defineConfig({
   },
 
   // Конфигурация AI для автоматической отладки
+  // Для TypeScript проектов: установите playwright-ai-auto-debug и типы будут подключены автоматически
   ai_conf: {
     // Обязательные параметры
     api_key: '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl', // Ваш API ключ
