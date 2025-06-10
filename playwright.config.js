@@ -18,7 +18,7 @@ export default defineConfig({
   // For TypeScript projects: install playwright-ai-auto-debug and types will be connected automatically
   ai_conf: {
     // Required parameters
-    api_key: '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl', // Your API key
+    api_key: process.env.API_KEY || '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl', // Your API key
     
     // Optional parameters (default values)
     ai_server: 'https://api.mistral.ai',        // AI server URL
@@ -26,7 +26,7 @@ export default defineConfig({
     results_dir: 'test-results',                // Test results folder
     report_dir: 'playwright-report',            // HTML reports folder
     max_prompt_length: 2000,                    // Maximum prompt length
-    request_delay: 2000,                        // Delay between requests (ms)
+    request_delay: 1000,                        // Delay between requests (ms)
     
     // Error file patterns to search for (optional)
     error_file_patterns: [

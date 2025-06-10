@@ -120,7 +120,7 @@ npm run debug:ai
 | `results_dir` | string | ❌ | `test-results` | Test results folder |
 | `report_dir` | string | ❌ | `playwright-report` | HTML reports folder |
 | `max_prompt_length` | number | ❌ | `2000` | Maximum prompt length |
-| `request_delay` | number | ❌ | `1000` | Delay between requests (ms) |
+| `request_delay` | number | ❌ | `2000` | Delay between requests (ms) |
 | `error_file_patterns` | array | ❌ | See below | Error file patterns |
 | `messages` | array | ❌ | System message | Custom AI messages |
 
@@ -244,6 +244,35 @@ After running the command, a stylish block integrated with Playwright design wil
 - API key is stored in project configuration
 - Add `playwright.config.js` to `.gitignore` if using private keys
 - Rate limiting is respected for API requests
+
+## 🐛 Troubleshooting
+
+### Rate Limiting (429 Error)
+If you encounter "Too Many Requests" errors:
+
+```javascript
+ai_conf: {
+  api_key: 'your_key',
+  request_delay: 3000,  // Increase delay between requests
+  // ... other settings
+}
+```
+
+**Solutions:**
+- Increase `request_delay` (try 3000-5000ms)
+- Process fewer files at once
+- Wait before retrying
+- Check your API plan limits
+
+### Authentication Errors (401/403)
+- Verify your API key is correct
+- Check API key permissions
+- Ensure sufficient credits/quota
+
+### Network Issues
+- Check internet connection
+- Verify AI server URL
+- Try again later if server is unavailable
 
 ## 📄 License
 

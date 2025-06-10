@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2024-12-19
+
+### Fixed
+- 🐛 **Enhanced Error Handling**: Improved handling of API errors and rate limiting
+  - Better error messages for different HTTP status codes (401, 403, 429, 500, 503)
+  - Specific guidance for rate limiting issues
+  - Correct final status reporting (success/failure)
+  - Processing summary with success/error counts
+
+### Changed
+- ⚙️ **Increased Default Request Delay**: Changed from 1000ms to 2000ms to reduce rate limiting
+- 📝 **Added Troubleshooting Section**: Comprehensive guide for common issues in README.md
+- 🔧 **Improved CLI Output**: More informative final status messages
+
+### Technical
+- 📊 **Processing Statistics**: Added detailed summary of processed vs failed files
+- 🚨 **Better Error Classification**: Specific handling for authentication, rate limiting, and server errors
+- ✅ **Accurate Exit Codes**: Proper exit codes based on actual processing results
+
 ## [1.1.0] - 2024-12-19
 
 ### Added
