@@ -20,6 +20,9 @@ export interface AiConfig {
   /** Задержка между запросами в мс (по умолчанию: 1000) */
   request_delay?: number;
   
+  /** Паттерны файлов с ошибками для поиска (по умолчанию: ['copy-prompt.txt', 'error-context.md', ...]) */
+  error_file_patterns?: string[];
+  
   /** Кастомные сообщения для AI */
   messages?: Array<{
     role: 'system' | 'user' | 'assistant';

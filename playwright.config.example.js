@@ -27,6 +27,16 @@ export default defineConfig({
     max_prompt_length: 2000,                    // Максимальная длина промпта
     request_delay: 1000,                        // Задержка между запросами (мс)
     
+    // Паттерны файлов с ошибками для поиска (опционально)
+    error_file_patterns: [
+      'copy-prompt.txt',      // Стандартный файл Playwright
+      'error-context.md',     // Альтернативный формат (новый)
+      'error.txt',            // Простой текстовый файл
+      'test-error.md',        // Markdown с ошибкой
+      '*-error.txt',          // Файлы заканчивающиеся на -error.txt
+      '*-error.md'            // Файлы заканчивающиеся на -error.md
+    ],
+    
     // Кастомные сообщения для AI (опционально)
     messages: [
       {
