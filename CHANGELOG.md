@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.8] - 2024-12-20
+
+### Fixed
+- 🐛 **Configuration Loading Bug**: Fixed missing ai.conf.js import in published package
+  - Removed hardcoded import of ai.conf.js from lib/config.js
+  - Added dynamic loading for both JavaScript and TypeScript configurations
+  - Improved error handling when configuration files are missing
+  - Enhanced configuration detection logic
+
+### Technical
+- 🔧 **Dynamic Imports**: Both JS and TS configs now use dynamic imports
+- 📦 **Package Independence**: Library no longer depends on bundled config files
+- ✅ **Better Validation**: Clear error messages when config files are missing
+
 ## [1.1.7] - 2024-12-20
 
 ### Added
