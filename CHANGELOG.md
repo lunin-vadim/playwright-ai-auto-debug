@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2024-12-20
+
+### Added
+- 🔷 **TypeScript Configuration Support**
+  - Added support for `playwright.config.ts` files
+  - Library now automatically detects both `.js` and `.ts` config files
+  - Created `playwright.config.example.ts` for TypeScript users
+  
+- 🎥 **Demo Video**
+  - Added video demonstration in README
+  - Shows complete workflow from error detection to AI solution integration
+
+### Changed
+- 📝 **Updated Documentation**
+  - All references now mention both `.js` and `.ts` config files
+  - Updated configuration examples for TypeScript support
+  - Enhanced TypeScript setup instructions
+
+### Fixed
+- 🔧 **Configuration Loading**: Now properly handles both JavaScript and TypeScript config files
+
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 

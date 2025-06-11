@@ -2,6 +2,12 @@
 
 🤖 Automatic Playwright test debugging with AI assistance
 
+## 🎥 Demo Video
+
+[![Demo Video](https://img.youtube.com/vi/mva6ktpKOKw/maxresdefault.jpg)](https://youtu.be/mva6ktpKOKw)
+
+Watch the demo to see how the library automatically analyzes Playwright test errors and provides AI-powered solutions integrated directly into your HTML reports.
+
 ## 📦 Installation
 
 ```bash
@@ -10,9 +16,9 @@ npm install @playwright-ai/auto-debug
 
 ## 🔧 Configuration
 
-### Configuration via playwright.config.js (recommended)
+### Configuration via playwright.config.js or playwright.config.ts (recommended)
 
-Add the `ai_conf` section to your `playwright.config.js`:
+Add the `ai_conf` section to your `playwright.config.js` or `playwright.config.ts`:
 
 ```javascript
 import { defineConfig } from '@playwright/test';
@@ -82,7 +88,7 @@ Create a `.env` file in the project root:
 API_KEY=your_api_key_here
 ```
 
-> ⚠️ When using configuration via `playwright.config.js`, settings from `.env` are ignored
+> ⚠️ When using configuration via `playwright.config.js` or `playwright.config.ts`, settings from `.env` are ignored
 
 ## 🚀 Usage
 
@@ -171,7 +177,7 @@ ai_conf: {
 
 ## 🔍 How It Works
 
-1. **Load Configuration**: Reads settings from `playwright.config.js`
+1. **Load Configuration**: Reads settings from `playwright.config.js` or `playwright.config.ts`
 2. **Find Errors**: Automatically finds all `copy-prompt.txt` files in the specified folder
 3. **AI Analysis**: Sends error content to AI for solutions
 4. **Update Reports**: Adds error and solution block to Playwright HTML reports
@@ -237,12 +243,12 @@ After running the command, a stylish block integrated with Playwright design wil
 - Node.js >= 16.0.0
 - API key for AI service
 - Playwright tests with generated reports
-- `playwright.config.js` file with `ai_conf` section
+- `playwright.config.js` or `playwright.config.ts` file with `ai_conf` section
 
 ## 🔒 Security
 
 - API key is stored in project configuration
-- Add `playwright.config.js` to `.gitignore` if using private keys
+- Add `playwright.config.js` or `playwright.config.ts` to `.gitignore` if using private keys
 - Rate limiting is respected for API requests
 
 ## 🐛 Troubleshooting
