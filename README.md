@@ -224,29 +224,46 @@ After running the command, a stylish block integrated with Playwright design wil
 
 ## 📊 Execution Logs
 
+The tool provides detailed real-time output during processing:
+
 ```bash
 🚀 Starting automatic Playwright test debugging...
 
 ⚙️  Loading AI configuration...
+📋 Loading JavaScript configuration...
 ✅ AI configuration loaded from playwright.config.js
 
 🔍 Searching for error files...
-✅ Found prompt: test-results/test1/copy-prompt.txt
-✅ Found prompt: test-results/test2/copy-prompt.txt
-📋 Found 2 error file(s)
+📄 Found HTML report: test-results/index.html
+✅ Found error file: test-results/copy-prompt.txt
+📋 Found 1 error file(s)
 
-📝 Processing 1/2: test-results/test1/copy-prompt.txt
+📝 Processing 1/1: test-results/copy-prompt.txt
+📊 Content length: 398 chars
+🎯 Using model: mistral-medium
 🔁 Sent to AI...
-✅ Response received
-💾 HTML updated: test-results/test1/index.html
+🤖 AI Response:
+──────────────────────────────────────────────────
+The error indicates that Playwright couldn't find the login button...
+[Real-time streaming of AI response continues here]
+──────────────────────────────────────────────────
+✅ Response received (1714 chars)
+📄 Updating HTML report: test-results/index.html
+✅ Successfully processed file 1/1
 
-📝 Processing 2/2: test-results/test2/copy-prompt.txt
-🔁 Sent to AI...
-✅ Response received
-💾 HTML updated: test-results/test2/index.html
+📊 Processing Summary:
+   ✅ Successfully processed: 1/1
 
 ✅ Debugging completed successfully!
 ```
+
+### 🖥️ Real-time Features
+
+- **Live AI Streaming**: See AI responses as they are generated in real-time
+- **Processing Details**: Content length, model information, file paths
+- **Visual Separators**: Clear formatting with lines and emojis
+- **Progress Tracking**: File-by-file processing status
+- **Response Metrics**: Character count and processing time information
 
 ## ⚙️ Requirements
 

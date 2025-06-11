@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2024-12-20
+
+### Added
+- 🖥️ **Real-time AI Response Streaming**: Added live console output during AI processing
+  - Real-time streaming of AI responses to console
+  - Visual separators and formatting for better readability
+  - Response length information
+  - Enhanced processing information (content length, model used, file paths)
+
+### Changed
+- 📊 **Enhanced Console Output**: More detailed processing information
+  - Shows content length and truncation status
+  - Displays AI model being used
+  - Shows HTML report paths being updated
+  - Added processing delays with countdown
+  - Improved success/error reporting per file
+
+### Technical
+- 🔄 **Streaming Implementation**: Added `process.stdout.write()` for real-time output
+- 📋 **Better User Experience**: Users can now see AI responses as they are generated
+- ⏱️ **Processing Transparency**: Clear indication of processing steps and timing
+
 ## [1.1.3] - 2024-12-20
 
 ### Added
