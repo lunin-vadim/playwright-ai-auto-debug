@@ -58,27 +58,37 @@ export default defineConfig({
 
 ### TypeScript Support
 
-For TypeScript projects, the library automatically provides types. After installation, add the import to your `playwright.config.ts`:
+For TypeScript projects, you need to install `tsx` to support TypeScript configuration files:
+
+```bash
+npm install tsx
+```
+
+Then you can use `playwright.config.ts`:
 
 ```typescript
 import { defineConfig } from '@playwright/test';
-// Import types for ai_conf support
-import 'playwright-ai-auto-debug';
 
 export default defineConfig({
   // Regular Playwright settings
   testDir: './tests',
   reporter: 'html',
   
-  // ai_conf now supports autocompletion
+  // AI configuration for automatic debugging
   ai_conf: {
     api_key: process.env.API_KEY || 'your_api_key_here',
-    // ... other parameters with autocompletion
+    ai_server: 'https://api.mistral.ai',
+    model: 'mistral-medium',
+    // ... other parameters
   }
 });
 ```
 
-> 💡 **Tip**: After importing `playwright-ai-auto-debug`, TypeScript will provide autocompletion for all `ai_conf` parameters
+> ⚠️ **Important**: If you get `Unknown file extension ".ts"` error, either:
+> 1. Install `tsx`: `npm install tsx`
+> 2. Or rename `playwright.config.ts` to `playwright.config.js`
+
+See [TYPESCRIPT_SUPPORT.md](./TYPESCRIPT_SUPPORT.md) for detailed troubleshooting.
 
 ### Alternative configuration via .env
 

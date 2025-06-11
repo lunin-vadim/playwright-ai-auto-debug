@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2024-12-20
+
+### Added
+- 🔧 **Enhanced TypeScript Configuration Support**
+  - Added `tsx` dependency for proper TypeScript config loading
+  - Automatic detection and handling of `.ts` config files
+  - Improved error messages for TypeScript configuration issues
+  - Created comprehensive troubleshooting guide (`TYPESCRIPT_SUPPORT.md`)
+
+### Fixed
+- 🐛 **TypeScript Configuration Loading Error**: Fixed "Unknown file extension .ts" error
+  - Implemented proper TypeScript config loading using `tsx`
+  - Added fallback mechanisms and clear error messages
+  - Enhanced configuration loading with async wrapper for top-level await support
+
+### Changed
+- 📝 **Updated Documentation**
+  - Enhanced README.md with TypeScript setup instructions
+  - Added troubleshooting section for TypeScript issues
+  - Created detailed TypeScript support documentation
+
+### Technical
+- ⚙️ **Configuration Loading Improvements**
+  - Added `isTsxAvailable()` check before loading TypeScript configs
+  - Implemented proper async handling in TypeScript config execution
+  - Enhanced error handling with specific TypeScript-related messages
+
 ## [1.1.2] - 2024-12-20
 
 ### Added
