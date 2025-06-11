@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.9] - 2024-12-20
+
+### Fixed
+- 🐛 **TypeScript Configuration Parsing**: Fixed TypeScript config loading issues
+  - Improved error handling for empty TypeScript output
+  - Added validation for ai_conf export in TypeScript modules
+  - Enhanced error messages with actual output for debugging
+  - Better handling of tsx execution edge cases
+
+### Technical
+- 🔧 **Robust TS Loading**: More reliable TypeScript configuration parsing
+- 📝 **Better Debugging**: Enhanced error messages for troubleshooting
+- ✅ **Validation**: Added checks for module exports
+
 ## [1.1.8] - 2024-12-20
 
 ### Fixed
