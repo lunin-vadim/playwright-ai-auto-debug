@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.7] - 2024-12-20
+
+### Added
+- 🔷 **Native TypeScript Configuration Support**
+  - Added automatic loading of `ai.conf.ts` files with full type safety
+  - TypeScript configuration has priority over JavaScript
+  - Created `ai.conf.example.ts` with complete type definitions
+  - Automatic fallback to JavaScript configuration if TypeScript not found
+
+### Changed
+- ⚙️ **Enhanced Configuration Loading**
+  - Refactored `loadAiConfig()` to be async and support both JS/TS
+  - Updated `sendToAI()` to accept configuration as parameter
+  - Modified `buildMessages()` to work with dynamic configuration
+  - Improved error handling for TypeScript configuration loading
+
+### Technical
+- 🔧 **TypeScript Integration**: Uses existing `tsx` dependency for TS execution
+- 📝 **Type Safety**: Full TypeScript support with `AiConfig` interface
+- 🔄 **Backward Compatibility**: Existing JavaScript configurations continue to work
+- 📦 **Package Updates**: Added `ai.conf.example.ts` to published files
+
 ## [1.1.6] - 2024-12-20
 
 ### Changed

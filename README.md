@@ -2,6 +2,21 @@
 
 🤖 Automatic Playwright test debugging with AI assistance
 
+> ## 🔷 Версия 1.1.7 - Крупные изменения!
+> 
+> **Добавлена нативная поддержка TypeScript конфигурации:**
+> - ✅ Автоматическая загрузка `ai.conf.ts` файлов с полной типизацией
+> - ✅ TypeScript конфигурация имеет приоритет над JavaScript
+> - ✅ Полная обратная совместимость с существующими `ai.conf.js`
+> - ✅ Встроенная поддержка `tsx` - дополнительная установка не требуется
+> 
+> **Изменения в архитектуре:**
+> - 🔄 Асинхронная загрузка конфигурации
+> - 🔄 Динамическая передача конфигурации между модулями
+> - 🔄 Улучшенная обработка ошибок TypeScript
+> 
+> [Подробнее в CHANGELOG.md](#changelog)
+
 ## 🎥 Demo Video
 
 [![Demo Video](https://img.youtube.com/vi/mva6ktpKOKw/maxresdefault.jpg)](https://youtu.be/mva6ktpKOKw)
@@ -63,24 +78,43 @@ export default defineConfig({
 
 ### TypeScript Support
 
-For TypeScript projects, you can create `ai.conf.ts`:
+For TypeScript projects, you can create `ai.conf.ts` with full type safety:
 
 ```typescript
 // ai.conf.ts
-export const ai_conf = {
+import type { AiConfig } from 'playwright-ai-auto-debug';
+
+export const ai_conf: AiConfig = {
   api_key: process.env.API_KEY || 'your_api_key_here',
   ai_server: 'https://api.mistral.ai',
   model: 'mistral-medium',
-  // ... other parameters
+  results_dir: 'test-results',
+  report_dir: 'playwright-report',
+  max_prompt_length: 2000,
+  request_delay: 1000,
+  error_file_patterns: [
+    'copy-prompt.txt',
+    'error-context.md',
+    'error.txt',
+    'test-error.md',
+    '*-error.txt',
+    '*-error.md'
+  ],
+  messages: [
+    {
+      role: 'system',
+      content: 'Ты AI помощник по отладке Playwright тестов. Анализируй ошибки и предлагай конкретные решения.'
+    }
+  ]
 };
 ```
 
-> ⚠️ **Important**: If you get `Unknown file extension ".ts"` error, install `tsx`:
-> ```bash
-> npm install tsx
-> ```
+**Автоматическое определение конфигурации:**
+- Если существует `ai.conf.ts` - загружается TypeScript конфигурация
+- Если только `ai.conf.js` - загружается JavaScript конфигурация
+- TypeScript конфигурация имеет приоритет над JavaScript
 
-See [TYPESCRIPT_SUPPORT.md](./TYPESCRIPT_SUPPORT.md) for detailed troubleshooting.
+> ⚠️ **Важно**: `tsx` уже включен в зависимости пакета, дополнительная установка не требуется.
 
 ### Alternative configuration via .env
 

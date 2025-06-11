@@ -1,4 +1,6 @@
-export const ai_conf = {
+import type { AiConfig } from './types/index.js';
+
+export const ai_conf: AiConfig = {
   api_key: process.env.API_KEY || '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl',
   ai_server: 'https://api.mistral.ai',
   model: 'mistral-medium',
