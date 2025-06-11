@@ -1,69 +1,69 @@
 # TypeScript Configuration Support
 
-## Проблема
+## Problem
 
-Ошибка `Unknown file extension ".ts"` возникает когда Node.js пытается импортировать TypeScript файл конфигурации без соответствующих инструментов.
+The `Unknown file extension ".ts"` error occurs when Node.js tries to import a TypeScript configuration file without the appropriate tools.
 
-## Решения
+## Solutions
 
-### Вариант 1: Установить tsx (Рекомендуется)
+### Option 1: Install tsx (Recommended)
 
 ```bash
 npm install tsx
 ```
 
-После установки `tsx` ваш `playwright.config.ts` будет автоматически поддерживаться.
+After installing `tsx`, your `playwright.config.ts` will be automatically supported.
 
-### Вариант 2: Переименовать в JavaScript
+### Option 2: Rename to JavaScript
 
-1. Переименуйте `playwright.config.ts` в `playwright.config.js`
-2. Удалите TypeScript типы из конфигурации:
+1. Rename `playwright.config.ts` to `playwright.config.js`
+2. Remove TypeScript types from the configuration:
 
 ```javascript
-// Было (TypeScript)
+// Before (TypeScript)
 import { defineConfig, PlaywrightTestConfig } from '@playwright/test';
 
 export default defineConfig({
-  // конфигурация
+  // configuration
 });
 
-// Стало (JavaScript)
+// After (JavaScript)
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  // конфигурация
+  // configuration
 });
 ```
 
-### Вариант 3: Использовать готовый пример
+### Option 3: Use Ready Example
 
-Скопируйте `playwright.config.example.js` в `playwright.config.js`:
+Copy `playwright.config.example.js` to `playwright.config.js`:
 
 ```bash
 cp playwright.config.example.js playwright.config.js
 ```
 
-## Проверка
+## Verification
 
-После применения любого из решений запустите:
+After applying any of the solutions, run:
 
 ```bash
 npx playwright-ai
 ```
 
-Вы должны увидеть сообщение:
+You should see the message:
 ```
 ✅ AI configuration loaded from playwright.config.js
 ```
-или
+or
 ```
 ✅ AI configuration loaded from playwright.config.ts
 ```
 
-## Автоматическое определение
+## Automatic Detection
 
-Инструмент автоматически:
-1. Ищет `playwright.config.ts` сначала
-2. Если не найден, ищет `playwright.config.js`
-3. Для TypeScript файлов проверяет доступность `tsx`
-4. Предоставляет понятные сообщения об ошибках 
+The tool automatically:
+1. Searches for `playwright.config.ts` first
+2. If not found, searches for `playwright.config.js`
+3. For TypeScript files, checks `tsx` availability
+4. Provides clear error messages 
