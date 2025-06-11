@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.6] - 2024-12-20
+
+### Changed
+- 📝 **Updated Documentation**: Corrected configuration approach in README.md
+  - Removed outdated information about `ai_conf` in `playwright.config.js`
+  - Updated all examples to use separate `ai.conf.js` configuration file
+  - Clarified that Playwright config should remain clean without AI settings
+  - Updated TypeScript examples to use `ai.conf.ts`
+
+### Fixed
+- 🐛 **Configuration Documentation**: Fixed misleading information about configuration placement
+  - All references now correctly point to `ai.conf.js` instead of embedding in Playwright config
+  - Updated troubleshooting and security sections
+  - Corrected example outputs and file references
+
 ## [1.1.4] - 2024-12-20
 
 ### Added

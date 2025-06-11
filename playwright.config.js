@@ -16,6 +16,6 @@ export default defineConfig({
   },
 
   // AI configuration for automatic debugging
-  // For TypeScript projects: install playwright-ai-auto-debug and types will be connected automatically
-  // ai_conf больше не добавляется в основной объект Playwright
+  // For TypeScript projects: install playwright-ai-auto-debug and import ai_conf from ai.conf.js
+  ...ai_conf
 }); 

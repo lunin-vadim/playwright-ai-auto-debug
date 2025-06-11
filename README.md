@@ -16,9 +16,39 @@ npm install @playwright-ai/auto-debug
 
 ## 🔧 Configuration
 
-### Configuration via playwright.config.js or playwright.config.ts (recommended)
+### Configuration via ai.conf.js (recommended)
 
-Add the `ai_conf` section to your `playwright.config.js` or `playwright.config.ts`:
+Create an `ai.conf.js` file in your project root:
+
+```javascript
+// ai.conf.js
+export const ai_conf = {
+  // Required parameters
+  api_key: 'your_api_key_here',
+  
+  // Optional parameters
+  ai_server: 'https://api.mistral.ai',        // AI server URL
+  model: 'mistral-medium',                    // AI model
+  results_dir: 'test-results',                // Test results folder
+  max_prompt_length: 2000,                    // Maximum prompt length
+  request_delay: 1000,                        // Delay between requests (ms)
+  
+  // Custom AI messages (optional)
+  messages: [
+    {
+      role: 'system',
+      content: 'You are an AI assistant for debugging Playwright tests. Analyze errors and suggest specific solutions in English. Be concise and to the point.'
+    },
+    // You can add additional system messages
+    {
+      role: 'system', 
+      content: 'When analyzing errors, consider our project specifics: we use React, TypeScript and test e-commerce functionality.'
+    }
+  ]
+};
+```
+
+Your `playwright.config.js` or `playwright.config.ts` remains clean:
 
 ```javascript
 import { defineConfig } from '@playwright/test';
@@ -27,66 +57,28 @@ export default defineConfig({
   // Regular Playwright settings
   testDir: './tests',
   reporter: 'html',
-  
-  // AI configuration for automatic debugging
-  ai_conf: {
-    // Required parameters
-    api_key: 'your_api_key_here',
-    
-    // Optional parameters
-    ai_server: 'https://api.mistral.ai',        // AI server URL
-    model: 'mistral-medium',                    // AI model
-    results_dir: 'test-results',                // Test results folder
-    max_prompt_length: 2000,                    // Maximum prompt length
-    request_delay: 1000,                        // Delay between requests (ms)
-    
-    // Custom AI messages (optional)
-    messages: [
-      {
-        role: 'system',
-        content: 'You are an AI assistant for debugging Playwright tests. Analyze errors and suggest specific solutions in English. Be concise and to the point.'
-      },
-      // You can add additional system messages
-      {
-        role: 'system', 
-        content: 'When analyzing errors, consider our project specifics: we use React, TypeScript and test e-commerce functionality.'
-      }
-    ]
-  }
+  // No ai_conf here - it's in ai.conf.js
 });
 ```
 
 ### TypeScript Support
 
-For TypeScript projects, you need to install `tsx` to support TypeScript configuration files:
-
-```bash
-npm install tsx
-```
-
-Then you can use `playwright.config.ts`:
+For TypeScript projects, you can create `ai.conf.ts`:
 
 ```typescript
-import { defineConfig } from '@playwright/test';
-
-export default defineConfig({
-  // Regular Playwright settings
-  testDir: './tests',
-  reporter: 'html',
-  
-  // AI configuration for automatic debugging
-  ai_conf: {
-    api_key: process.env.API_KEY || 'your_api_key_here',
-    ai_server: 'https://api.mistral.ai',
-    model: 'mistral-medium',
-    // ... other parameters
-  }
-});
+// ai.conf.ts
+export const ai_conf = {
+  api_key: process.env.API_KEY || 'your_api_key_here',
+  ai_server: 'https://api.mistral.ai',
+  model: 'mistral-medium',
+  // ... other parameters
+};
 ```
 
-> ⚠️ **Important**: If you get `Unknown file extension ".ts"` error, either:
-> 1. Install `tsx`: `npm install tsx`
-> 2. Or rename `playwright.config.ts` to `playwright.config.js`
+> ⚠️ **Important**: If you get `Unknown file extension ".ts"` error, install `tsx`:
+> ```bash
+> npm install tsx
+> ```
 
 See [TYPESCRIPT_SUPPORT.md](./TYPESCRIPT_SUPPORT.md) for detailed troubleshooting.
 
@@ -98,7 +90,7 @@ Create a `.env` file in the project root:
 API_KEY=your_api_key_here
 ```
 
-> ⚠️ When using configuration via `playwright.config.js` or `playwright.config.ts`, settings from `.env` are ignored
+> ⚠️ When using configuration via `ai.conf.js` or `ai.conf.ts`, settings from `.env` are ignored
 
 ## 🚀 Usage
 
@@ -187,7 +179,7 @@ ai_conf: {
 
 ## 🔍 How It Works
 
-1. **Load Configuration**: Reads settings from `playwright.config.js` or `playwright.config.ts`
+1. **Load Configuration**: Reads settings from `ai.conf.js` or `ai.conf.ts`
 2. **Find Errors**: Automatically finds all `copy-prompt.txt` files in the specified folder
 3. **AI Analysis**: Sends error content to AI for solutions
 4. **Update Reports**: Adds error and solution block to Playwright HTML reports
@@ -231,7 +223,7 @@ The tool provides detailed real-time output during processing:
 
 ⚙️  Loading AI configuration...
 📋 Loading JavaScript configuration...
-✅ AI configuration loaded from playwright.config.js
+✅ AI configuration loaded from ai.conf.js
 
 🔍 Searching for error files...
 📄 Found HTML report: test-results/index.html
@@ -270,12 +262,12 @@ The error indicates that Playwright couldn't find the login button...
 - Node.js >= 16.0.0
 - API key for AI service
 - Playwright tests with generated reports
-- `playwright.config.js` or `playwright.config.ts` file with `ai_conf` section
+- `ai.conf.js` or `ai.conf.ts` file with AI configuration
 
 ## 🔒 Security
 
 - API key is stored in project configuration
-- Add `playwright.config.js` or `playwright.config.ts` to `.gitignore` if using private keys
+- Add `ai.conf.js` or `ai.conf.ts` to `.gitignore` if using private keys
 - Rate limiting is respected for API requests
 
 ## 🐛 Troubleshooting
@@ -310,25 +302,3 @@ ai_conf: {
 ## 📄 License
 
 MIT 
-
-## ⚠️ Важно: изменение конфигурации ai_conf (с версии X.Y.Z)
-
-Начиная с версии X.Y.Z, объект `ai_conf` вынесен в отдельный файл `ai.conf.js`.
-
-- Не добавляйте `ai_conf` в основной объект Playwright-конфига (`defineConfig`).
-- Вместо этого создайте файл `ai.conf.js` в корне проекта и экспортируйте объект `ai_conf` оттуда:
-
-```js
-// ai.conf.js
-export const ai_conf = {
-  // ... параметры ...
-};
-```
-
-- В файле `playwright.config.js` просто импортируйте этот объект при необходимости:
-
-```js
-import { ai_conf } from './ai.conf.js';
-```
-
-Это изменение важно для корректной работы типизации Playwright и предотвращения ошибок. 
