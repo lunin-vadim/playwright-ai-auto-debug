@@ -16,6 +16,12 @@ export const ai_conf: AiConfig = {
     '*-error.txt',
     '*-error.md'
   ],
+  save_ai_responses: true,
+  ai_responses_dir: 'ai-responses',
+  ai_response_filename_template: 'ai-response-{timestamp}-{index}.md',
+  include_metadata: true,
+  allure_integration: true,
+  allure_results_dir: 'allure-results',
   messages: [
     {
       role: 'system',

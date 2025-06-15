@@ -41,4 +41,11 @@ coverage/
 
 # Build outputs
 dist/
-build/ 
+build/
+
+# AI generated responses
+ai-responses/
+
+# Allure reports
+allure-results/
+allure-report/ 

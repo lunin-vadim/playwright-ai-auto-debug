@@ -2,20 +2,22 @@
 
 🤖 Automatic Playwright test debugging with AI assistance
 
-> ## 🔷 Версия 1.1.7 - Крупные изменения!
-> 
-> **Добавлена нативная поддержка TypeScript конфигурации:**
-> - ✅ Автоматическая загрузка `ai.conf.ts` файлов с полной типизацией
-> - ✅ TypeScript конфигурация имеет приоритет над JavaScript
-> - ✅ Полная обратная совместимость с существующими `ai.conf.js`
-> - ✅ Встроенная поддержка `tsx` - дополнительная установка не требуется
-> 
-> **Изменения в архитектуре:**
-> - 🔄 Асинхронная загрузка конфигурации
-> - 🔄 Динамическая передача конфигурации между модулями
-> - 🔄 Улучшенная обработка ошибок TypeScript
-> 
-> [Подробнее в CHANGELOG.md](#changelog)
+[![npm version](https://img.shields.io/npm/v/playwright-ai-auto-debug.svg)](https://www.npmjs.com/package/playwright-ai-auto-debug)
+
+> ## 🔷 Major changes since version 1.1.7!
+>
+> **Added native support for TypeScript configuration:**
+> - ✅ Automatic loading of `ai.conf.ts` files with full typing
+> - ✅ TypeScript configuration takes precedence over JavaScript
+> - ✅ Full backward compatibility with existing `ai.conf.js`
+> - ✅ Built-in support for `tsx` - no additional installation required
+>
+> **Changes in architecture:**
+> - 🔄 Asynchronous configuration loading
+> - 🔄 Dynamic configuration transfer between modules
+> - 🔄 Improved TypeScript error handling
+>
+> [More details in CHANGELOG.md](#changelog)
 
 ## 🎥 Demo Video
 
@@ -164,6 +166,10 @@ npm run debug:ai
 | `max_prompt_length` | number | ❌ | `2000` | Maximum prompt length |
 | `request_delay` | number | ❌ | `2000` | Delay between requests (ms) |
 | `error_file_patterns` | array | ❌ | See below | Error file patterns |
+| `save_ai_responses` | boolean | ❌ | `false` | Save AI responses to Markdown |
+| `ai_responses_dir` | string | ❌ | `ai-responses` | Directory for AI responses |
+| `allure_integration` | boolean | ❌ | `false` | Enable Allure integration |
+| `allure_results_dir` | string | ❌ | `allure-results` | Allure results directory |
 | `messages` | array | ❌ | System message | Custom AI messages |
 
 ### HTML Reports Search
@@ -290,6 +296,105 @@ The error indicates that Playwright couldn't find the login button...
 - **Visual Separators**: Clear formatting with lines and emojis
 - **Progress Tracking**: File-by-file processing status
 - **Response Metrics**: Character count and processing time information
+
+## 📊 Allure Integration
+
+The library provides seamless integration with Allure reports for better visualization of AI debugging results.
+
+### Enable Allure Integration
+
+Add to your `ai.conf.js` or `ai.conf.ts`:
+
+```javascript
+export const ai_conf = {
+  api_key: 'your_api_key',
+  allure_integration: true,
+  allure_results_dir: 'allure-results',
+  // ... other settings
+};
+```
+
+### Playwright Configuration
+
+Configure Playwright to use Allure reporter in `playwright.config.js`:
+
+```javascript
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  reporter: [
+    ['html'],
+    ['allure-playwright', {
+      detail: true,
+      outputFolder: 'allure-results',
+      suiteTitle: false,
+      categories: [
+        {
+          name: 'AI Debug',
+          matchedStatuses: ['passed'],
+          messageRegex: '.*AI Debug.*'
+        }
+      ]
+    }]
+  ],
+  // ... other settings
+});
+```
+
+### Generate Allure Report
+
+After running tests and AI analysis:
+
+```bash
+# Run your tests
+npx playwright test
+
+# Run AI analysis
+npx playwright-ai
+
+# Generate Allure report
+npx allure generate allure-results -o allure-report
+
+# Open report
+npx allure open allure-report
+```
+
+### What Gets Added to Allure
+
+1. **Standalone AI Analysis Results**: Each AI response creates a separate test result in Allure
+2. **Rich Markdown Attachments**: Detailed AI analysis with original error and solutions
+3. **Proper Categorization**: AI debug results are labeled and categorized
+4. **Metadata**: Model information, timestamps, and error context
+
+### Allure Report Features
+
+- 🤖 **AI Debug Suite**: All AI analyses grouped in a dedicated suite
+- 📎 **Rich Attachments**: Markdown files with formatted AI responses
+- 🏷️ **Smart Labels**: Automatic categorization and filtering
+- 📊 **Parameters**: AI model, server, and configuration details
+- 🔍 **Search & Filter**: Find AI analyses by error type or solution
+
+### Example Allure Output
+
+The integration creates test results like:
+
+```json
+{
+  "name": "🤖 AI Debug Analysis #1",
+  "status": "passed",
+  "labels": [
+    {"name": "suite", "value": "AI Debug"},
+    {"name": "feature", "value": "Automatic Error Analysis"}
+  ],
+  "attachments": [
+    {
+      "name": "🤖 AI Debug Report",
+      "source": "ai-analysis-timestamp.md",
+      "type": "text/markdown"
+    }
+  ]
+}
+```
 
 ## ⚙️ Requirements
 
