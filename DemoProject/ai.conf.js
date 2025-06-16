@@ -28,6 +28,7 @@ export const ai_conf = {
   
   // Сохранение AI ответов
   save_ai_responses: true,
+  ai_responses_dir: 'allure-results',
   ai_response_filename_template: 'ai-response-{timestamp}-{index}.md',
   include_metadata: true,
   

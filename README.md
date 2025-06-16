@@ -286,6 +286,21 @@ The error indicates that Playwright couldn't find the login button...
 
 The library provides seamless and invisible integration with Allure reports - AI responses are automatically attached to failed tests without creating additional test results.
 
+### ✨ New in v1.2.7: Enhanced Test Matching
+
+The library now uses an advanced algorithm to match AI responses to the most relevant failed tests:
+
+- **🔍 Content Analysis**: Extracts keywords, stack traces, and error messages from error files
+- **📁 File Path Analysis**: Analyzes error file paths to extract test names and error types
+- **🎯 Smart Scoring System**: Prioritizes matches based on relevance:
+  - +5 points: Exact error message matches
+  - +4 points: Test name matches with file keywords  
+  - +3 points: Stack trace or error type matches
+  - +2 points: Partial name matches
+  - +1 point: General error keywords
+- **📊 100% Coverage**: AI responses now attach to ALL relevant failed tests, not just the last one
+- **🚫 No Duplicates**: Prevents multiple AI attachments for the same test
+
 ### How It Works
 
 ```mermaid
@@ -299,11 +314,11 @@ graph TD
     E --> F["💡 AI Solutions<br/>- Login timeout fix<br/>- Checkout selector fix"]
     
     F --> G["📎 Smart Test Matching"]
-    G --> H["🎯 Keyword Scoring<br/>Match errors to tests"]
+    G --> H["🎯 Advanced Scoring Algorithm<br/>Content + File Path Analysis"]
     
-    H --> I["🔗 Attach to Failed Tests"]
+    H --> I["🔗 Attach to ALL Relevant Failed Tests"]
     I --> J["📊 Allure Report"]
-    J --> K["🤖 AI Debug Analysis<br/>attached only to failed tests"]
+    J --> K["🤖 AI Debug Analysis<br/>attached to all matching failed tests"]
     
     C --> L["No AI Analysis<br/>for passed tests"]
     

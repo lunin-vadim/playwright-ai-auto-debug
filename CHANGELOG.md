@@ -2,6 +2,51 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.7] - 2025-01-16
+
+### Fixed
+- 🐛 **Allure Integration: AI Responses Now Attach to ALL Failed Tests**: Полностью исправлена проблема прикрепления ответов ИИ только к последнему тесту
+  - **Улучшенный алгоритм сопоставления**: Новая система анализа содержимого ошибок и имен файлов для точного соответствия тестам
+  - **Анализ содержимого ошибок**: Извлечение ключевых слов, stack trace, сообщений об ошибках из промптов
+  - **Анализ имен файлов**: Извлечение ключевых слов из путей к файлам ошибок (включая эмодзи и типы ошибок)
+  - **Умная система скоринга**: Приоритизация совпадений по важности (сообщения об ошибках +5, имена тестов +4, stack trace +3)
+  - **Обработка всех релевантных тестов**: Вместо ограничения в 3 теста, теперь обрабатываются все подходящие упавшие тесты
+  - **Исправлена работа с директориями**: Функция `debugPlaywrightTests` теперь корректно переключается в директорию проекта
+
+### Changed
+- 📊 **Улучшенная отчетность**: Подсчет успешно прикрепленных attachment'ов с детальным логированием
+- 🎯 **Полное покрытие упавших тестов**: AI ответы теперь прикрепляются ко всем релевантным упавшим тестам (100% покрытие)
+- 🔍 **Предотвращение дублирования**: Улучшенная проверка существующих AI attachment'ов
+
+### Technical
+- 🏗️ **Новые функции анализа**: `extractFileBasedKeywords()`, `extractErrorTypeFromPath()` для лучшего сопоставления
+- 🔧 **Улучшенная обработка путей**: Корректная смена рабочей директории с возвратом в исходную
+- ✅ **Возвращаемые значения**: Функция `createAiAttachmentForTest()` теперь возвращает boolean для отслеживания успеха
+
+## [1.2.6] - 2024-12-20
+
+### Fixed
+- 🐛 **Allure Integration Logic**: Completely refactored Allure integration for failed tests
+  - Fixed logic to work only with failed/broken tests that have actual errors
+  - Improved test matching algorithm with keyword scoring system
+  - Enhanced attachment creation with unique IDs and proper file naming
+  - Added prevention of duplicate AI attachments for the same test
+  - Better error handling and debug logging throughout the process
+
+### Changed
+- 📊 **Smart Test Selection**: Enhanced algorithm for matching error files to failed tests
+  - Keyword-based scoring system for better test-to-error matching
+  - Support for multiple failed tests with AI analysis (max 3 tests)
+  - Improved attachment content with structured Markdown format
+  - Added test status validation to ensure only truly failed tests get AI analysis
+
+### Technical
+- 🏗️ **Modular Architecture**: Split attachment creation into separate functions
+  - `createAiAttachmentForTest()` for individual test processing
+  - `createAiAttachmentContent()` for formatted content generation
+  - Better separation of concerns and improved maintainability
+  - Enhanced error handling with specific debug messages
+
 ## [1.1.9] - 2024-12-20
 
 ### Fixed
@@ -321,7 +366,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.2.6] - 2024-12-20
 
 ### Fixed
-- 🔧 **Allure Integration Logic**: Completely refactored Allure integration for failed tests
+- 🐛 **Allure Integration Logic**: Completely refactored Allure integration for failed tests
   - Fixed logic to work only with failed/broken tests that have actual errors
   - Improved test matching algorithm with keyword scoring system
   - Enhanced attachment creation with unique IDs and proper file naming
