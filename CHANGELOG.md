@@ -316,4 +316,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 📦 **Infrastructure**
   - NPM package with CLI command
   - ES6 modules support
-  - Basic documentation and examples 
+  - Basic documentation and examples
+
+## [1.2.4] - 2024-12-20
+
+### Fixed
+- 🔧 **Allure Integration Logic**: Completely refactored Allure integration for failed tests
+  - Fixed logic to work only with failed/broken tests that have actual errors
+  - Improved test matching algorithm with keyword scoring system
+  - Enhanced attachment creation with unique IDs and proper file naming
+  - Added prevention of duplicate AI attachments for the same test
+  - Better error handling and debug logging throughout the process
+
+### Changed
+- 📊 **Smart Test Selection**: Enhanced algorithm for matching error files to failed tests
+  - Keyword-based scoring system for better test-to-error matching
+  - Support for multiple failed tests with AI analysis (max 3 tests)
+  - Improved attachment content with structured Markdown format
+  - Added test status validation to ensure only truly failed tests get AI analysis
+
+### Technical
+- 🏗️ **Modular Architecture**: Split attachment creation into separate functions
+  - `createAiAttachmentForTest()` for individual test processing
+  - `createAiAttachmentContent()` for formatted content generation
+  - Better separation of concerns and improved maintainability
+  - Enhanced error handling with specific debug messages 

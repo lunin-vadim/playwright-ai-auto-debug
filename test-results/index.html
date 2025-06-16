@@ -169,10 +169,22 @@ Please analyze this error and provide a solution.</div>
             <div class="ai-section-title ai-solution-title">
               💡 Recommended Solution
             </div>
-            <div class="ai-solution-content"><p>Проблема: Таймаут при ожидании элемента кнопки входа.</p><p>Решения:<br>1. Увеличь таймаут ожидания:<br>``<code>typescript<br>await page.locator('button[data-testid="login-button"]').click({ timeout: 60000 });<br></code>`<code></code></p><p><code>2. Добавь проверку на загрузку страницы перед кликом:<br></code>`<code>typescript<br>await page.waitForLoadState('networkidle');<br>await page.locator('button[data-testid="login-button"]').click();<br></code>`<code></code></p><p><code>3. Проверь, что селектор корректен. В React с TypeScript часто используют </code>data-testid<code>. Убедись, что в компоненте кнопки прописан именно этот атрибут.</code></p><p><code>4. Добавь проверку на видимость элемента:<br></code>`<code>typescript<br>await expect(page.locator('button[data-testid="login-button"]')).toBeVisible();<br>await page.locator('button[data-testid="login-button"]').click();<br></code>``</p><p>Для e-commerce проекта также важно убедиться, что все API запросы завершены перед взаимодействием с элементами.</p></div>
+            <div class="ai-solution-content"><p>Проблема: Таймаут при ожидании элемента кнопки входа.</p><p>Решения:<br>1. Увеличь таймаут ожидания:<br>``<code>typescript<br>await page.locator('button[data-testid="login-button"]').click({ timeout: 60000 });<br></code>`<code></code></p><p><code>2. Добавь проверку на видимость элемента перед кликом:<br></code>`<code>typescript<br>const loginButton = page.locator('button[data-testid="login-button"]');<br>await loginButton.waitFor({ state: 'visible', timeout: 60000 });<br>await loginButton.click();<br></code>`<code></code></p><p><code>3. Проверь правильность селектора. В React с TypeScript часто используют </code>data-testid<code>, но убедись, что этот атрибут действительно есть в разметке.</code></p><p><code>4. Добавь ожидание загрузки страницы перед поиском элемента:<br></code>`<code>typescript<br>await page.waitForLoadState('networkidle');<br></code>``</p><p>Для e-commerce проекта также стоит проверить, не блокирует ли какие-то модальные окна или баннеры доступ к кнопке входа.</p></div>
           </div>
         </div>
       </div>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     

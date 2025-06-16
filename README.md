@@ -298,18 +298,20 @@ graph TD
     D --> E["🤖 AI Analysis"]
     E --> F["💡 AI Solutions<br/>- Login timeout fix<br/>- Checkout selector fix"]
     
-    F --> G["📎 Allure Integration"]
-    G --> H["🔗 Attach to Failed Tests"]
+    F --> G["📎 Smart Test Matching"]
+    G --> H["🎯 Keyword Scoring<br/>Match errors to tests"]
     
-    H --> I["📊 Allure Report"]
-    I --> J["🤖 AI Debug Analysis<br/>attached to failed tests"]
+    H --> I["🔗 Attach to Failed Tests"]
+    I --> J["📊 Allure Report"]
+    J --> K["🤖 AI Debug Analysis<br/>attached only to failed tests"]
     
-    C --> K["No AI Analysis<br/>for passed tests"]
+    C --> L["No AI Analysis<br/>for passed tests"]
     
     style B fill:#ffe6e6
     style C fill:#e6ffe6
     style E fill:#e6f3ff
-    style J fill:#fff2e6
+    style G fill:#fff9e6
+    style K fill:#fff2e6
 ```
 
 ### Enable Allure Integration
@@ -366,15 +368,19 @@ npx allure open allure-report
 ### What Gets Added to Failed Tests
 
 - 🤖 **AI Debug Analysis Attachment**: Markdown file with AI solution attached to the failed test
-- 🏷️ **Invisible Label**: `ai-debug: analyzed` label for filtering (doesn't affect report structure)
-- 📋 **Rich Content**: Original error details and AI recommendations in readable format
+- 🏷️ **Smart Label**: `ai-analyzed: true` label for filtering (doesn't affect report structure)
+- 📋 **Rich Content**: Original error details, stack traces, and AI recommendations in readable format
+- 🎯 **Smart Matching**: Intelligent algorithm matches error files to the most relevant failed tests
+- 🚫 **No Duplicates**: Prevents multiple AI attachments for the same test
 
 ### Allure Report Features
 
 - 📎 **Seamless Attachments**: AI analysis appears as a natural part of failed test results
-- 🔍 **Smart Filtering**: Filter tests with AI analysis using the `ai-debug` label
+- 🔍 **Smart Filtering**: Filter tests with AI analysis using the `ai-analyzed` label
 - 📊 **No Clutter**: Report structure remains clean and professional
 - 🤖 **Rich Analysis**: Detailed AI recommendations right where you need them
+- 🎯 **Precise Targeting**: Only failed tests with actual errors get AI analysis
+- 📋 **Structured Content**: Well-formatted Markdown with error details and solutions
 
 ### Example Integration
 

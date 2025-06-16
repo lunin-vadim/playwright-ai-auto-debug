@@ -1,6 +1,6 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "2.1.0",
+  "version": "1.2.4",
   "description": "Automatic Playwright test debugging with AI assistance",
   "type": "module",
   "main": "lib/index.js",
@@ -11,8 +11,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:local": "node test-local.js",
+    "test:local:debug": "node --inspect-brk test-local.js",
     "clean:test": "node clean-test.js",
     "demo": "npm run clean:test && npm run test:local",
+    "debug:cli": "node --inspect-brk ./bin/index.js",
+    "debug:main": "node --inspect-brk ./lib/index.js",
     "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "version:major": "npm version major",

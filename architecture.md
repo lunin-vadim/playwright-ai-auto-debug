@@ -295,6 +295,34 @@ try {
 - Comprehensive PR reviews
 - Automated testing (future)
 
+## 🔧 Allure Integration Architecture (v1.2.4)
+
+### Smart Test Matching System
+- **Keyword Scoring**: Algorithm that matches error files to failed tests using keyword analysis
+- **Multiple Test Support**: Can attach AI analysis to multiple relevant failed tests (max 3)
+- **Duplicate Prevention**: Checks for existing AI attachments before creating new ones
+- **Status Validation**: Only processes tests with `failed` or `broken` status that have actual error details
+
+### Attachment Creation Process
+```javascript
+// Modular attachment creation
+async function createAiAttachmentForTest(testData, response, originalPrompt, allureDir) {
+  // 1. Check for existing AI attachments
+  // 2. Generate unique attachment ID
+  // 3. Create formatted Markdown content
+  // 4. Save attachment file
+  // 5. Update test result with attachment reference
+  // 6. Add ai-analyzed label for filtering
+}
+```
+
+### Content Structure
+- **Test Information**: Name, status, full name, analysis timestamp
+- **Error Details**: Original error message and stack trace from test results
+- **Context**: Original error prompt from error files
+- **AI Solution**: Formatted AI recommendations and solutions
+- **Metadata**: Generation timestamp and AI assistant attribution
+
 ## 🔮 Future Architecture Considerations
 
 ### Potential Enhancements
@@ -303,12 +331,15 @@ try {
 - Advanced TypeScript features (decorators, etc.)
 - Configuration file hot-reloading
 - Multi-language AI response support
+- Advanced test-to-error matching algorithms
+- Batch processing for multiple failed tests
 
 ### Scalability
 - Modular AI provider system
 - Configuration caching
 - Parallel error processing
 - Advanced error pattern recognition
+- Allure integration performance optimization
 
 ## 📊 Architecture Metrics
 
