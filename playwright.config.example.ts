@@ -19,19 +19,7 @@ export default defineConfig({
     ['allure-playwright', {
       detail: true,
       outputFolder: 'allure-results',
-      suiteTitle: false,
-      categories: [
-        {
-          name: 'AI Debug',
-          matchedStatuses: ['passed'],
-          messageRegex: '.*AI Debug.*'
-        },
-        {
-          name: 'Failed Tests with AI Analysis',
-          matchedStatuses: ['failed'],
-          messageRegex: '.*'
-        }
-      ]
+      suiteTitle: false
     }]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */

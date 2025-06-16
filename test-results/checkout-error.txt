@@ -1,0 +1,22 @@
+Error: Element not found: [data-testid='payment-submit']
+=========================== logs ===========================
+waiting for locator('[data-testid="payment-submit"]')
+=============================================================
+
+  at /Users/lunin/tests/checkout.spec.ts:25:3
+  at /Users/lunin/tests/checkout.spec.ts:20:1
+
+Test: should complete checkout process
+Browser: chromium
+URL: https://example.com/checkout
+Viewport: 1280x720
+
+The test was trying to click the payment submit button but couldn't find the element. The checkout form was filled correctly but the final submit button is missing or has a different selector.
+
+Steps that worked:
+1. Fill billing information ✅
+2. Select payment method ✅
+3. Enter card details ✅
+4. Click submit button ❌
+
+Please help fix this checkout flow issue. 

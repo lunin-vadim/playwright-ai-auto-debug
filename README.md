@@ -284,7 +284,33 @@ The error indicates that Playwright couldn't find the login button...
 
 ## 📊 Allure Integration
 
-The library provides seamless integration with Allure reports for better visualization of AI debugging results.
+The library provides seamless and invisible integration with Allure reports - AI responses are automatically attached to failed tests without creating additional test results.
+
+### How It Works
+
+```mermaid
+graph TD
+    A["🧪 Playwright Tests"] --> B["❌ Failed Tests"]
+    A --> C["✅ Passed Tests"]
+    
+    B --> D["📄 Error Files<br/>copy-prompt.txt<br/>checkout-error.txt"]
+    
+    D --> E["🤖 AI Analysis"]
+    E --> F["💡 AI Solutions<br/>- Login timeout fix<br/>- Checkout selector fix"]
+    
+    F --> G["📎 Allure Integration"]
+    G --> H["🔗 Attach to Failed Tests"]
+    
+    H --> I["📊 Allure Report"]
+    I --> J["🤖 AI Debug Analysis<br/>attached to failed tests"]
+    
+    C --> K["No AI Analysis<br/>for passed tests"]
+    
+    style B fill:#ffe6e6
+    style C fill:#e6ffe6
+    style E fill:#e6f3ff
+    style J fill:#fff2e6
+```
 
 ### Enable Allure Integration
 
@@ -312,14 +338,7 @@ export default defineConfig({
     ['allure-playwright', {
       detail: true,
       outputFolder: 'allure-results',
-      suiteTitle: false,
-      categories: [
-        {
-          name: 'AI Debug',
-          matchedStatuses: ['passed'],
-          messageRegex: '.*AI Debug.*'
-        }
-      ]
+      suiteTitle: false
     }]
   ],
   // ... other settings
@@ -344,41 +363,41 @@ npx allure generate allure-results -o allure-report
 npx allure open allure-report
 ```
 
-### What Gets Added to Allure
+### What Gets Added to Failed Tests
 
-1. **Standalone AI Analysis Results**: Each AI response creates a separate test result in Allure
-2. **Rich Markdown Attachments**: Detailed AI analysis with original error and solutions
-3. **Proper Categorization**: AI debug results are labeled and categorized
-4. **Metadata**: Model information, timestamps, and error context
+- 🤖 **AI Debug Analysis Attachment**: Markdown file with AI solution attached to the failed test
+- 🏷️ **Invisible Label**: `ai-debug: analyzed` label for filtering (doesn't affect report structure)
+- 📋 **Rich Content**: Original error details and AI recommendations in readable format
 
 ### Allure Report Features
 
-- 🤖 **AI Debug Suite**: All AI analyses grouped in a dedicated suite
-- 📎 **Rich Attachments**: Markdown files with formatted AI responses
-- 🏷️ **Smart Labels**: Automatic categorization and filtering
-- 📊 **Parameters**: AI model, server, and configuration details
-- 🔍 **Search & Filter**: Find AI analyses by error type or solution
+- 📎 **Seamless Attachments**: AI analysis appears as a natural part of failed test results
+- 🔍 **Smart Filtering**: Filter tests with AI analysis using the `ai-debug` label
+- 📊 **No Clutter**: Report structure remains clean and professional
+- 🤖 **Rich Analysis**: Detailed AI recommendations right where you need them
 
-### Example Allure Output
+### Example Integration
 
-The integration creates test results like:
+When a test fails, you'll see:
+- Original test failure information
+- Screenshots and traces (if configured)
+- **🤖 AI Debug Analysis** attachment with solution
 
-```json
-{
-  "name": "🤖 AI Debug Analysis #1",
-  "status": "passed",
-  "labels": [
-    {"name": "suite", "value": "AI Debug"},
-    {"name": "feature", "value": "Automatic Error Analysis"}
-  ],
-  "attachments": [
-    {
-      "name": "🤖 AI Debug Report",
-      "source": "ai-analysis-timestamp.md",
-      "type": "text/markdown"
-    }
-  ]
-}
+The AI attachment contains:
+```markdown
+# 🤖 AI Debug Analysis
+
+**Test:** Login should work with valid credentials
+**Status:** failed
+**Generated:** 15.01.2024, 14:30:25
+
+## 🔍 Error Details
+```
+[Original error details]
+```
+
+## 💡 AI Solution
+[AI recommendations and solutions]
 ```
 
 ## ⚙️ Requirements
