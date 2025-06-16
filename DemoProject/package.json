@@ -1,0 +1,34 @@
+{
+  "name": "playwright-ai-demo",
+  "version": "1.0.0",
+  "description": "Demo project for playwright-ai-auto-debug integration",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "ai:debug": "npx playwright-ai",
+    "allure:generate": "allure generate allure-results -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results",
+    "demo:full": "npm run test && npm run ai:debug && npm run allure:generate && npm run allure:open",
+    "clean": "rm -rf allure-results allure-report test-results playwright-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "allure-playwright": "^3.2.2",
+    "allure-commandline": "^2.25.0"
+  },
+  "dependencies": {
+    "playwright-ai-auto-debug": "^1.2.6"
+  },
+  "keywords": [
+    "playwright",
+    "ai",
+    "debug",
+    "allure",
+    "demo"
+  ],
+  "author": "playwright-ai-auto-debug",
+  "license": "MIT"
+} 

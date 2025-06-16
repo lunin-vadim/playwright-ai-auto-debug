@@ -48,7 +48,6 @@
   "author": "lunin",
   "license": "MIT",
   "dependencies": {
-    "allure": "^3.0.0-beta.15",
     "allure-playwright": "^3.2.2",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
@@ -67,6 +66,7 @@
     "playwright.config.example.ts",
     "ai.conf.example.ts",
     "architecture.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "DemoProject/"
   ]
 }
