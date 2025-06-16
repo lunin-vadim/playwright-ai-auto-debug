@@ -286,7 +286,7 @@ The error indicates that Playwright couldn't find the login button...
 
 The library provides seamless and invisible integration with Allure reports - AI responses are automatically attached to failed tests without creating additional test results.
 
-### ✨ New in v1.2.7: Enhanced Test Matching
+### ✨ New in v1.2.8: Enhanced Test Matching
 
 The library now uses an advanced algorithm to match AI responses to the most relevant failed tests:
 
