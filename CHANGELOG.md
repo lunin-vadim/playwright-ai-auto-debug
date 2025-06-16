@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.2.9] - 2025-01-16
+## [1.3.0] - 2025-01-16
 
 ### Fixed
 - 🐛 **Allure Integration: AI Responses Now Attach to ALL Failed Tests**: Полностью исправлена проблема прикрепления ответов ИИ только к последнему тесту
