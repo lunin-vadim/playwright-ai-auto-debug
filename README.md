@@ -4,24 +4,9 @@
 
 [![npm version](https://img.shields.io/npm/v/playwright-ai-auto-debug.svg)](https://www.npmjs.com/package/playwright-ai-auto-debug)
 
-> ## 🔷 Major changes since version 1.1.7!
->
-> **Added native support for TypeScript configuration:**
-> - ✅ Automatic loading of `ai.conf.ts` files with full typing
-> - ✅ TypeScript configuration takes precedence over JavaScript
-> - ✅ Full backward compatibility with existing `ai.conf.js`
-> - ✅ Built-in support for `tsx` - no additional installation required
->
-> **Changes in architecture:**
-> - 🔄 Asynchronous configuration loading
-> - 🔄 Dynamic configuration transfer between modules
-> - 🔄 Improved TypeScript error handling
->
-> [More details in CHANGELOG.md](#changelog)
+<!-- ## 🎥 Demo Video
 
-## 🎥 Demo Video
-
-[![Demo Video](https://img.youtube.com/vi/mva6ktpKOKw/maxresdefault.jpg)](https://youtu.be/mva6ktpKOKw)
+[![Demo Video](https://img.youtube.com/vi/mva6ktpKOKw/maxresdefault.jpg)](https://youtu.be/mva6ktpKOKw) -->
 
 Watch the demo to see how the library automatically analyzes Playwright test errors and provides AI-powered solutions integrated directly into your HTML reports.
 
