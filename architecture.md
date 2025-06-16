@@ -295,7 +295,7 @@ try {
 - Comprehensive PR reviews
 - Automated testing (future)
 
-## 🔧 Allure Integration Architecture (v1.2.5)
+## 🔧 Allure Integration Architecture (v1.2.6)
 
 ### Smart Test Matching System
 - **Keyword Scoring**: Algorithm that matches error files to failed tests using keyword analysis
