@@ -43,7 +43,8 @@ This command will:
 - `npm run test:debug` - run in debug mode
 
 ### AI analysis
-- `npm run ai:debug` - run AI error analysis
+- `npm run ai:debug` - run AI error analysis (standard mode)
+- `npx playwright-ai --use-mcp` - run with MCP DOM snapshots
 
 ### Allure reports
 - `npm run allure:generate` - generate report

@@ -20,6 +20,15 @@ export const ai_conf = {
   include_metadata: true,
   allure_integration: true,
   allure_results_dir: 'allure-results',
+  
+  // MCP Integration settings
+  mcp_integration: false, // Enabled via --use-mcp flag
+  mcp_ws_host: 'localhost',
+  mcp_ws_port: 3001,
+  mcp_timeout: 30000,
+  mcp_retry_attempts: 3,
+  mcp_command: 'npx',
+  mcp_args: ['@playwright/mcp@latest'],
   messages: [
     {
       role: 'system',
