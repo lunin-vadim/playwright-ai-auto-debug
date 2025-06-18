@@ -8,6 +8,7 @@
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
     "ai:debug": "npx playwright-ai",
+    "ai:debug:mcp": "npx playwright-ai --use-mcp",
     "allure:generate": "allure generate allure-results -o allure-report",
     "allure:open": "allure open allure-report",
     "allure:serve": "allure serve allure-results",
@@ -20,7 +21,7 @@
   },
   "dependencies": {
     "allure": "^3.0.0-beta.15",
-    "playwright-ai-auto-debug": "^1.2.6"
+    "playwright-ai-auto-debug": "^1.2.7"
   },
   "keywords": [
     "playwright",
