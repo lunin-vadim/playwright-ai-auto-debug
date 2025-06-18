@@ -1,48 +1,48 @@
-# ⚡ Быстрый запуск Demo Project
+# ⚡ Demo Project Quick Start
 
-## 🚀 За 3 минуты до Allure отчета с AI анализом
+## 🚀 3 minutes to Allure report with AI analysis
 
-### 1. Подготовка (30 сек)
+### 1. Setup (30 seconds)
 ```bash
 cd DemoProject
 npm install
 npx playwright install chromium
 ```
 
-### 2. Настройка API ключа (30 сек)
+### 2. Configure API key (30 seconds)
 ```bash
 cp env.example .env
-# Отредактируйте .env и установите API_KEY=your-mistral-api-key
+# Edit .env and set API_KEY=your-mistral-api-key
 ```
 
-### 3. Запуск демонстрации (2 минуты)
+### 3. Run demonstration (2 minutes)
 ```bash
 npm run demo:full
 ```
 
-## ✅ Что произойдет:
+## ✅ What will happen:
 
-1. **Запустятся тесты** (6 тестов: 1 пройдет ✅, 5 упадут ❌)
-2. **AI проанализирует ошибки** и создаст решения
-3. **Сгенерируется Allure отчет** с AI attachment'ами
-4. **Откроется браузер** с готовым отчетом
+1. **Tests will run** (6 tests: 1 will pass ✅, 5 will fail ❌)
+2. **AI will analyze errors** and create solutions
+3. **Allure report will be generated** with AI attachments
+4. **Browser will open** with ready report
 
-## 🔍 Что проверить в отчете:
+## 🔍 What to check in the report:
 
-- [ ] 5 упавших тестов имеют вложение "🤖 AI Debug Analysis"
-- [ ] 1 проходящий тест НЕ имеет AI анализа
-- [ ] AI предлагает конкретные решения с примерами кода
-- [ ] Можно фильтровать по метке `ai-analyzed: true`
+- [ ] 5 failed tests have "🤖 AI Debug Analysis" attachment
+- [ ] 1 passing test does NOT have AI analysis
+- [ ] AI suggests specific solutions with code examples
+- [ ] Can filter by `ai-analyzed: true` label
 
-## 🆘 Если что-то не работает:
+## 🆘 If something doesn't work:
 
 ```bash
-# Очистка и повторный запуск
+# Clean and re-run
 npm run clean
 npm run demo:full
 
-# Проверка API ключа
+# Check API key
 echo $API_KEY
 ```
 
-**Готово!** 🎉 Теперь у вас есть полностью рабочий пример интеграции AI анализа с Allure отчетами. 
+**Done!** 🎉 Now you have a fully working example of AI analysis integration with Allure reports. 

@@ -1,148 +1,148 @@
 # 🎯 Playwright AI Auto-Debug Demo Project
 
-Демонстрационный проект для показа возможностей `playwright-ai-auto-debug` с интеграцией Allure.
+Demo project showcasing `playwright-ai-auto-debug` capabilities with Allure integration.
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-### 1. Установка зависимостей
+### 1. Install dependencies
 ```bash
 cd DemoProject
 npm install
 ```
 
-### 2. Установка браузеров
+### 2. Install browsers
 ```bash
 npx playwright install
 ```
 
-### 3. Настройка API ключа
+### 3. Configure API key
 ```bash
-# Скопируйте файл окружения
+# Copy environment file
 cp env.example .env
 
-# Отредактируйте .env и установите свой API ключ
+# Edit .env and set your API key
 # API_KEY=your-mistral-api-key-here
 ```
 
-### 4. Запуск полной демонстрации
+### 4. Run full demonstration
 ```bash
 npm run demo:full
 ```
 
-Эта команда выполнит:
-1. Запуск тестов (5 упадут, 1 пройдет)
-2. AI анализ ошибок
-3. Генерацию Allure отчета
-4. Открытие отчета в браузере
+This command will:
+1. Run tests (5 will fail, 1 will pass)
+2. AI error analysis
+3. Generate Allure report
+4. Open report in browser
 
-## 📋 Доступные команды
+## 📋 Available commands
 
-### Тестирование
-- `npm test` - запуск всех тестов
-- `npm run test:headed` - запуск с видимым браузером
-- `npm run test:debug` - запуск в режиме отладки
+### Testing
+- `npm test` - run all tests
+- `npm run test:headed` - run with visible browser
+- `npm run test:debug` - run in debug mode
 
-### AI анализ
-- `npm run ai:debug` - запуск AI анализа ошибок
+### AI analysis
+- `npm run ai:debug` - run AI error analysis
 
-### Allure отчеты
-- `npm run allure:generate` - генерация отчета
-- `npm run allure:open` - открытие отчета
-- `npm run allure:serve` - запуск сервера с отчетом
+### Allure reports
+- `npm run allure:generate` - generate report
+- `npm run allure:open` - open report
+- `npm run allure:serve` - serve report
 
-### Утилиты
-- `npm run clean` - очистка всех результатов
+### Utilities
+- `npm run clean` - clean all results
 
-## 🧪 Демонстрационные тесты
+## 🧪 Demo tests
 
-Проект содержит 6 тестов:
+The project contains 6 tests:
 
-### ✅ Проходящий тест
-- **Successful navigation test** - проверка основной навигации
+### ✅ Passing test
+- **Successful navigation test** - main navigation check
 
-### ❌ Падающие тесты (для демонстрации AI анализа)
-- **Login timeout simulation** - таймаут при поиске элемента
-- **Wrong title assertion** - неправильная проверка заголовка
-- **Missing checkout button** - отсутствующий элемент
-- **API response timeout** - таймаут сети
-- **Form validation error** - ошибка валидации формы
+### ❌ Failing tests (for AI analysis demonstration)
+- **Login timeout simulation** - element search timeout
+- **Wrong title assertion** - incorrect title check
+- **Missing checkout button** - missing element
+- **API response timeout** - network timeout
+- **Form validation error** - form validation error
 
-## 🤖 AI интеграция
+## 🤖 AI integration
 
-### Что происходит автоматически:
-1. **Тесты падают** и создают файлы ошибок (`error-context.md`)
-2. **AI анализирует** каждую ошибку и предлагает решения
-3. **Allure интеграция** прикрепляет AI анализ к упавшим тестам
-4. **Умное сопоставление** находит наиболее подходящие тесты для каждой ошибки
+### What happens automatically:
+1. **Tests fail** and create error files (`error-context.md`)
+2. **AI analyzes** each error and suggests solutions
+3. **Allure integration** attaches AI analysis to failed tests
+4. **Smart matching** finds the most suitable tests for each error
 
-### В Allure отчете вы увидите:
-- 🤖 **AI Debug Analysis** - вложения с решениями для каждого упавшего теста
-- 🏷️ **ai-analyzed: true** - метка для фильтрации тестов с AI анализом
-- 📋 **Структурированный контент** - детали ошибки и конкретные рекомендации
+### In the Allure report you'll see:
+- 🤖 **AI Debug Analysis** - attachments with solutions for each failed test
+- 🏷️ **ai-analyzed: true** - label for filtering tests with AI analysis
+- 📋 **Structured content** - error details and specific recommendations
 
-## 📊 Структура проекта
+## 📊 Project structure
 
 ```
 DemoProject/
-├── package.json              # Зависимости и скрипты
-├── playwright.config.js      # Конфигурация Playwright + Allure
-├── ai.conf.js               # Конфигурация AI с включенной Allure интеграцией
-├── env.example              # Пример файла окружения
+├── package.json              # Dependencies and scripts
+├── playwright.config.js      # Playwright + Allure configuration
+├── ai.conf.js               # AI configuration with Allure integration enabled
+├── env.example              # Environment file example
 ├── tests/
-│   └── demo.spec.js         # Демонстрационные тесты
-├── allure-results/          # Результаты Allure (создается автоматически)
-├── allure-report/           # HTML отчет Allure (создается автоматически)
-├── test-results/            # Результаты Playwright (создается автоматически)
-└── ai-responses/            # AI ответы (создается автоматически)
+│   └── demo.spec.js         # Demo tests
+├── allure-results/          # Allure results (created automatically)
+├── allure-report/           # Allure HTML report (created automatically)
+├── test-results/            # Playwright results (created automatically)
+└── ai-responses/            # AI responses (created automatically)
 ```
 
-## 🔧 Настройки
+## 🔧 Configuration
 
-### AI конфигурация (`ai.conf.js`)
-- ✅ **Allure интеграция включена** (`allure_integration: true`)
-- 🎯 **Умное сопоставление** тестов и ошибок
-- 📝 **Сохранение AI ответов** в отдельные файлы
-- 🚫 **Предотвращение дублирования** attachment'ов
+### AI configuration (`ai.conf.js`)
+- ✅ **Allure integration enabled** (`allure_integration: true`)
+- 🎯 **Smart matching** of tests and errors
+- 📝 **AI response saving** to separate files
+- 🚫 **Duplicate attachment prevention**
 
-### Playwright конфигурация
-- 📊 **Allure репортер** настроен с детальной информацией
-- 🎥 **Скриншоты и видео** при падении тестов
-- 🔍 **Трейсы** для отладки
-- 🌐 **Мульти-браузерность** (Chromium, Firefox, WebKit)
+### Playwright configuration
+- 📊 **Allure reporter** configured with detailed information
+- 🎥 **Screenshots and videos** on test failure
+- 🔍 **Traces** for debugging
+- 🌐 **Multi-browser** support (Chromium, Firefox, WebKit)
 
-## 🎯 Ожидаемый результат
+## 🎯 Expected result
 
-После запуска `npm run demo:full`:
+After running `npm run demo:full`:
 
-1. **5 тестов упадут**, 1 пройдет
-2. **AI проанализирует** каждую ошибку
-3. **Allure отчет** откроется в браузере
-4. В отчете будут видны **AI Debug Analysis** вложения для каждого упавшего теста
+1. **5 tests will fail**, 1 will pass
+2. **AI will analyze** each error
+3. **Allure report** will open in browser
+4. The report will show **AI Debug Analysis** attachments for each failed test
 
-## 🔍 Что проверить в Allure отчете
+## 🔍 What to check in Allure report
 
-- [ ] Все упавшие тесты имеют вложение "🤖 AI Debug Analysis"
-- [ ] AI анализ содержит конкретные решения и примеры кода
-- [ ] Можно фильтровать тесты по метке `ai-analyzed: true`
-- [ ] Проходящий тест НЕ имеет AI анализа
-- [ ] Каждый AI анализ уникален и соответствует конкретной ошибке
+- [ ] All failed tests have "🤖 AI Debug Analysis" attachment
+- [ ] AI analysis contains specific solutions and code examples
+- [ ] Can filter tests by `ai-analyzed: true` label
+- [ ] Passing test does NOT have AI analysis
+- [ ] Each AI analysis is unique and matches the specific error
 
-## 🆘 Устранение неполадок
+## 🆘 Troubleshooting
 
-### Ошибка API ключа
+### API key error
 ```bash
-# Проверьте что API ключ установлен
+# Check that API key is set
 echo $API_KEY
-# или проверьте файл .env
+# or check .env file
 ```
 
-### Проблемы с Allure
+### Allure issues
 ```bash
-# Переустановите Allure
+# Reinstall Allure
 npm install -g allure-commandline
 ```
 
-### Очистка результатов
+### Clean results
 ```bash
 npm run clean
 ``` 
