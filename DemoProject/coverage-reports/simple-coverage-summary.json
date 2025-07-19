@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "totalTests": 1,
+    "passedTests": 0,
+    "failedTests": 1,
+    "totalInteractions": 2,
+    "uniqueElements": 2,
+    "actionTypes": {
+      "navigate": 1,
+      "fill": 1
+    },
+    "elementsByType": {}
+  },
+  "tests": [
+    {
+      "title": "❌ Form validation error",
+      "status": "failed",
+      "duration": 21397,
+      "interactions": 2,
+      "uniqueSelectors": 2
+    }
+  ],
+  "topElements": [
+    {
+      "selector": "/",
+      "interactionCount": 1,
+      "actions": [
+        "navigate"
+      ],
+      "tests": [
+        "❌ Form validation error"
+      ]
+    },
+    {
+      "selector": "#email-input",
+      "interactionCount": 1,
+      "actions": [
+        "fill"
+      ],
+      "tests": [
+        "❌ Form validation error"
+      ]
+    }
+  ]
+}

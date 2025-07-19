@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "pageName": "ci-cd-pipeline",
+    "timestamp": "2025-07-19T21:38:57.923Z",
+    "analyzer": "UICoverageAnalyzer",
+    "version": "1.0.0"
+  },
+  "summary": {
+    "totalElements": 15,
+    "interactiveElements": 3,
+    "accessibilityScore": 0,
+    "coveragePercentage": 20
+  },
+  "elementBreakdown": {
+    "totalElements": 15,
+    "buttons": 3,
+    "inputs": 0,
+    "links": 10,
+    "forms": 1,
+    "navigation": 1,
+    "interactive": 3,
+    "withAriaLabel": 0,
+    "withRole": 0
+  },
+  "criticalElementsCheck": {
+    "allCriticalPresent": false,
+    "missingCritical": [
+      {
+        "type": "button",
+        "name": "Get started",
+        "selector": "text=Get started",
+        "status": "missing"
+      },
+      {
+        "type": "button",
+        "name": "Search",
+        "selector": "button:has-text(\"Search\")",
+        "status": "missing"
+      },
+      {
+        "type": "link",
+        "name": "Docs",
+        "selector": "text=Docs",
+        "status": "missing"
+      },
+      {
+        "type": "button",
+        "name": "Node.js",
+        "selector": "button:has-text(\"Node.js\")",
+        "status": "missing"
+      }
+    ],
+    "foundCritical": [
+      {
+        "type": "navigation",
+        "name": "Main",
+        "selector": "navigation",
+        "element": {
+          "type": "navigation",
+          "text": "",
+          "url": "",
+          "attributes": "- navigation \"Main\":",
+          "selector": "navigation",
+          "line": "- navigation \"Main\":"
+        },
+        "status": "found"
+      }
+    ],
+    "recommendations": [
+      "❌ Критичный элемент \"Get started\" (button) не найден на странице",
+      "❌ Критичный элемент \"Search\" (button) не найден на странице",
+      "❌ Критичный элемент \"Docs\" (link) не найден на странице",
+      "❌ Критичный элемент \"Node.js\" (button) не найден на странице"
+    ]
+  },
+  "goldenComparison": {},
+  "recommendations": [
+    "🔴 Найдено 4 отсутствующих критичных элементов",
+    "♿ Низкая оценка доступности (0%) - добавьте aria-label и role атрибуты"
+  ],
+  "rawData": {
+    "elements": [
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"Skip to main content\":",
+        "selector": "link",
+        "line": "- link \"Skip to main content\":"
+      },
+      {
+        "type": "navigation",
+        "text": "",
+        "url": "",
+        "attributes": "- navigation \"Main\":",
+        "selector": "navigation",
+        "line": "- navigation \"Main\":"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"Playwright logo Playwright\":",
+        "selector": "link",
+        "line": "- link \"Playwright logo Playwright\":"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"Docs\":",
+        "selector": "link",
+        "line": "- link \"Docs\":"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"API\":",
+        "selector": "link",
+        "line": "- link \"API\":"
+      },
+      {
+        "type": "button",
+        "text": "",
+        "url": "",
+        "attributes": "- button \"Node.js\"",
+        "selector": "button",
+        "line": "- button \"Node.js\""
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"Community\":",
+        "selector": "link",
+        "line": "- link \"Community\":"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"GitHub repository\":",
+        "selector": "link",
+        "line": "- link \"GitHub repository\":"
+      },
+      {
+        "type": "button",
+        "text": "",
+        "url": "",
+        "attributes": "- button \"Switch between dark and light mode\"",
+        "selector": "button",
+        "line": "- button \"Switch between dark and light mode\""
+      },
+      {
+        "type": "button",
+        "text": "",
+        "url": "",
+        "attributes": "- button \"Search (Command+K)\": Search ⌘ K",
+        "selector": "button",
+        "line": "- button \"Search (Command+K)\": Search ⌘ K"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"Get started\":",
+        "selector": "link",
+        "line": "- link \"Get started\":"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"Star microsoft/playwright on GitHub\":",
+        "selector": "link",
+        "line": "- link \"Star microsoft/playwright on GitHub\":"
+      },
+      {
+        "type": "form",
+        "text": "",
+        "url": "",
+        "attributes": "- heading \"Any browser • Any platform • One API\" [level=3]",
+        "selector": "form",
+        "line": "- heading \"Any browser • Any platform • One API\" [level=3]"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"TypeScript\":",
+        "selector": "link",
+        "line": "- link \"TypeScript\":"
+      },
+      {
+        "type": "link",
+        "text": "",
+        "url": "",
+        "attributes": "- link \"JavaScript\":",
+        "selector": "link",
+        "line": "- link \"JavaScript\":"
+      }
+    ],
+    "elementStats": {
+      "buttons": [
+        {
+          "type": "button",
+          "text": "",
+          "url": "",
+          "attributes": "- button \"Node.js\"",
+          "selector": "button",
+          "line": "- button \"Node.js\""
+        },
+        {
+          "type": "button",
+          "text": "",
+          "url": "",
+          "attributes": "- button \"Switch between dark and light mode\"",
+          "selector": "button",
+          "line": "- button \"Switch between dark and light mode\""
+        },
+        {
+          "type": "button",
+          "text": "",
+          "url": "",
+          "attributes": "- button \"Search (Command+K)\": Search ⌘ K",
+          "selector": "button",
+          "line": "- button \"Search (Command+K)\": Search ⌘ K"
+        }
+      ],
+      "inputs": [],
+      "links": [
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"Skip to main content\":",
+          "selector": "link",
+          "line": "- link \"Skip to main content\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"Playwright logo Playwright\":",
+          "selector": "link",
+          "line": "- link \"Playwright logo Playwright\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"Docs\":",
+          "selector": "link",
+          "line": "- link \"Docs\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"API\":",
+          "selector": "link",
+          "line": "- link \"API\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"Community\":",
+          "selector": "link",
+          "line": "- link \"Community\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"GitHub repository\":",
+          "selector": "link",
+          "line": "- link \"GitHub repository\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"Get started\":",
+          "selector": "link",
+          "line": "- link \"Get started\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"Star microsoft/playwright on GitHub\":",
+          "selector": "link",
+          "line": "- link \"Star microsoft/playwright on GitHub\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"TypeScript\":",
+          "selector": "link",
+          "line": "- link \"TypeScript\":"
+        },
+        {
+          "type": "link",
+          "text": "",
+          "url": "",
+          "attributes": "- link \"JavaScript\":",
+          "selector": "link",
+          "line": "- link \"JavaScript\":"
+        }
+      ],
+      "forms": [
+        {
+          "type": "form",
+          "text": "",
+          "url": "",
+          "attributes": "- heading \"Any browser • Any platform • One API\" [level=3]",
+          "selector": "form",
+          "line": "- heading \"Any browser • Any platform • One API\" [level=3]"
+        }
+      ],
+      "navigation": [
+        {
+          "type": "navigation",
+          "text": "",
+          "url": "",
+          "attributes": "- navigation \"Main\":",
+          "selector": "navigation",
+          "line": "- navigation \"Main\":"
+        }
+      ],
+      "interactive": [
+        {
+          "type": "button",
+          "text": "",
+          "url": "",
+          "attributes": "- button \"Node.js\"",
+          "selector": "button",
+          "line": "- button \"Node.js\""
+        },
+        {
+          "type": "button",
+          "text": "",
+          "url": "",
+          "attributes": "- button \"Switch between dark and light mode\"",
+          "selector": "button",
+          "line": "- button \"Switch between dark and light mode\""
+        },
+        {
+          "type": "button",
+          "text": "",
+          "url": "",
+          "attributes": "- button \"Search (Command+K)\": Search ⌘ K",
+          "selector": "button",
+          "line": "- button \"Search (Command+K)\": Search ⌘ K"
+        }
+      ],
+      "elementsWithAriaLabel": [],
+      "elementsWithRole": [],
+      "summary": {
+        "totalElements": 15,
+        "buttons": 3,
+        "inputs": 0,
+        "links": 10,
+        "forms": 1,
+        "navigation": 1,
+        "interactive": 3,
+        "withAriaLabel": 0,
+        "withRole": 0
+      }
+    }
+  }
+}

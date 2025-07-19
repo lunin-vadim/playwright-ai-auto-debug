@@ -20,13 +20,15 @@
 ## 🔧 Available Commands
 
 ### Main Commands
-- `npm run test:local` - run library with test data
 - `npm run clean:test` - clean AI blocks from HTML reports
-- `npm run demo` - full cycle: clean + test
+- `npm run demo` - show demo instructions
+- `npm run demo:full` - run complete demo from DemoProject
 
 ### CLI Commands
 - `npx playwright-ai` - run via npm link
-- `node test-local.js` - direct run without npm link
+- `playwright-ai setup` - interactive setup wizard
+- `playwright-ai validate` - validate configuration
+- `playwright-ai tutorial` - interactive tutorials
 
 ## 📁 Test Data
 

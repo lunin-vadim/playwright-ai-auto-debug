@@ -1,0 +1,873 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Coverage Report - detailed-demo-session</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; text-align: center; }
+        .stat-value { font-size: 2em; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { opacity: 0.9; }
+        .tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; }
+        .tab.active { border-bottom-color: #667eea; color: #667eea; font-weight: bold; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tree { font-family: monospace; }
+        .tree-node { margin: 2px 0; padding: 2px 5px; border-radius: 3px; }
+        .tree-node.covered { background: #e8f5e8; }
+        .tree-node.uncovered { background: #ffeaea; }
+        .tree-node.critical { border-left: 3px solid #ff4444; }
+        .element-list { max-height: 400px; overflow-y: auto; }
+        .element-item { padding: 10px; border: 1px solid #eee; margin: 5px 0; border-radius: 5px; }
+        .element-item.covered { border-left: 4px solid #4caf50; }
+        .element-item.uncovered { border-left: 4px solid #f44336; }
+        .filters { margin-bottom: 20px; }
+        .filter-btn { padding: 8px 16px; margin: 0 5px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 4px; }
+        .filter-btn.active { background: #667eea; color: white; }
+        .progress-bar { width: 100%; height: 20px; background: #eee; border-radius: 10px; overflow: hidden; margin: 10px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #4caf50, #8bc34a); transition: width 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 UI Coverage Report</h1>
+            <p>Сессия: detailed-demo-session | Время: 2025-07-19T21:38:43.023Z</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">54</div>
+                <div class="stat-label">Всего элементов</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">1</div>
+                <div class="stat-label">Покрыто</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">53</div>
+                <div class="stat-label">Не покрыто</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2%</div>
+                <div class="stat-label">Покрытие</div>
+            </div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 2%"></div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('tree')">🌳 Дерево элементов</div>
+            <div class="tab" onclick="showTab('covered')">✅ Покрытые (1)</div>
+            <div class="tab" onclick="showTab('uncovered')">❌ Не покрытые (53)</div>
+            <div class="tab" onclick="showTab('critical')">🔴 Критичные</div>
+            <div class="tab" onclick="showTab('interactions')">🎯 Взаимодействия</div>
+        </div>
+        
+        <div id="tree" class="tab-content active">
+            <div class="filters">
+                <button class="filter-btn active" onclick="filterElements('all')">Все</button>
+                <button class="filter-btn" onclick="filterElements('covered')">Покрытые</button>
+                <button class="filter-btn" onclick="filterElements('uncovered')">Не покрытые</button>
+                <button class="filter-btn" onclick="filterElements('critical')">Критичные</button>
+                <button class="filter-btn" onclick="filterElements('interactable')">Интерактивные</button>
+            </div>
+            <div class="tree" id="element-tree">
+                <div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-bmF2aWdhdGlvbi1N" onclick="toggleNode('bmF2aWdhdGlvbi1N')" style="cursor: pointer;">▼</span> ❌   navigation: "Main navigation"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 link: "Home"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 link: "Docs"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 link: "API"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 link: "Community"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 button: "Theme toggle"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-cmVnaW9uLUhlcm8g" onclick="toggleNode('cmVnaW9uLUhlcm8g')" style="cursor: pointer;">▼</span> ❌   region: "Hero section"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   heading: "Playwright"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   text: "Fast and reliable end-to-end testing for modern web apps"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node covered" data-interactable="true" style="margin-left: 20px;">
+         ✅  🎯 button: "Get started"
+        <small style="color: #666;"> (1 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 button: "View on GitHub"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-cmVnaW9uLUZlYXR1" onclick="toggleNode('cmVnaW9uLUZlYXR1')" style="cursor: pointer;">▼</span> ❌   region: "Features section"
+        <small style="color: #666;"> (1 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   heading: "Why Playwright?"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+        <span id="toggle-cmVnaW9uLUNyb3Nz" onclick="toggleNode('cmVnaW9uLUNyb3Nz')" style="cursor: pointer;">▼</span> ❌   region: "Cross-browser testing"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   heading: "Cross-browser"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   text: "Test across all modern browsers"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   img: "Cross-browser icon"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+        <span id="toggle-cmVnaW9uLUF1dG8t" onclick="toggleNode('cmVnaW9uLUF1dG8t')" style="cursor: pointer;">▼</span> ❌   region: "Auto-wait"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   heading: "Auto-wait"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   text: "Playwright waits for elements to be ready"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   img: "Auto-wait icon"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+        <span id="toggle-cmVnaW9uLU1vYmls" onclick="toggleNode('cmVnaW9uLU1vYmls')" style="cursor: pointer;">▼</span> ❌   region: "Mobile testing"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   heading: "Mobile"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   text: "Test mobile web apps"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   img: "Mobile icon"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-cmVnaW9uLUNvZGUg" onclick="toggleNode('cmVnaW9uLUNvZGUg')" style="cursor: pointer;">▼</span> ❌   region: "Code examples"
+        <small style="color: #666;"> (1 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   heading: "Write tests with confidence"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   text: "test('basic test', async ({ page }) => {"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   text: "  await page.goto('https://playwright.dev/');"
+        <small style="color: #666;"> (1 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   text: "});"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-cmVnaW9uLUdldHRp" onclick="toggleNode('cmVnaW9uLUdldHRp')" style="cursor: pointer;">▼</span> ❌   region: "Getting started"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   heading: "Get started in seconds"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   text: "Install Playwright and run your first test"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 button: "Install Playwright"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 link: "Read documentation"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-Zm9ybS1OZXdzbGV0" onclick="toggleNode('Zm9ybS1OZXdzbGV0')" style="cursor: pointer;">▼</span> ❌   form: "Newsletter signup"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+         ❌   heading: "Stay updated"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 input: "input"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 20px;">
+         ❌  🎯 button: "Subscribe"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 0px;">
+        <span id="toggle-bmF2aWdhdGlvbi1G" onclick="toggleNode('bmF2aWdhdGlvbi1G')" style="cursor: pointer;">▼</span> ❌   navigation: "Footer navigation"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+        <span id="toggle-cmVnaW9uLUZvb3Rl" onclick="toggleNode('cmVnaW9uLUZvb3Rl')" style="cursor: pointer;">▼</span> ❌   region: "Footer links"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   heading: "Docs"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Getting started"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Installation"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Writing tests"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+        <span id="toggle-cmVnaW9uLUNvbW11" onclick="toggleNode('cmVnaW9uLUNvbW11')" style="cursor: pointer;">▼</span> ❌   region: "Community links"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 40px;">
+         ❌   heading: "Community"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "GitHub"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Discord"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Stack Overflow"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="false" style="margin-left: 20px;">
+        <span id="toggle-cmVnaW9uLUxlZ2Fs" onclick="toggleNode('cmVnaW9uLUxlZ2Fs')" style="cursor: pointer;">▼</span> ❌   region: "Legal"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Privacy"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 40px;">
+         ❌  🎯 link: "Terms"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div><div class="tree-node uncovered" data-interactable="true" style="margin-left: 0px;">
+         ❌  🎯 button: "Back to top"
+        <small style="color: #666;"> (0 тестов)</small>
+      </div>
+            </div>
+        </div>
+        
+        <div id="covered" class="tab-content">
+            <div class="element-list">
+                
+      <div class="element-item covered">
+        <strong>button: "Get started"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Hero section > Get started<br>
+          Селектор: button:has-text("Get started")<br>
+          Тесты: homepage-analysis<br>
+          Взаимодействий: 1
+        </div>
+      </div>
+    
+            </div>
+        </div>
+        
+        <div id="uncovered" class="tab-content">
+            <div class="element-list">
+                
+      <div class="element-item uncovered">
+        <strong>navigation: "Main navigation"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Main navigation<br>
+          Селектор: navigation:has-text("Main navigation")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Home"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Main navigation > Home<br>
+          Селектор: link:has-text("Home")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Docs"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Main navigation > Docs<br>
+          Селектор: link:has-text("Docs")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "API"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Main navigation > API<br>
+          Селектор: link:has-text("API")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Community"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Main navigation > Community<br>
+          Селектор: link:has-text("Community")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>button: "Theme toggle"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Main navigation > Theme toggle<br>
+          Селектор: button:has-text("Theme toggle")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Hero section"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Hero section<br>
+          Селектор: region:has-text("Hero section")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Playwright"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Hero section > Playwright<br>
+          Селектор: heading:has-text("Playwright")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "Fast and reliable end-to-end testing for modern web apps"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Hero section > Fast and reliable end-to-end testing for modern web apps<br>
+          Селектор: text:has-text("Fast and reliable end-to-end testing for modern web apps")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>button: "View on GitHub"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Hero section > View on GitHub<br>
+          Селектор: button:has-text("View on GitHub")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Features section"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section<br>
+          Селектор: region:has-text("Features section")<br>
+          Тесты: homepage-analysis<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Why Playwright?"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Why Playwright?<br>
+          Селектор: heading:has-text("Why Playwright?")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Cross-browser testing"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Cross-browser testing<br>
+          Селектор: region:has-text("Cross-browser testing")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Cross-browser"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Cross-browser testing > Cross-browser<br>
+          Селектор: heading:has-text("Cross-browser")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "Test across all modern browsers"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Cross-browser testing > Test across all modern browsers<br>
+          Селектор: text:has-text("Test across all modern browsers")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>img: "Cross-browser icon"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Cross-browser testing > Cross-browser icon<br>
+          Селектор: img:has-text("Cross-browser icon")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Auto-wait"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Auto-wait<br>
+          Селектор: region:has-text("Auto-wait")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Auto-wait"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Auto-wait > Auto-wait<br>
+          Селектор: heading:has-text("Auto-wait")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "Playwright waits for elements to be ready"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Auto-wait > Playwright waits for elements to be ready<br>
+          Селектор: text:has-text("Playwright waits for elements to be ready")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>img: "Auto-wait icon"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Auto-wait > Auto-wait icon<br>
+          Селектор: img:has-text("Auto-wait icon")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Mobile testing"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Mobile testing<br>
+          Селектор: region:has-text("Mobile testing")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Mobile"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Mobile testing > Mobile<br>
+          Селектор: heading:has-text("Mobile")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "Test mobile web apps"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Mobile testing > Test mobile web apps<br>
+          Селектор: text:has-text("Test mobile web apps")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>img: "Mobile icon"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Features section > Feature cards > Mobile testing > Mobile icon<br>
+          Селектор: img:has-text("Mobile icon")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Code examples"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Code examples<br>
+          Селектор: region:has-text("Code examples")<br>
+          Тесты: homepage-analysis<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Write tests with confidence"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Code examples > Write tests with confidence<br>
+          Селектор: heading:has-text("Write tests with confidence")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "test('basic test', async ({ page }) => {"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Code examples > Code snippet > test('basic test', async ({ page }) => {<br>
+          Селектор: text:has-text("test('basic test', async ({ page }) => {")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "  await page.goto('https://playwright.dev/');"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Code examples > Code snippet >   await page.goto('https://playwright.dev/');<br>
+          Селектор: text:has-text("  await page.goto('https://playwright.dev/');")<br>
+          Тесты: homepage-analysis<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "});"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Code examples > Code snippet > });<br>
+          Селектор: text:has-text("});")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Getting started"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Getting started<br>
+          Селектор: region:has-text("Getting started")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Get started in seconds"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Getting started > Get started in seconds<br>
+          Селектор: heading:has-text("Get started in seconds")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>text: "Install Playwright and run your first test"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Getting started > Install Playwright and run your first test<br>
+          Селектор: text:has-text("Install Playwright and run your first test")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>button: "Install Playwright"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Getting started > Install Playwright<br>
+          Селектор: button:has-text("Install Playwright")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Read documentation"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Getting started > Read documentation<br>
+          Селектор: link:has-text("Read documentation")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>form: "Newsletter signup"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Newsletter signup<br>
+          Селектор: form:has-text("Newsletter signup")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Stay updated"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Newsletter signup > Stay updated<br>
+          Селектор: heading:has-text("Stay updated")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>input: "input"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Newsletter signup > input<br>
+          Селектор: input:has-text("input")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>button: "Subscribe"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Newsletter signup > Subscribe<br>
+          Селектор: button:has-text("Subscribe")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>navigation: "Footer navigation"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation<br>
+          Селектор: navigation:has-text("Footer navigation")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Footer links"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Footer links<br>
+          Селектор: region:has-text("Footer links")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Docs"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Footer links > Docs<br>
+          Селектор: heading:has-text("Docs")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Getting started"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Footer links > Getting started<br>
+          Селектор: link:has-text("Getting started")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Installation"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Footer links > Installation<br>
+          Селектор: link:has-text("Installation")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Writing tests"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Footer links > Writing tests<br>
+          Селектор: link:has-text("Writing tests")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Community links"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Community links<br>
+          Селектор: region:has-text("Community links")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>heading: "Community"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Community links > Community<br>
+          Селектор: heading:has-text("Community")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "GitHub"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Community links > GitHub<br>
+          Селектор: link:has-text("GitHub")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Discord"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Community links > Discord<br>
+          Селектор: link:has-text("Discord")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Stack Overflow"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Community links > Stack Overflow<br>
+          Селектор: link:has-text("Stack Overflow")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>region: "Legal"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Legal<br>
+          Селектор: region:has-text("Legal")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Privacy"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Legal > Privacy<br>
+          Селектор: link:has-text("Privacy")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>link: "Terms"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Footer navigation > Legal > Terms<br>
+          Селектор: link:has-text("Terms")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+      <div class="element-item uncovered">
+        <strong>button: "Back to top"</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Путь: Back to top<br>
+          Селектор: button:has-text("Back to top")<br>
+          Тесты: Нет<br>
+          Взаимодействий: 0
+        </div>
+      </div>
+    
+            </div>
+        </div>
+        
+        <div id="critical" class="tab-content">
+            <div class="element-list">
+                
+            </div>
+        </div>
+        
+        <div id="interactions" class="tab-content">
+            <div class="element-list">
+                
+      <div class="element-item covered">
+        <strong>click: Get started</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Тест: homepage-analysis<br>
+          Время: 20.07.2025, 00:38:44<br>
+          Путь: Hero section > Get started
+        </div>
+      </div>
+    
+      <div class="element-item covered">
+        <strong>hover: Docs</strong>
+        <div style="margin-top: 5px; font-size: 0.9em; color: #666;">
+          Тест: homepage-analysis<br>
+          Время: 20.07.2025, 00:38:45<br>
+          Путь: Unknown
+        </div>
+      </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const reportData = {"session":{"id":"detailed-demo-session","startTime":"2025-07-19T21:38:43.023Z","duration":"2s","testsCount":0},"summary":{"totalElements":54,"coveredElements":1,"uncoveredElements":53,"coveragePercentage":2,"interactionsCount":2},"coverageByType":{"navigation":{"total":2,"covered":0,"uncovered":2,"percentage":0},"link":{"total":13,"covered":0,"uncovered":13,"percentage":0},"button":{"total":6,"covered":1,"uncovered":5,"percentage":17},"region":{"total":10,"covered":0,"uncovered":10,"percentage":0},"heading":{"total":10,"covered":0,"uncovered":10,"percentage":0},"text":{"total":8,"covered":0,"uncovered":8,"percentage":0},"img":{"total":3,"covered":0,"uncovered":3,"percentage":0},"form":{"total":1,"covered":0,"uncovered":1,"percentage":0},"input":{"total":1,"covered":0,"uncovered":1,"percentage":0}},"coverageByPage":{"playwright-homepage":{"total":54,"covered":1,"uncovered":53,"percentage":2}},"criticalCoverage":{"total":0,"covered":0,"uncovered":0,"percentage":100,"elements":[]},"detailedElements":{"covered":[{"id":"YnV0dG9uLUdldCBz","type":"button","text":"Get started","path":"Hero section > Get started","selector":"button:has-text(\"Get started\")","covered":true,"critical":false,"interactable":true,"tests":["homepage-analysis"],"interactions":[{"type":"click","testName":"homepage-analysis","timestamp":"2025-07-19T21:38:44.747Z"}],"pages":["playwright-homepage"]}],"uncovered":[{"id":"bmF2aWdhdGlvbi1N","type":"navigation","text":"Main navigation","path":"Main navigation","selector":"navigation:has-text(\"Main navigation\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1Ib21lLTQ=","type":"link","text":"Home","path":"Main navigation > Home","selector":"link:has-text(\"Home\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1Eb2NzLTU=","type":"link","text":"Docs","path":"Main navigation > Docs","selector":"link:has-text(\"Docs\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1BUEktNg==","type":"link","text":"API","path":"Main navigation > API","selector":"link:has-text(\"API\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1Db21tdW5p","type":"link","text":"Community","path":"Main navigation > Community","selector":"link:has-text(\"Community\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"YnV0dG9uLVRoZW1l","type":"button","text":"Theme toggle","path":"Main navigation > Theme toggle","selector":"button:has-text(\"Theme toggle\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUhlcm8g","type":"region","text":"Hero section","path":"Hero section","selector":"region:has-text(\"Hero section\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1QbGF5","type":"heading","text":"Playwright","path":"Hero section > Playwright","selector":"heading:has-text(\"Playwright\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC1GYXN0IGFu","type":"text","text":"Fast and reliable end-to-end testing for modern web apps","path":"Hero section > Fast and reliable end-to-end testing for modern web apps","selector":"text:has-text(\"Fast and reliable end-to-end testing for modern web apps\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"YnV0dG9uLVZpZXcg","type":"button","text":"View on GitHub","path":"Hero section > View on GitHub","selector":"button:has-text(\"View on GitHub\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUZlYXR1","type":"region","text":"Features section","path":"Features section","selector":"region:has-text(\"Features section\")","covered":false,"critical":false,"interactable":false,"tests":["homepage-analysis"],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1XaHkg","type":"heading","text":"Why Playwright?","path":"Features section > Why Playwright?","selector":"heading:has-text(\"Why Playwright?\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUNyb3Nz","type":"region","text":"Cross-browser testing","path":"Features section > Feature cards > Cross-browser testing","selector":"region:has-text(\"Cross-browser testing\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1Dcm9z","type":"heading","text":"Cross-browser","path":"Features section > Feature cards > Cross-browser testing > Cross-browser","selector":"heading:has-text(\"Cross-browser\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC1UZXN0IGFj","type":"text","text":"Test across all modern browsers","path":"Features section > Feature cards > Cross-browser testing > Test across all modern browsers","selector":"text:has-text(\"Test across all modern browsers\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aW1nLUNyb3NzLWJy","type":"img","text":"Cross-browser icon","path":"Features section > Feature cards > Cross-browser testing > Cross-browser icon","selector":"img:has-text(\"Cross-browser icon\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUF1dG8t","type":"region","text":"Auto-wait","path":"Features section > Feature cards > Auto-wait","selector":"region:has-text(\"Auto-wait\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1BdXRv","type":"heading","text":"Auto-wait","path":"Features section > Feature cards > Auto-wait > Auto-wait","selector":"heading:has-text(\"Auto-wait\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC1QbGF5d3Jp","type":"text","text":"Playwright waits for elements to be ready","path":"Features section > Feature cards > Auto-wait > Playwright waits for elements to be ready","selector":"text:has-text(\"Playwright waits for elements to be ready\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aW1nLUF1dG8td2Fp","type":"img","text":"Auto-wait icon","path":"Features section > Feature cards > Auto-wait > Auto-wait icon","selector":"img:has-text(\"Auto-wait icon\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLU1vYmls","type":"region","text":"Mobile testing","path":"Features section > Feature cards > Mobile testing","selector":"region:has-text(\"Mobile testing\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1Nb2Jp","type":"heading","text":"Mobile","path":"Features section > Feature cards > Mobile testing > Mobile","selector":"heading:has-text(\"Mobile\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC1UZXN0IG1v","type":"text","text":"Test mobile web apps","path":"Features section > Feature cards > Mobile testing > Test mobile web apps","selector":"text:has-text(\"Test mobile web apps\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aW1nLU1vYmlsZSBp","type":"img","text":"Mobile icon","path":"Features section > Feature cards > Mobile testing > Mobile icon","selector":"img:has-text(\"Mobile icon\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUNvZGUg","type":"region","text":"Code examples","path":"Code examples","selector":"region:has-text(\"Code examples\")","covered":false,"critical":false,"interactable":false,"tests":["homepage-analysis"],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1Xcml0","type":"heading","text":"Write tests with confidence","path":"Code examples > Write tests with confidence","selector":"heading:has-text(\"Write tests with confidence\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC10ZXN0KCdi","type":"text","text":"test('basic test', async ({ page }) => {","path":"Code examples > Code snippet > test('basic test', async ({ page }) => {","selector":"text:has-text(\"test('basic test', async ({ page }) => {\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC0gIGF3YWl0","type":"text","text":"  await page.goto('https://playwright.dev/');","path":"Code examples > Code snippet >   await page.goto('https://playwright.dev/');","selector":"text:has-text(\"  await page.goto('https://playwright.dev/');\")","covered":false,"critical":false,"interactable":false,"tests":["homepage-analysis"],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC19KTstMzg=","type":"text","text":"});","path":"Code examples > Code snippet > });","selector":"text:has-text(\"});\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUdldHRp","type":"region","text":"Getting started","path":"Getting started","selector":"region:has-text(\"Getting started\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1HZXQg","type":"heading","text":"Get started in seconds","path":"Getting started > Get started in seconds","selector":"heading:has-text(\"Get started in seconds\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"dGV4dC1JbnN0YWxs","type":"text","text":"Install Playwright and run your first test","path":"Getting started > Install Playwright and run your first test","selector":"text:has-text(\"Install Playwright and run your first test\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"YnV0dG9uLUluc3Rh","type":"button","text":"Install Playwright","path":"Getting started > Install Playwright","selector":"button:has-text(\"Install Playwright\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1SZWFkIGRv","type":"link","text":"Read documentation","path":"Getting started > Read documentation","selector":"link:has-text(\"Read documentation\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"Zm9ybS1OZXdzbGV0","type":"form","text":"Newsletter signup","path":"Newsletter signup","selector":"form:has-text(\"Newsletter signup\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1TdGF5","type":"heading","text":"Stay updated","path":"Newsletter signup > Stay updated","selector":"heading:has-text(\"Stay updated\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aW5wdXQtaW5wdXQt","type":"input","text":"input","path":"Newsletter signup > input","selector":"input:has-text(\"input\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"YnV0dG9uLVN1YnNj","type":"button","text":"Subscribe","path":"Newsletter signup > Subscribe","selector":"button:has-text(\"Subscribe\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bmF2aWdhdGlvbi1G","type":"navigation","text":"Footer navigation","path":"Footer navigation","selector":"navigation:has-text(\"Footer navigation\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUZvb3Rl","type":"region","text":"Footer links","path":"Footer navigation > Footer links","selector":"region:has-text(\"Footer links\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1Eb2Nz","type":"heading","text":"Docs","path":"Footer navigation > Footer links > Docs","selector":"heading:has-text(\"Docs\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1HZXR0aW5n","type":"link","text":"Getting started","path":"Footer navigation > Footer links > Getting started","selector":"link:has-text(\"Getting started\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1JbnN0YWxs","type":"link","text":"Installation","path":"Footer navigation > Footer links > Installation","selector":"link:has-text(\"Installation\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1Xcml0aW5n","type":"link","text":"Writing tests","path":"Footer navigation > Footer links > Writing tests","selector":"link:has-text(\"Writing tests\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUNvbW11","type":"region","text":"Community links","path":"Footer navigation > Community links","selector":"region:has-text(\"Community links\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"aGVhZGluZy1Db21t","type":"heading","text":"Community","path":"Footer navigation > Community links > Community","selector":"heading:has-text(\"Community\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1HaXRIdWIt","type":"link","text":"GitHub","path":"Footer navigation > Community links > GitHub","selector":"link:has-text(\"GitHub\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1EaXNjb3Jk","type":"link","text":"Discord","path":"Footer navigation > Community links > Discord","selector":"link:has-text(\"Discord\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1TdGFjayBP","type":"link","text":"Stack Overflow","path":"Footer navigation > Community links > Stack Overflow","selector":"link:has-text(\"Stack Overflow\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"cmVnaW9uLUxlZ2Fs","type":"region","text":"Legal","path":"Footer navigation > Legal","selector":"region:has-text(\"Legal\")","covered":false,"critical":false,"interactable":false,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1Qcml2YWN5","type":"link","text":"Privacy","path":"Footer navigation > Legal > Privacy","selector":"link:has-text(\"Privacy\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"bGluay1UZXJtcy02","type":"link","text":"Terms","path":"Footer navigation > Legal > Terms","selector":"link:has-text(\"Terms\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]},{"id":"YnV0dG9uLUJhY2sg","type":"button","text":"Back to top","path":"Back to top","selector":"button:has-text(\"Back to top\")","covered":false,"critical":false,"interactable":true,"tests":[],"interactions":[],"pages":["playwright-homepage"]}],"critical":[]},"interactions":[{"elementId":"YnV0dG9uLUdldCBz","element":{"type":"button","text":"Get started"},"testName":"homepage-analysis","interactionType":"click","timestamp":"2025-07-19T21:38:44.747Z","sessionId":"detailed-demo-session","elementPath":"Hero section > Get started"},{"elementId":"bGluay1Eb2NzLQ==","element":{"type":"link","text":"Docs"},"testName":"homepage-analysis","interactionType":"hover","timestamp":"2025-07-19T21:38:45.390Z","sessionId":"detailed-demo-session","elementPath":"Unknown"}],"recommendations":[{"priority":"MEDIUM","category":"Interactive Coverage","message":"19 интерактивных элементов не покрыты","elements":["Home","Docs","API","Community","Theme toggle"],"action":"Рассмотрите добавление тестов для основных интерактивных элементов"}]};
+        const treeData = {"pageName":"all-pages","totalElements":54,"tree":[{"id":"bmF2aWdhdGlvbi1N","type":"navigation","text":"Main navigation","path":"Main navigation","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   navigation: \"Main navigation\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"bGluay1Ib21lLTQ=","type":"link","text":"Home","path":"Main navigation > Home","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 link: \"Home\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1Eb2NzLTU=","type":"link","text":"Docs","path":"Main navigation > Docs","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 link: \"Docs\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1BUEktNg==","type":"link","text":"API","path":"Main navigation > API","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 link: \"API\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1Db21tdW5p","type":"link","text":"Community","path":"Main navigation > Community","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 link: \"Community\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"YnV0dG9uLVRoZW1l","type":"button","text":"Theme toggle","path":"Main navigation > Theme toggle","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 button: \"Theme toggle\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLUhlcm8g","type":"region","text":"Hero section","path":"Hero section","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   region: \"Hero section\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1QbGF5","type":"heading","text":"Playwright","path":"Hero section > Playwright","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   heading: \"Playwright\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC1GYXN0IGFu","type":"text","text":"Fast and reliable end-to-end testing for modern web apps","path":"Hero section > Fast and reliable end-to-end testing for modern web apps","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   text: \"Fast and reliable end-to-end testing for modern web apps\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"YnV0dG9uLUdldCBz","type":"button","text":"Get started","path":"Hero section > Get started","covered":true,"critical":false,"interactable":true,"level":1,"displayText":"✅  🎯 button: \"Get started\"","coverage":{"status":"covered","tests":["homepage-analysis"],"interactions":[{"type":"click","testName":"homepage-analysis","timestamp":"2025-07-19T21:38:44.747Z"}]},"children":[]},{"id":"YnV0dG9uLVZpZXcg","type":"button","text":"View on GitHub","path":"Hero section > View on GitHub","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 button: \"View on GitHub\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLUZlYXR1","type":"region","text":"Features section","path":"Features section","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   region: \"Features section\"","coverage":{"status":"uncovered","tests":["homepage-analysis"],"interactions":[]},"children":[{"id":"aGVhZGluZy1XaHkg","type":"heading","text":"Why Playwright?","path":"Features section > Why Playwright?","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   heading: \"Why Playwright?\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"cmVnaW9uLUNyb3Nz","type":"region","text":"Cross-browser testing","path":"Features section > Feature cards > Cross-browser testing","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   region: \"Cross-browser testing\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1Dcm9z","type":"heading","text":"Cross-browser","path":"Features section > Feature cards > Cross-browser testing > Cross-browser","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   heading: \"Cross-browser\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC1UZXN0IGFj","type":"text","text":"Test across all modern browsers","path":"Features section > Feature cards > Cross-browser testing > Test across all modern browsers","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   text: \"Test across all modern browsers\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"aW1nLUNyb3NzLWJy","type":"img","text":"Cross-browser icon","path":"Features section > Feature cards > Cross-browser testing > Cross-browser icon","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   img: \"Cross-browser icon\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLUF1dG8t","type":"region","text":"Auto-wait","path":"Features section > Feature cards > Auto-wait","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   region: \"Auto-wait\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1BdXRv","type":"heading","text":"Auto-wait","path":"Features section > Feature cards > Auto-wait > Auto-wait","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   heading: \"Auto-wait\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC1QbGF5d3Jp","type":"text","text":"Playwright waits for elements to be ready","path":"Features section > Feature cards > Auto-wait > Playwright waits for elements to be ready","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   text: \"Playwright waits for elements to be ready\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"aW1nLUF1dG8td2Fp","type":"img","text":"Auto-wait icon","path":"Features section > Feature cards > Auto-wait > Auto-wait icon","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   img: \"Auto-wait icon\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLU1vYmls","type":"region","text":"Mobile testing","path":"Features section > Feature cards > Mobile testing","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   region: \"Mobile testing\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1Nb2Jp","type":"heading","text":"Mobile","path":"Features section > Feature cards > Mobile testing > Mobile","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   heading: \"Mobile\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC1UZXN0IG1v","type":"text","text":"Test mobile web apps","path":"Features section > Feature cards > Mobile testing > Test mobile web apps","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   text: \"Test mobile web apps\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"aW1nLU1vYmlsZSBp","type":"img","text":"Mobile icon","path":"Features section > Feature cards > Mobile testing > Mobile icon","covered":false,"critical":false,"interactable":false,"level":3,"displayText":"❌   img: \"Mobile icon\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]}]},{"id":"cmVnaW9uLUNvZGUg","type":"region","text":"Code examples","path":"Code examples","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   region: \"Code examples\"","coverage":{"status":"uncovered","tests":["homepage-analysis"],"interactions":[]},"children":[{"id":"aGVhZGluZy1Xcml0","type":"heading","text":"Write tests with confidence","path":"Code examples > Write tests with confidence","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   heading: \"Write tests with confidence\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC10ZXN0KCdi","type":"text","text":"test('basic test', async ({ page }) => {","path":"Code examples > Code snippet > test('basic test', async ({ page }) => {","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   text: \"test('basic test', async ({ page }) => {\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC0gIGF3YWl0","type":"text","text":"  await page.goto('https://playwright.dev/');","path":"Code examples > Code snippet >   await page.goto('https://playwright.dev/');","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   text: \"  await page.goto('https://playwright.dev/');\"","coverage":{"status":"uncovered","tests":["homepage-analysis"],"interactions":[]},"children":[]},{"id":"dGV4dC19KTstMzg=","type":"text","text":"});","path":"Code examples > Code snippet > });","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   text: \"});\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLUdldHRp","type":"region","text":"Getting started","path":"Getting started","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   region: \"Getting started\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1HZXQg","type":"heading","text":"Get started in seconds","path":"Getting started > Get started in seconds","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   heading: \"Get started in seconds\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"dGV4dC1JbnN0YWxs","type":"text","text":"Install Playwright and run your first test","path":"Getting started > Install Playwright and run your first test","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   text: \"Install Playwright and run your first test\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"YnV0dG9uLUluc3Rh","type":"button","text":"Install Playwright","path":"Getting started > Install Playwright","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 button: \"Install Playwright\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1SZWFkIGRv","type":"link","text":"Read documentation","path":"Getting started > Read documentation","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 link: \"Read documentation\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"Zm9ybS1OZXdzbGV0","type":"form","text":"Newsletter signup","path":"Newsletter signup","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   form: \"Newsletter signup\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1TdGF5","type":"heading","text":"Stay updated","path":"Newsletter signup > Stay updated","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   heading: \"Stay updated\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"aW5wdXQtaW5wdXQt","type":"input","text":"input","path":"Newsletter signup > input","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 input: \"input\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"YnV0dG9uLVN1YnNj","type":"button","text":"Subscribe","path":"Newsletter signup > Subscribe","covered":false,"critical":false,"interactable":true,"level":1,"displayText":"❌  🎯 button: \"Subscribe\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"bmF2aWdhdGlvbi1G","type":"navigation","text":"Footer navigation","path":"Footer navigation","covered":false,"critical":false,"interactable":false,"level":0,"displayText":"❌   navigation: \"Footer navigation\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"cmVnaW9uLUZvb3Rl","type":"region","text":"Footer links","path":"Footer navigation > Footer links","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   region: \"Footer links\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1Eb2Nz","type":"heading","text":"Docs","path":"Footer navigation > Footer links > Docs","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   heading: \"Docs\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1HZXR0aW5n","type":"link","text":"Getting started","path":"Footer navigation > Footer links > Getting started","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Getting started\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1JbnN0YWxs","type":"link","text":"Installation","path":"Footer navigation > Footer links > Installation","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Installation\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1Xcml0aW5n","type":"link","text":"Writing tests","path":"Footer navigation > Footer links > Writing tests","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Writing tests\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLUNvbW11","type":"region","text":"Community links","path":"Footer navigation > Community links","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   region: \"Community links\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"aGVhZGluZy1Db21t","type":"heading","text":"Community","path":"Footer navigation > Community links > Community","covered":false,"critical":false,"interactable":false,"level":2,"displayText":"❌   heading: \"Community\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1HaXRIdWIt","type":"link","text":"GitHub","path":"Footer navigation > Community links > GitHub","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"GitHub\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1EaXNjb3Jk","type":"link","text":"Discord","path":"Footer navigation > Community links > Discord","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Discord\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1TdGFjayBP","type":"link","text":"Stack Overflow","path":"Footer navigation > Community links > Stack Overflow","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Stack Overflow\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]},{"id":"cmVnaW9uLUxlZ2Fs","type":"region","text":"Legal","path":"Footer navigation > Legal","covered":false,"critical":false,"interactable":false,"level":1,"displayText":"❌   region: \"Legal\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[{"id":"bGluay1Qcml2YWN5","type":"link","text":"Privacy","path":"Footer navigation > Legal > Privacy","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Privacy\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]},{"id":"bGluay1UZXJtcy02","type":"link","text":"Terms","path":"Footer navigation > Legal > Terms","covered":false,"critical":false,"interactable":true,"level":2,"displayText":"❌  🎯 link: \"Terms\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]}]},{"id":"YnV0dG9uLUJhY2sg","type":"button","text":"Back to top","path":"Back to top","covered":false,"critical":false,"interactable":true,"level":0,"displayText":"❌  🎯 button: \"Back to top\"","coverage":{"status":"uncovered","tests":[],"interactions":[]},"children":[]}]};
+        
+        function showTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+        
+        function filterElements(filter) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const nodes = document.querySelectorAll('.tree-node');
+            nodes.forEach(node => {
+                const show = filter === 'all' || 
+                           (filter === 'covered' && node.classList.contains('covered')) ||
+                           (filter === 'uncovered' && node.classList.contains('uncovered')) ||
+                           (filter === 'critical' && node.classList.contains('critical')) ||
+                           (filter === 'interactable' && node.dataset.interactable === 'true');
+                
+                node.style.display = show ? 'block' : 'none';
+            });
+        }
+        
+        function toggleNode(nodeId) {
+            const children = document.querySelectorAll(`[data-parent="${nodeId}"]`);
+            const toggle = document.getElementById(`toggle-${nodeId}`);
+            
+            children.forEach(child => {
+                child.style.display = child.style.display === 'none' ? 'block' : 'none';
+            });
+            
+            toggle.textContent = toggle.textContent === '▼' ? '▶' : '▼';
+        }
+    </script>
+</body>
+</html>
