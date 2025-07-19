@@ -1,20 +1,42 @@
 [
   {
     "action": "navigate",
-    "selector": "/",
+    "selector": "https://the-internet.herokuapp.com/checkboxes",
     "element": {},
     "url": "about:blank",
-    "timestamp": 1752958004129,
-    "test": "❌ Missing checkout button"
+    "timestamp": 1752958953908,
+    "test": "Тест с чекбоксами"
   },
   {
-    "action": "click",
-    "selector": "#add-to-cart-btn",
+    "action": "check",
+    "selector": "input[type=\"checkbox\"]:first-child",
     "element": {
-      "error": "Element not found or not accessible"
+      "tagName": "INPUT",
+      "type": "checkbox",
+      "role": null,
+      "ariaLabel": null,
+      "text": "",
+      "id": "",
+      "className": ""
     },
-    "url": "https://playwright.dev/",
-    "timestamp": 1752958005329,
-    "test": "❌ Missing checkout button"
+    "url": "https://the-internet.herokuapp.com/checkboxes",
+    "timestamp": 1752958959342,
+    "test": "Тест с чекбоксами"
+  },
+  {
+    "action": "uncheck",
+    "selector": "input[type=\"checkbox\"]:last-child",
+    "element": {
+      "tagName": "INPUT",
+      "type": "checkbox",
+      "role": null,
+      "ariaLabel": null,
+      "text": "",
+      "id": "",
+      "className": ""
+    },
+    "url": "https://the-internet.herokuapp.com/checkboxes",
+    "timestamp": 1752958959392,
+    "test": "Тест с чекбоксами"
   }
 ]

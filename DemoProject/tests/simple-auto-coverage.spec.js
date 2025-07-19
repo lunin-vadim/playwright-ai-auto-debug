@@ -16,9 +16,12 @@ test.describe('Демонстрация автоматического покр�
     
     // Все эти действия автоматически отслеживаются:
     await page.click('text=Get started');
-    await page.fill('input[placeholder="Search docs"]', 'testing');
-    await page.click('button[aria-label="Search"]');
     
+    // Ждем загрузки страницы документации
+    await page.waitForSelector('h1');
+    
+    // Проверяем что попали на страницу документации  
+    await expect(page).toHaveURL(/.*docs.*/);
     await expect(page).toHaveTitle(/Playwright/);
   });
 
