@@ -1,0 +1,45 @@
+{
+  "summary": {
+    "totalTests": 1,
+    "passedTests": 0,
+    "failedTests": 1,
+    "totalInteractions": 2,
+    "uniqueElements": 2,
+    "actionTypes": {
+      "navigate": 1,
+      "click": 1
+    },
+    "elementsByType": {}
+  },
+  "tests": [
+    {
+      "title": "❌ Missing checkout button",
+      "status": "failed",
+      "duration": 16212,
+      "interactions": 2,
+      "uniqueSelectors": 2
+    }
+  ],
+  "topElements": [
+    {
+      "selector": "/",
+      "interactionCount": 1,
+      "actions": [
+        "navigate"
+      ],
+      "tests": [
+        "❌ Missing checkout button"
+      ]
+    },
+    {
+      "selector": "#add-to-cart-btn",
+      "interactionCount": 1,
+      "actions": [
+        "click"
+      ],
+      "tests": [
+        "❌ Missing checkout button"
+      ]
+    }
+  ]
+}

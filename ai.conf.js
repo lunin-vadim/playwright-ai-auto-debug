@@ -2,8 +2,8 @@ export const ai_conf = {
   api_key: process.env.API_KEY || '',
   ai_server: 'https://api.mistral.ai',
   model: 'mistral-medium',
-  results_dir: 'test-results',
-  report_dir: 'playwright-report',
+  results_dir: 'DemoProject/test-results',
+  report_dir: 'DemoProject/playwright-report',
   max_prompt_length: 2000,
   request_delay: 1000,
   error_file_patterns: [

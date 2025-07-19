@@ -1,0 +1,65 @@
+{
+  "pageName": "all-pages",
+  "totalElements": 3,
+  "tree": [
+    {
+      "id": "YnV0dG9uLVRlc3Qg",
+      "type": "button",
+      "text": "Test button",
+      "path": "Test button",
+      "covered": true,
+      "critical": false,
+      "interactable": true,
+      "level": 0,
+      "displayText": "✅  🎯 button: \"Test button\"",
+      "coverage": {
+        "status": "covered",
+        "tests": [
+          "test-case"
+        ],
+        "interactions": [
+          {
+            "type": "click",
+            "testName": "test-case",
+            "timestamp": "2025-07-01T19:25:21.942Z"
+          }
+        ]
+      },
+      "children": []
+    },
+    {
+      "id": "bGluay1UZXN0IGxp",
+      "type": "link",
+      "text": "Test link",
+      "path": "Test link",
+      "covered": false,
+      "critical": false,
+      "interactable": true,
+      "level": 0,
+      "displayText": "❌  🎯 link: \"Test link\"",
+      "coverage": {
+        "status": "uncovered",
+        "tests": [],
+        "interactions": []
+      },
+      "children": []
+    },
+    {
+      "id": "aW5wdXQtaW5wdXQt",
+      "type": "input",
+      "text": "input",
+      "path": "input",
+      "covered": false,
+      "critical": false,
+      "interactable": true,
+      "level": 0,
+      "displayText": "❌  🎯 input: \"input\"",
+      "coverage": {
+        "status": "uncovered",
+        "tests": [],
+        "interactions": []
+      },
+      "children": []
+    }
+  ]
+}

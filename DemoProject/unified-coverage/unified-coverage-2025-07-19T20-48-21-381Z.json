@@ -1,0 +1,2656 @@
+{
+  "session": {
+    "id": "unified-session-1752958096545",
+    "startTime": "2025-07-19T20:48:16.562Z",
+    "duration": "5s",
+    "testsCount": 0
+  },
+  "summary": {
+    "totalElements": 49,
+    "coveredElements": 1,
+    "uncoveredElements": 48,
+    "coveragePercentage": 2,
+    "interactionsCount": 1
+  },
+  "coverageByType": {
+    "navigation": {
+      "total": 2,
+      "covered": 0,
+      "uncovered": 2,
+      "percentage": 0
+    },
+    "link": {
+      "total": 13,
+      "covered": 1,
+      "uncovered": 12,
+      "percentage": 8
+    },
+    "button": {
+      "total": 9,
+      "covered": 0,
+      "uncovered": 9,
+      "percentage": 0
+    },
+    "input": {
+      "total": 1,
+      "covered": 0,
+      "uncovered": 1,
+      "percentage": 0
+    },
+    "heading": {
+      "total": 8,
+      "covered": 0,
+      "uncovered": 8,
+      "percentage": 0
+    },
+    "region": {
+      "total": 7,
+      "covered": 0,
+      "uncovered": 7,
+      "percentage": 0
+    },
+    "text": {
+      "total": 9,
+      "covered": 0,
+      "uncovered": 9,
+      "percentage": 0
+    }
+  },
+  "coverageByPage": {
+    "playwright-docs": {
+      "total": 49,
+      "covered": 1,
+      "uncovered": 48,
+      "percentage": 2
+    }
+  },
+  "criticalCoverage": {
+    "total": 0,
+    "covered": 0,
+    "uncovered": 0,
+    "percentage": 100,
+    "elements": []
+  },
+  "detailedElements": {
+    "covered": [
+      {
+        "id": "bGluay1JbnN0YWxs",
+        "type": "link",
+        "text": "Installation",
+        "path": "Sidebar navigation > Installation",
+        "selector": "link:has-text(\"Installation\")",
+        "covered": true,
+        "critical": false,
+        "interactable": true,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [
+          {
+            "type": "click",
+            "testName": "Тест 2: Страница документации",
+            "timestamp": "2025-07-19T20:48:20.348Z"
+          }
+        ],
+        "pages": [
+          "playwright-docs"
+        ]
+      }
+    ],
+    "uncovered": [
+      {
+        "id": "bmF2aWdhdGlvbi1N",
+        "type": "navigation",
+        "text": "Main navigation",
+        "path": "Main navigation",
+        "selector": "navigation:has-text(\"Main navigation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Ib21lLTQ=",
+        "type": "link",
+        "text": "Home",
+        "path": "Main navigation > Home",
+        "selector": "link:has-text(\"Home\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Eb2NzLTU=",
+        "type": "link",
+        "text": "Docs",
+        "path": "Main navigation > Docs",
+        "selector": "link:has-text(\"Docs\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BUEktNg==",
+        "type": "link",
+        "text": "API",
+        "path": "Main navigation > API",
+        "selector": "link:has-text(\"API\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVNlYXJj",
+        "type": "button",
+        "text": "Search docs",
+        "path": "Main navigation > Search docs",
+        "selector": "button:has-text(\"Search docs\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aW5wdXQtaW5wdXQt",
+        "type": "input",
+        "text": "input",
+        "path": "Main navigation > input",
+        "selector": "input:has-text(\"input\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bmF2aWdhdGlvbi1T",
+        "type": "navigation",
+        "text": "Sidebar navigation",
+        "path": "Sidebar navigation",
+        "selector": "navigation:has-text(\"Sidebar navigation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1HZXR0",
+        "type": "heading",
+        "text": "Getting Started",
+        "path": "Sidebar navigation > Getting Started",
+        "selector": "heading:has-text(\"Getting Started\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1JbnRyb2R1",
+        "type": "link",
+        "text": "Introduction",
+        "path": "Sidebar navigation > Introduction",
+        "selector": "link:has-text(\"Introduction\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Xcml0aW5n",
+        "type": "link",
+        "text": "Writing tests",
+        "path": "Sidebar navigation > Writing tests",
+        "selector": "link:has-text(\"Writing tests\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1HdWlk",
+        "type": "heading",
+        "text": "Guides",
+        "path": "Sidebar navigation > Guides",
+        "selector": "heading:has-text(\"Guides\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BdXRvLXdh",
+        "type": "link",
+        "text": "Auto-waiting",
+        "path": "Sidebar navigation > Auto-waiting",
+        "selector": "link:has-text(\"Auto-waiting\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1TZWxlY3Rv",
+        "type": "link",
+        "text": "Selectors",
+        "path": "Sidebar navigation > Selectors",
+        "selector": "link:has-text(\"Selectors\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BY3Rpb25z",
+        "type": "link",
+        "text": "Actions",
+        "path": "Sidebar navigation > Actions",
+        "selector": "link:has-text(\"Actions\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1BZHZh",
+        "type": "heading",
+        "text": "Advanced",
+        "path": "Sidebar navigation > Advanced",
+        "selector": "heading:has-text(\"Advanced\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Db25maWd1",
+        "type": "link",
+        "text": "Configuration",
+        "path": "Sidebar navigation > Configuration",
+        "selector": "link:has-text(\"Configuration\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1GaXh0dXJl",
+        "type": "link",
+        "text": "Fixtures",
+        "path": "Sidebar navigation > Fixtures",
+        "selector": "link:has-text(\"Fixtures\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLU1haW4g",
+        "type": "region",
+        "text": "Main content",
+        "path": "Main content",
+        "selector": "region:has-text(\"Main content\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1JbnRy",
+        "type": "heading",
+        "text": "Introduction",
+        "path": "Main content > Introduction",
+        "selector": "heading:has-text(\"Introduction\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1QbGF5d3Jp",
+        "type": "text",
+        "text": "Playwright is a framework for Web Testing and Automation",
+        "path": "Main content > Playwright is a framework for Web Testing and Automation",
+        "selector": "text:has-text(\"Playwright is a framework for Web Testing and Automation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1JdCBhbGxv",
+        "type": "text",
+        "text": "It allows testing Chromium, Firefox and WebKit browsers",
+        "path": "Main content > It allows testing Chromium, Firefox and WebKit browsers",
+        "selector": "text:has-text(\"It allows testing Chromium, Firefox and WebKit browsers\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUluc3Rh",
+        "type": "region",
+        "text": "Installation section",
+        "path": "Main content > Installation section",
+        "selector": "region:has-text(\"Installation section\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1JbnN0",
+        "type": "heading",
+        "text": "Installation",
+        "path": "Main content > Installation section > Installation",
+        "selector": "heading:has-text(\"Installation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1HZXQgc3Rh",
+        "type": "text",
+        "text": "Get started by installing Playwright",
+        "path": "Main content > Installation section > Get started by installing Playwright",
+        "selector": "text:has-text(\"Get started by installing Playwright\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUNvZGUg",
+        "type": "region",
+        "text": "Code block",
+        "path": "Main content > Installation section > Code block",
+        "selector": "region:has-text(\"Code block\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1ucG0gaW5p",
+        "type": "text",
+        "text": "npm init playwright@latest",
+        "path": "Main content > Installation section > Code block > npm init playwright@latest",
+        "selector": "text:has-text(\"npm init playwright@latest\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLUNvcHkg",
+        "type": "button",
+        "text": "Copy code",
+        "path": "Main content > Installation section > Copy code",
+        "selector": "button:has-text(\"Copy code\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUZpcnN0",
+        "type": "region",
+        "text": "First test section",
+        "path": "Main content > First test section",
+        "selector": "region:has-text(\"First test section\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1GaXJz",
+        "type": "heading",
+        "text": "First test",
+        "path": "Main content > First test section > First test",
+        "selector": "heading:has-text(\"First test\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1DcmVhdGUg",
+        "type": "text",
+        "text": "Create your first test file",
+        "path": "Main content > First test section > Create your first test file",
+        "selector": "text:has-text(\"Create your first test file\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1pbXBvcnQg",
+        "type": "text",
+        "text": "import { test, expect } from '@playwright/test';",
+        "path": "Main content > First test section > Code block > import { test, expect } from '@playwright/test';",
+        "selector": "text:has-text(\"import { test, expect } from '@playwright/test';\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC10ZXN0KCdo",
+        "type": "text",
+        "text": "test('homepage', async ({ page }) => {",
+        "path": "Main content > First test section > Code block > test('homepage', async ({ page }) => {",
+        "selector": "text:has-text(\"test('homepage', async ({ page }) => {\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC0gIGF3YWl0",
+        "type": "text",
+        "text": "  await page.goto('https://playwright.dev/');",
+        "path": "Main content > First test section > Code block >   await page.goto('https://playwright.dev/');",
+        "selector": "text:has-text(\"  await page.goto('https://playwright.dev/');\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC19KTstNDI=",
+        "type": "text",
+        "text": "});",
+        "path": "Main content > First test section > Code block > });",
+        "selector": "text:has-text(\"});\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLVBhZ2Ug",
+        "type": "region",
+        "text": "Page navigation",
+        "path": "Page navigation",
+        "selector": "region:has-text(\"Page navigation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVByZXZp",
+        "type": "button",
+        "text": "Previous",
+        "path": "Page navigation > Previous",
+        "selector": "button:has-text(\"Previous\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLU5leHQt",
+        "type": "button",
+        "text": "Next",
+        "path": "Page navigation > Next",
+        "selector": "button:has-text(\"Next\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLUVkaXQg",
+        "type": "button",
+        "text": "Edit this page",
+        "path": "Page utilities > Edit this page",
+        "selector": "button:has-text(\"Edit this page\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVNoYXJl",
+        "type": "button",
+        "text": "Share",
+        "path": "Page utilities > Share",
+        "selector": "button:has-text(\"Share\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLVRhYmxl",
+        "type": "region",
+        "text": "Table of contents",
+        "path": "Page utilities > Table of contents",
+        "selector": "region:has-text(\"Table of contents\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1PbiB0",
+        "type": "heading",
+        "text": "On this page",
+        "path": "Page utilities > Table of contents > On this page",
+        "selector": "heading:has-text(\"On this page\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1GaXJzdCB0",
+        "type": "link",
+        "text": "First test",
+        "path": "Page utilities > Table of contents > First test",
+        "selector": "link:has-text(\"First test\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1SdW5uaW5n",
+        "type": "link",
+        "text": "Running tests",
+        "path": "Page utilities > Table of contents > Running tests",
+        "selector": "link:has-text(\"Running tests\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUZlZWRi",
+        "type": "region",
+        "text": "Feedback",
+        "path": "Feedback",
+        "selector": "region:has-text(\"Feedback\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1XYXMg",
+        "type": "heading",
+        "text": "Was this helpful?",
+        "path": "Feedback > Was this helpful?",
+        "selector": "heading:has-text(\"Was this helpful?\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVllcy02",
+        "type": "button",
+        "text": "Yes",
+        "path": "Feedback > Yes",
+        "selector": "button:has-text(\"Yes\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLU5vLTYx",
+        "type": "button",
+        "text": "No",
+        "path": "Feedback > No",
+        "selector": "button:has-text(\"No\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVN1Z2dl",
+        "type": "button",
+        "text": "Suggest improvements",
+        "path": "Feedback > Suggest improvements",
+        "selector": "button:has-text(\"Suggest improvements\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      }
+    ],
+    "critical": []
+  },
+  "interactions": [
+    {
+      "elementId": "bGluay1JbnN0YWxs",
+      "element": {
+        "type": "link",
+        "text": "Installation",
+        "selector": "text=\"Installation\""
+      },
+      "testName": "Тест 2: Страница документации",
+      "interactionType": "click",
+      "timestamp": "2025-07-19T20:48:20.348Z",
+      "sessionId": "unified-session-1752958096545",
+      "elementPath": "Sidebar navigation > Installation"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "MEDIUM",
+      "category": "Interactive Coverage",
+      "message": "22 интерактивных элементов не покрыты",
+      "elements": [
+        "Home",
+        "Docs",
+        "API",
+        "Search docs",
+        "input"
+      ],
+      "action": "Рассмотрите добавление тестов для основных интерактивных элементов"
+    }
+  ],
+  "globalSession": {
+    "sessionName": "unified-session-1752958096545",
+    "totalTests": 1,
+    "testsCompleted": 1,
+    "testsPassed": 1,
+    "testsFailed": 0,
+    "allElementsRegistry": [
+      {
+        "id": "bGluay1JbnN0YWxs",
+        "type": "link",
+        "text": "Installation",
+        "path": "Sidebar navigation > Installation",
+        "selector": "link:has-text(\"Installation\")",
+        "covered": true,
+        "critical": false,
+        "interactable": true,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [
+          {
+            "type": "click",
+            "testName": "Тест 2: Страница документации",
+            "timestamp": "2025-07-19T20:48:20.348Z"
+          }
+        ],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bmF2aWdhdGlvbi1N",
+        "type": "navigation",
+        "text": "Main navigation",
+        "path": "Main navigation",
+        "selector": "navigation:has-text(\"Main navigation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Ib21lLTQ=",
+        "type": "link",
+        "text": "Home",
+        "path": "Main navigation > Home",
+        "selector": "link:has-text(\"Home\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Eb2NzLTU=",
+        "type": "link",
+        "text": "Docs",
+        "path": "Main navigation > Docs",
+        "selector": "link:has-text(\"Docs\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BUEktNg==",
+        "type": "link",
+        "text": "API",
+        "path": "Main navigation > API",
+        "selector": "link:has-text(\"API\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVNlYXJj",
+        "type": "button",
+        "text": "Search docs",
+        "path": "Main navigation > Search docs",
+        "selector": "button:has-text(\"Search docs\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aW5wdXQtaW5wdXQt",
+        "type": "input",
+        "text": "input",
+        "path": "Main navigation > input",
+        "selector": "input:has-text(\"input\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bmF2aWdhdGlvbi1T",
+        "type": "navigation",
+        "text": "Sidebar navigation",
+        "path": "Sidebar navigation",
+        "selector": "navigation:has-text(\"Sidebar navigation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1HZXR0",
+        "type": "heading",
+        "text": "Getting Started",
+        "path": "Sidebar navigation > Getting Started",
+        "selector": "heading:has-text(\"Getting Started\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1JbnRyb2R1",
+        "type": "link",
+        "text": "Introduction",
+        "path": "Sidebar navigation > Introduction",
+        "selector": "link:has-text(\"Introduction\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Xcml0aW5n",
+        "type": "link",
+        "text": "Writing tests",
+        "path": "Sidebar navigation > Writing tests",
+        "selector": "link:has-text(\"Writing tests\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1HdWlk",
+        "type": "heading",
+        "text": "Guides",
+        "path": "Sidebar navigation > Guides",
+        "selector": "heading:has-text(\"Guides\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BdXRvLXdh",
+        "type": "link",
+        "text": "Auto-waiting",
+        "path": "Sidebar navigation > Auto-waiting",
+        "selector": "link:has-text(\"Auto-waiting\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1TZWxlY3Rv",
+        "type": "link",
+        "text": "Selectors",
+        "path": "Sidebar navigation > Selectors",
+        "selector": "link:has-text(\"Selectors\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BY3Rpb25z",
+        "type": "link",
+        "text": "Actions",
+        "path": "Sidebar navigation > Actions",
+        "selector": "link:has-text(\"Actions\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1BZHZh",
+        "type": "heading",
+        "text": "Advanced",
+        "path": "Sidebar navigation > Advanced",
+        "selector": "heading:has-text(\"Advanced\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Db25maWd1",
+        "type": "link",
+        "text": "Configuration",
+        "path": "Sidebar navigation > Configuration",
+        "selector": "link:has-text(\"Configuration\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1GaXh0dXJl",
+        "type": "link",
+        "text": "Fixtures",
+        "path": "Sidebar navigation > Fixtures",
+        "selector": "link:has-text(\"Fixtures\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLU1haW4g",
+        "type": "region",
+        "text": "Main content",
+        "path": "Main content",
+        "selector": "region:has-text(\"Main content\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1JbnRy",
+        "type": "heading",
+        "text": "Introduction",
+        "path": "Main content > Introduction",
+        "selector": "heading:has-text(\"Introduction\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1QbGF5d3Jp",
+        "type": "text",
+        "text": "Playwright is a framework for Web Testing and Automation",
+        "path": "Main content > Playwright is a framework for Web Testing and Automation",
+        "selector": "text:has-text(\"Playwright is a framework for Web Testing and Automation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1JdCBhbGxv",
+        "type": "text",
+        "text": "It allows testing Chromium, Firefox and WebKit browsers",
+        "path": "Main content > It allows testing Chromium, Firefox and WebKit browsers",
+        "selector": "text:has-text(\"It allows testing Chromium, Firefox and WebKit browsers\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUluc3Rh",
+        "type": "region",
+        "text": "Installation section",
+        "path": "Main content > Installation section",
+        "selector": "region:has-text(\"Installation section\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1JbnN0",
+        "type": "heading",
+        "text": "Installation",
+        "path": "Main content > Installation section > Installation",
+        "selector": "heading:has-text(\"Installation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1HZXQgc3Rh",
+        "type": "text",
+        "text": "Get started by installing Playwright",
+        "path": "Main content > Installation section > Get started by installing Playwright",
+        "selector": "text:has-text(\"Get started by installing Playwright\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUNvZGUg",
+        "type": "region",
+        "text": "Code block",
+        "path": "Main content > Installation section > Code block",
+        "selector": "region:has-text(\"Code block\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1ucG0gaW5p",
+        "type": "text",
+        "text": "npm init playwright@latest",
+        "path": "Main content > Installation section > Code block > npm init playwright@latest",
+        "selector": "text:has-text(\"npm init playwright@latest\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLUNvcHkg",
+        "type": "button",
+        "text": "Copy code",
+        "path": "Main content > Installation section > Copy code",
+        "selector": "button:has-text(\"Copy code\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUZpcnN0",
+        "type": "region",
+        "text": "First test section",
+        "path": "Main content > First test section",
+        "selector": "region:has-text(\"First test section\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1GaXJz",
+        "type": "heading",
+        "text": "First test",
+        "path": "Main content > First test section > First test",
+        "selector": "heading:has-text(\"First test\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1DcmVhdGUg",
+        "type": "text",
+        "text": "Create your first test file",
+        "path": "Main content > First test section > Create your first test file",
+        "selector": "text:has-text(\"Create your first test file\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC1pbXBvcnQg",
+        "type": "text",
+        "text": "import { test, expect } from '@playwright/test';",
+        "path": "Main content > First test section > Code block > import { test, expect } from '@playwright/test';",
+        "selector": "text:has-text(\"import { test, expect } from '@playwright/test';\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC10ZXN0KCdo",
+        "type": "text",
+        "text": "test('homepage', async ({ page }) => {",
+        "path": "Main content > First test section > Code block > test('homepage', async ({ page }) => {",
+        "selector": "text:has-text(\"test('homepage', async ({ page }) => {\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC0gIGF3YWl0",
+        "type": "text",
+        "text": "  await page.goto('https://playwright.dev/');",
+        "path": "Main content > First test section > Code block >   await page.goto('https://playwright.dev/');",
+        "selector": "text:has-text(\"  await page.goto('https://playwright.dev/');\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "dGV4dC19KTstNDI=",
+        "type": "text",
+        "text": "});",
+        "path": "Main content > First test section > Code block > });",
+        "selector": "text:has-text(\"});\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLVBhZ2Ug",
+        "type": "region",
+        "text": "Page navigation",
+        "path": "Page navigation",
+        "selector": "region:has-text(\"Page navigation\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [
+          "Тест 2: Страница документации"
+        ],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVByZXZp",
+        "type": "button",
+        "text": "Previous",
+        "path": "Page navigation > Previous",
+        "selector": "button:has-text(\"Previous\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLU5leHQt",
+        "type": "button",
+        "text": "Next",
+        "path": "Page navigation > Next",
+        "selector": "button:has-text(\"Next\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLUVkaXQg",
+        "type": "button",
+        "text": "Edit this page",
+        "path": "Page utilities > Edit this page",
+        "selector": "button:has-text(\"Edit this page\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVNoYXJl",
+        "type": "button",
+        "text": "Share",
+        "path": "Page utilities > Share",
+        "selector": "button:has-text(\"Share\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLVRhYmxl",
+        "type": "region",
+        "text": "Table of contents",
+        "path": "Page utilities > Table of contents",
+        "selector": "region:has-text(\"Table of contents\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1PbiB0",
+        "type": "heading",
+        "text": "On this page",
+        "path": "Page utilities > Table of contents > On this page",
+        "selector": "heading:has-text(\"On this page\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1GaXJzdCB0",
+        "type": "link",
+        "text": "First test",
+        "path": "Page utilities > Table of contents > First test",
+        "selector": "link:has-text(\"First test\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1SdW5uaW5n",
+        "type": "link",
+        "text": "Running tests",
+        "path": "Page utilities > Table of contents > Running tests",
+        "selector": "link:has-text(\"Running tests\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "cmVnaW9uLUZlZWRi",
+        "type": "region",
+        "text": "Feedback",
+        "path": "Feedback",
+        "selector": "region:has-text(\"Feedback\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aGVhZGluZy1XYXMg",
+        "type": "heading",
+        "text": "Was this helpful?",
+        "path": "Feedback > Was this helpful?",
+        "selector": "heading:has-text(\"Was this helpful?\")",
+        "covered": false,
+        "critical": false,
+        "interactable": false,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVllcy02",
+        "type": "button",
+        "text": "Yes",
+        "path": "Feedback > Yes",
+        "selector": "button:has-text(\"Yes\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLU5vLTYx",
+        "type": "button",
+        "text": "No",
+        "path": "Feedback > No",
+        "selector": "button:has-text(\"No\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVN1Z2dl",
+        "type": "button",
+        "text": "Suggest improvements",
+        "path": "Feedback > Suggest improvements",
+        "selector": "button:has-text(\"Suggest improvements\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      }
+    ],
+    "pageElementsMap": {
+      "playwright-docs": [
+        {
+          "id": "bGluay1JbnN0YWxs",
+          "type": "link",
+          "text": "Installation",
+          "path": "Sidebar navigation > Installation",
+          "selector": "link:has-text(\"Installation\")",
+          "covered": true,
+          "critical": false,
+          "interactable": true,
+          "tests": [
+            "Тест 2: Страница документации"
+          ],
+          "interactions": [
+            {
+              "type": "click",
+              "testName": "Тест 2: Страница документации",
+              "timestamp": "2025-07-19T20:48:20.348Z"
+            }
+          ],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bmF2aWdhdGlvbi1N",
+          "type": "navigation",
+          "text": "Main navigation",
+          "path": "Main navigation",
+          "selector": "navigation:has-text(\"Main navigation\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1Ib21lLTQ=",
+          "type": "link",
+          "text": "Home",
+          "path": "Main navigation > Home",
+          "selector": "link:has-text(\"Home\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1Eb2NzLTU=",
+          "type": "link",
+          "text": "Docs",
+          "path": "Main navigation > Docs",
+          "selector": "link:has-text(\"Docs\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1BUEktNg==",
+          "type": "link",
+          "text": "API",
+          "path": "Main navigation > API",
+          "selector": "link:has-text(\"API\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLVNlYXJj",
+          "type": "button",
+          "text": "Search docs",
+          "path": "Main navigation > Search docs",
+          "selector": "button:has-text(\"Search docs\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aW5wdXQtaW5wdXQt",
+          "type": "input",
+          "text": "input",
+          "path": "Main navigation > input",
+          "selector": "input:has-text(\"input\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bmF2aWdhdGlvbi1T",
+          "type": "navigation",
+          "text": "Sidebar navigation",
+          "path": "Sidebar navigation",
+          "selector": "navigation:has-text(\"Sidebar navigation\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1HZXR0",
+          "type": "heading",
+          "text": "Getting Started",
+          "path": "Sidebar navigation > Getting Started",
+          "selector": "heading:has-text(\"Getting Started\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1JbnRyb2R1",
+          "type": "link",
+          "text": "Introduction",
+          "path": "Sidebar navigation > Introduction",
+          "selector": "link:has-text(\"Introduction\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1Xcml0aW5n",
+          "type": "link",
+          "text": "Writing tests",
+          "path": "Sidebar navigation > Writing tests",
+          "selector": "link:has-text(\"Writing tests\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1HdWlk",
+          "type": "heading",
+          "text": "Guides",
+          "path": "Sidebar navigation > Guides",
+          "selector": "heading:has-text(\"Guides\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1BdXRvLXdh",
+          "type": "link",
+          "text": "Auto-waiting",
+          "path": "Sidebar navigation > Auto-waiting",
+          "selector": "link:has-text(\"Auto-waiting\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1TZWxlY3Rv",
+          "type": "link",
+          "text": "Selectors",
+          "path": "Sidebar navigation > Selectors",
+          "selector": "link:has-text(\"Selectors\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1BY3Rpb25z",
+          "type": "link",
+          "text": "Actions",
+          "path": "Sidebar navigation > Actions",
+          "selector": "link:has-text(\"Actions\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1BZHZh",
+          "type": "heading",
+          "text": "Advanced",
+          "path": "Sidebar navigation > Advanced",
+          "selector": "heading:has-text(\"Advanced\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1Db25maWd1",
+          "type": "link",
+          "text": "Configuration",
+          "path": "Sidebar navigation > Configuration",
+          "selector": "link:has-text(\"Configuration\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1GaXh0dXJl",
+          "type": "link",
+          "text": "Fixtures",
+          "path": "Sidebar navigation > Fixtures",
+          "selector": "link:has-text(\"Fixtures\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLU1haW4g",
+          "type": "region",
+          "text": "Main content",
+          "path": "Main content",
+          "selector": "region:has-text(\"Main content\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1JbnRy",
+          "type": "heading",
+          "text": "Introduction",
+          "path": "Main content > Introduction",
+          "selector": "heading:has-text(\"Introduction\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC1QbGF5d3Jp",
+          "type": "text",
+          "text": "Playwright is a framework for Web Testing and Automation",
+          "path": "Main content > Playwright is a framework for Web Testing and Automation",
+          "selector": "text:has-text(\"Playwright is a framework for Web Testing and Automation\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC1JdCBhbGxv",
+          "type": "text",
+          "text": "It allows testing Chromium, Firefox and WebKit browsers",
+          "path": "Main content > It allows testing Chromium, Firefox and WebKit browsers",
+          "selector": "text:has-text(\"It allows testing Chromium, Firefox and WebKit browsers\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLUluc3Rh",
+          "type": "region",
+          "text": "Installation section",
+          "path": "Main content > Installation section",
+          "selector": "region:has-text(\"Installation section\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1JbnN0",
+          "type": "heading",
+          "text": "Installation",
+          "path": "Main content > Installation section > Installation",
+          "selector": "heading:has-text(\"Installation\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC1HZXQgc3Rh",
+          "type": "text",
+          "text": "Get started by installing Playwright",
+          "path": "Main content > Installation section > Get started by installing Playwright",
+          "selector": "text:has-text(\"Get started by installing Playwright\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLUNvZGUg",
+          "type": "region",
+          "text": "Code block",
+          "path": "Main content > Installation section > Code block",
+          "selector": "region:has-text(\"Code block\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [
+            "Тест 2: Страница документации"
+          ],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC1ucG0gaW5p",
+          "type": "text",
+          "text": "npm init playwright@latest",
+          "path": "Main content > Installation section > Code block > npm init playwright@latest",
+          "selector": "text:has-text(\"npm init playwright@latest\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLUNvcHkg",
+          "type": "button",
+          "text": "Copy code",
+          "path": "Main content > Installation section > Copy code",
+          "selector": "button:has-text(\"Copy code\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [
+            "Тест 2: Страница документации"
+          ],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLUZpcnN0",
+          "type": "region",
+          "text": "First test section",
+          "path": "Main content > First test section",
+          "selector": "region:has-text(\"First test section\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1GaXJz",
+          "type": "heading",
+          "text": "First test",
+          "path": "Main content > First test section > First test",
+          "selector": "heading:has-text(\"First test\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC1DcmVhdGUg",
+          "type": "text",
+          "text": "Create your first test file",
+          "path": "Main content > First test section > Create your first test file",
+          "selector": "text:has-text(\"Create your first test file\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC1pbXBvcnQg",
+          "type": "text",
+          "text": "import { test, expect } from '@playwright/test';",
+          "path": "Main content > First test section > Code block > import { test, expect } from '@playwright/test';",
+          "selector": "text:has-text(\"import { test, expect } from '@playwright/test';\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC10ZXN0KCdo",
+          "type": "text",
+          "text": "test('homepage', async ({ page }) => {",
+          "path": "Main content > First test section > Code block > test('homepage', async ({ page }) => {",
+          "selector": "text:has-text(\"test('homepage', async ({ page }) => {\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC0gIGF3YWl0",
+          "type": "text",
+          "text": "  await page.goto('https://playwright.dev/');",
+          "path": "Main content > First test section > Code block >   await page.goto('https://playwright.dev/');",
+          "selector": "text:has-text(\"  await page.goto('https://playwright.dev/');\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "dGV4dC19KTstNDI=",
+          "type": "text",
+          "text": "});",
+          "path": "Main content > First test section > Code block > });",
+          "selector": "text:has-text(\"});\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLVBhZ2Ug",
+          "type": "region",
+          "text": "Page navigation",
+          "path": "Page navigation",
+          "selector": "region:has-text(\"Page navigation\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [
+            "Тест 2: Страница документации"
+          ],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLVByZXZp",
+          "type": "button",
+          "text": "Previous",
+          "path": "Page navigation > Previous",
+          "selector": "button:has-text(\"Previous\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLU5leHQt",
+          "type": "button",
+          "text": "Next",
+          "path": "Page navigation > Next",
+          "selector": "button:has-text(\"Next\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLUVkaXQg",
+          "type": "button",
+          "text": "Edit this page",
+          "path": "Page utilities > Edit this page",
+          "selector": "button:has-text(\"Edit this page\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLVNoYXJl",
+          "type": "button",
+          "text": "Share",
+          "path": "Page utilities > Share",
+          "selector": "button:has-text(\"Share\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLVRhYmxl",
+          "type": "region",
+          "text": "Table of contents",
+          "path": "Page utilities > Table of contents",
+          "selector": "region:has-text(\"Table of contents\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1PbiB0",
+          "type": "heading",
+          "text": "On this page",
+          "path": "Page utilities > Table of contents > On this page",
+          "selector": "heading:has-text(\"On this page\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1GaXJzdCB0",
+          "type": "link",
+          "text": "First test",
+          "path": "Page utilities > Table of contents > First test",
+          "selector": "link:has-text(\"First test\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "bGluay1SdW5uaW5n",
+          "type": "link",
+          "text": "Running tests",
+          "path": "Page utilities > Table of contents > Running tests",
+          "selector": "link:has-text(\"Running tests\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "cmVnaW9uLUZlZWRi",
+          "type": "region",
+          "text": "Feedback",
+          "path": "Feedback",
+          "selector": "region:has-text(\"Feedback\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "aGVhZGluZy1XYXMg",
+          "type": "heading",
+          "text": "Was this helpful?",
+          "path": "Feedback > Was this helpful?",
+          "selector": "heading:has-text(\"Was this helpful?\")",
+          "covered": false,
+          "critical": false,
+          "interactable": false,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLVllcy02",
+          "type": "button",
+          "text": "Yes",
+          "path": "Feedback > Yes",
+          "selector": "button:has-text(\"Yes\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLU5vLTYx",
+          "type": "button",
+          "text": "No",
+          "path": "Feedback > No",
+          "selector": "button:has-text(\"No\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        },
+        {
+          "id": "YnV0dG9uLVN1Z2dl",
+          "type": "button",
+          "text": "Suggest improvements",
+          "path": "Feedback > Suggest improvements",
+          "selector": "button:has-text(\"Suggest improvements\")",
+          "covered": false,
+          "critical": false,
+          "interactable": true,
+          "tests": [],
+          "interactions": [],
+          "pages": [
+            "playwright-docs"
+          ]
+        }
+      ]
+    }
+  },
+  "testsDetails": [
+    {
+      "name": "Тест 2: Страница документации",
+      "status": "passed",
+      "pages": [
+        "playwright-docs"
+      ],
+      "elementsFound": 53,
+      "elementsCovered": 1,
+      "interactions": 1,
+      "coveragePercentage": 2,
+      "completedAt": "2025-07-19T20:48:21.358Z"
+    }
+  ],
+  "aggregatedStats": {
+    "totalElementsFound": 53,
+    "totalElementsCovered": 1,
+    "totalInteractions": 1,
+    "avgCoveragePerTest": 2,
+    "testsWithFullCoverage": 0,
+    "testsWithNoCoverage": 0,
+    "mostProductiveTest": {
+      "name": "Тест 2: Страница документации",
+      "status": "passed",
+      "pages": [
+        "playwright-docs"
+      ],
+      "elementsFound": 53,
+      "elementsCovered": 1,
+      "interactions": 1,
+      "coveragePercentage": 2,
+      "completedAt": "2025-07-19T20:48:21.358Z"
+    },
+    "leastProductiveTest": {
+      "name": "Тест 2: Страница документации",
+      "status": "passed",
+      "pages": [
+        "playwright-docs"
+      ],
+      "elementsFound": 53,
+      "elementsCovered": 1,
+      "interactions": 1,
+      "coveragePercentage": 2,
+      "completedAt": "2025-07-19T20:48:21.358Z"
+    }
+  },
+  "coverageByTest": [
+    {
+      "testName": "Тест 2: Страница документации",
+      "coverage": 2,
+      "elementsFound": 53,
+      "elementsCovered": 1,
+      "efficiency": 2,
+      "pages": [
+        "playwright-docs"
+      ]
+    }
+  ],
+  "topUncoveredElements": {
+    "byType": [
+      {
+        "type": "link",
+        "count": 12,
+        "examples": [
+          "Home",
+          "Docs",
+          "API"
+        ]
+      },
+      {
+        "type": "button",
+        "count": 9,
+        "examples": [
+          "Search docs",
+          "Copy code",
+          "Previous"
+        ]
+      },
+      {
+        "type": "text",
+        "count": 9,
+        "examples": [
+          "Playwright is a framework for Web Testing and Automation",
+          "It allows testing Chromium, Firefox and WebKit browsers",
+          "Get started by installing Playwright"
+        ]
+      },
+      {
+        "type": "heading",
+        "count": 8,
+        "examples": [
+          "Getting Started",
+          "Guides",
+          "Advanced"
+        ]
+      },
+      {
+        "type": "region",
+        "count": 7,
+        "examples": [
+          "Main content",
+          "Installation section",
+          "Code block"
+        ]
+      }
+    ],
+    "critical": [],
+    "interactive": [
+      {
+        "id": "bGluay1Ib21lLTQ=",
+        "type": "link",
+        "text": "Home",
+        "path": "Main navigation > Home",
+        "selector": "link:has-text(\"Home\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Eb2NzLTU=",
+        "type": "link",
+        "text": "Docs",
+        "path": "Main navigation > Docs",
+        "selector": "link:has-text(\"Docs\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BUEktNg==",
+        "type": "link",
+        "text": "API",
+        "path": "Main navigation > API",
+        "selector": "link:has-text(\"API\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "YnV0dG9uLVNlYXJj",
+        "type": "button",
+        "text": "Search docs",
+        "path": "Main navigation > Search docs",
+        "selector": "button:has-text(\"Search docs\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "aW5wdXQtaW5wdXQt",
+        "type": "input",
+        "text": "input",
+        "path": "Main navigation > input",
+        "selector": "input:has-text(\"input\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1JbnRyb2R1",
+        "type": "link",
+        "text": "Introduction",
+        "path": "Sidebar navigation > Introduction",
+        "selector": "link:has-text(\"Introduction\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1Xcml0aW5n",
+        "type": "link",
+        "text": "Writing tests",
+        "path": "Sidebar navigation > Writing tests",
+        "selector": "link:has-text(\"Writing tests\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BdXRvLXdh",
+        "type": "link",
+        "text": "Auto-waiting",
+        "path": "Sidebar navigation > Auto-waiting",
+        "selector": "link:has-text(\"Auto-waiting\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1TZWxlY3Rv",
+        "type": "link",
+        "text": "Selectors",
+        "path": "Sidebar navigation > Selectors",
+        "selector": "link:has-text(\"Selectors\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      },
+      {
+        "id": "bGluay1BY3Rpb25z",
+        "type": "link",
+        "text": "Actions",
+        "path": "Sidebar navigation > Actions",
+        "selector": "link:has-text(\"Actions\")",
+        "covered": false,
+        "critical": false,
+        "interactable": true,
+        "tests": [],
+        "interactions": [],
+        "pages": [
+          "playwright-docs"
+        ]
+      }
+    ],
+    "total": 48
+  },
+  "unifiedRecommendations": [
+    {
+      "priority": "MEDIUM",
+      "category": "Interactive Coverage",
+      "message": "22 интерактивных элементов не покрыты",
+      "elements": [
+        "Home",
+        "Docs",
+        "API",
+        "Search docs",
+        "input"
+      ],
+      "action": "Рассмотрите добавление тестов для основных интерактивных элементов"
+    },
+    {
+      "priority": "HIGH",
+      "category": "Test Coverage",
+      "message": "1 тестов имеют низкое покрытие (<50%)",
+      "tests": [
+        "Тест 2: Страница документации"
+      ],
+      "action": "Добавьте больше взаимодействий в эти тесты"
+    }
+  ]
+}

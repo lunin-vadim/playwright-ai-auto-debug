@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified UI Coverage Report - unified-session-1752958096547</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; text-align: center; }
+        .stat-card.success { background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%); }
+        .stat-card.warning { background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%); }
+        .stat-card.danger { background: linear-gradient(135deg, #f44336 0%, #e91e63 100%); }
+        .stat-value { font-size: 2em; font-weight: bold; margin-bottom: 5px; }
+        .stat-label { opacity: 0.9; }
+        .section { margin: 30px 0; }
+        .section-title { font-size: 1.5em; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+        .tests-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .tests-table th, .tests-table td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        .tests-table th { background: #f5f5f5; font-weight: bold; }
+        .coverage-bar { width: 100px; height: 20px; background: #eee; border-radius: 10px; overflow: hidden; }
+        .coverage-fill { height: 100%; transition: width 0.3s; }
+        .coverage-high { background: linear-gradient(90deg, #4caf50, #8bc34a); }
+        .coverage-medium { background: linear-gradient(90deg, #ff9800, #ffc107); }
+        .coverage-low { background: linear-gradient(90deg, #f44336, #e91e63); }
+        .recommendation { padding: 15px; margin: 10px 0; border-radius: 5px; border-left: 4px solid; }
+        .recommendation.high { border-color: #f44336; background: #ffebee; }
+        .recommendation.medium { border-color: #ff9800; background: #fff3e0; }
+        .recommendation.low { border-color: #4caf50; background: #e8f5e8; }
+        .element-list { max-height: 300px; overflow-y: auto; }
+        .element-item { padding: 8px; margin: 4px 0; border-radius: 4px; font-family: monospace; font-size: 0.9em; }
+        .element-item.uncovered { background: #ffebee; border-left: 3px solid #f44336; }
+        .element-item.critical { background: #fce4ec; border-left: 3px solid #e91e63; }
+        .tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; }
+        .tab.active { border-bottom-color: #667eea; color: #667eea; font-weight: bold; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Единый отчет покрытия UI элементов</h1>
+            <p>Сессия: unified-session-1752958096547</p>
+            <p>Тестов: 1 | Пройдено: 1 | Провалено: 0</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">49</div>
+                <div class="stat-label">Всего элементов</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Покрыто</div>
+            </div>
+            <div class="stat-card danger">
+                <div class="stat-value">49</div>
+                <div class="stat-label">Не покрыто</div>
+            </div>
+            <div class="stat-card danger">
+                <div class="stat-value">0%</div>
+                <div class="stat-label">Покрытие</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Взаимодействий</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">6%</div>
+                <div class="stat-label">Среднее по тестам</div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('tests')">📊 Тесты</div>
+            <div class="tab" onclick="showTab('coverage')">📈 Покрытие</div>
+            <div class="tab" onclick="showTab('covered')">✅ Покрытые</div>
+            <div class="tab" onclick="showTab('uncovered')">❌ Непокрытые</div>
+            <div class="tab" onclick="showTab('pages')">🌐 Страницы</div>
+            <div class="tab" onclick="showTab('recommendations')">💡 Рекомендации</div>
+        </div>
+
+        <div id="tests" class="tab-content active">
+            <div class="section">
+                <h2 class="section-title">📊 Результаты тестов</h2>
+                <table class="tests-table">
+                    <thead>
+                        <tr>
+                            <th>Тест</th>
+                            <th>Статус</th>
+                            <th>Страниц</th>
+                            <th>Элементов</th>
+                            <th>Покрыто</th>
+                            <th>Покрытие</th>
+                            <th>Взаимодействий</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td><strong>Тест 4: Примеры кода</strong></td>
+                                <td>✅ passed</td>
+                                <td>1</td>
+                                <td>53</td>
+                                <td>3</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 6%"></div>
+                                    </div>
+                                    6%
+                                </td>
+                                <td>3</td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="coverage" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">📈 Покрытие по типам элементов</h2>
+                <table class="tests-table">
+                    <thead>
+                        <tr><th>Тип</th><th>Всего</th><th>Покрыто</th><th>Процент</th><th>Прогресс</th></tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td><strong>navigation</strong></td>
+                                <td>2</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>link</strong></td>
+                                <td>13</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>button</strong></td>
+                                <td>9</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>input</strong></td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>heading</strong></td>
+                                <td>8</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>region</strong></td>
+                                <td>7</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td><strong>text</strong></td>
+                                <td>9</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🌐 Покрытие по страницам</h2>
+                <table class="tests-table">
+                    <thead>
+                        <tr><th>Страница</th><th>Всего</th><th>Покрыто</th><th>Процент</th><th>Прогресс</th></tr>
+                    </thead>
+                    <tbody>
+                        
+                            <tr>
+                                <td><strong>playwright-examples</strong></td>
+                                <td>49</td>
+                                <td>0</td>
+                                <td>0%</td>
+                                <td>
+                                    <div class="coverage-bar">
+                                        <div class="coverage-fill coverage-low" 
+                                             style="width: 0%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="covered" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">✅ Покрытые элементы</h2>
+                <p>Нет покрытых элементов</p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">📊 Покрытые элементы по тестам</h2>
+                
+                                         <div style="margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                        <h4>Тест 4: Примеры кода (0 элементов)</h4>
+                        <p style="color: #666;">Нет покрытых элементов</p>
+                    </div>
+                    
+            </div>
+        </div>
+
+        <div id="uncovered" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">❌ Топ непокрытых элементов по типам</h2>
+                
+                    <div style="margin: 15px 0;">
+                        <h4>link (13 элементов)</h4>
+                        <div style="color: #666;">Home, Docs, API</div>
+                    </div>
+                
+                    <div style="margin: 15px 0;">
+                        <h4>button (9 элементов)</h4>
+                        <div style="color: #666;">Search docs, Copy code, Previous</div>
+                    </div>
+                
+                    <div style="margin: 15px 0;">
+                        <h4>text (9 элементов)</h4>
+                        <div style="color: #666;">Playwright is a framework for Web Testing and Automation, It allows testing Chromium, Firefox and WebKit browsers, Get started by installing Playwright</div>
+                    </div>
+                
+                    <div style="margin: 15px 0;">
+                        <h4>heading (8 элементов)</h4>
+                        <div style="color: #666;">Getting Started, Guides, Advanced</div>
+                    </div>
+                
+                    <div style="margin: 15px 0;">
+                        <h4>region (7 элементов)</h4>
+                        <div style="color: #666;">Main content, Installation section, Code block</div>
+                    </div>
+                
+            </div>
+
+            
+
+            <div class="section">
+                <h2 class="section-title">🎯 Интерактивные непокрытые элементы</h2>
+                <div class="element-list">
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Home" (link:has-text("Home"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Docs" (link:has-text("Docs"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "API" (link:has-text("API"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 button: "Search docs" (button:has-text("Search docs"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 input: "input" (input:has-text("input"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Introduction" (link:has-text("Introduction"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Installation" (link:has-text("Installation"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Writing tests" (link:has-text("Writing tests"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Auto-waiting" (link:has-text("Auto-waiting"))
+                        </div>
+                    
+                        <div class="element-item uncovered">
+                            🎯 link: "Selectors" (link:has-text("Selectors"))
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div id="pages" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">🌐 Детализация по страницам</h2>
+                
+                    <div style="margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h3>playwright-examples</h3>
+                            <div style="text-align: right;">
+                                <div style="font-size: 1.5em; font-weight: bold; color: #f44336;">
+                                    0%
+                                </div>
+                                <div style="font-size: 0.9em; color: #666;">
+                                    0/49 элементов
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <h4 style="color: #4caf50;">✅ Покрытые (0)</h4>
+                                <div style="max-height: 200px; overflow-y: auto;">
+                                    <p style="color: #666;">Нет покрытых элементов</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 style="color: #f44336;">❌ Непокрытые (49)</h4>
+                                <div style="max-height: 200px; overflow-y: auto;">
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            navigation: Main navigation
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            link: Home
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            link: Docs
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            link: API
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            button: Search docs
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            input: input
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            navigation: Sidebar navigation
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            heading: Getting Started
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            link: Introduction
+                                        </div>
+                                    
+                                        <div style="padding: 4px 8px; margin: 2px 0; background: #ffebee; border-radius: 4px; font-size: 0.9em;">
+                                            link: Installation
+                                        </div>
+                                    <div style="padding: 4px 8px; color: #666; font-style: italic;">... и еще 39 элементов</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <h4>📊 Статистика по типам элементов</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>navigation</strong>: 0/2 
+                                        (0%)
+                                    </div>
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>link</strong>: 0/13 
+                                        (0%)
+                                    </div>
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>button</strong>: 0/9 
+                                        (0%)
+                                    </div>
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>input</strong>: 0/1 
+                                        (0%)
+                                    </div>
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>heading</strong>: 0/8 
+                                        (0%)
+                                    </div>
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>region</strong>: 0/7 
+                                        (0%)
+                                    </div>
+                                
+                                    <div style="padding: 8px 12px; background: #f5f5f5; border-radius: 4px; font-size: 0.9em;">
+                                        <strong>text</strong>: 0/9 
+                                        (0%)
+                                    </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
+
+        <div id="recommendations" class="tab-content">
+            <div class="section">
+                <h2 class="section-title">💡 Рекомендации по улучшению покрытия</h2>
+                
+                    <div class="recommendation medium">
+                        <h4>🟡 [MEDIUM] Interactive Coverage</h4>
+                        <p><strong>Проблема:</strong> 23 интерактивных элементов не покрыты</p>
+                        <p><strong>Действие:</strong> Рассмотрите добавление тестов для основных интерактивных элементов</p>
+                        
+                        <p><strong>Элементы:</strong> Home, Docs, API, Search docs, input</p>
+                    </div>
+                
+                    <div class="recommendation high">
+                        <h4>🔴 [HIGH] Test Coverage</h4>
+                        <p><strong>Проблема:</strong> 1 тестов имеют низкое покрытие (<50%)</p>
+                        <p><strong>Действие:</strong> Добавьте больше взаимодействий в эти тесты</p>
+                        <p><strong>Тесты:</strong> Тест 4: Примеры кода</p>
+                        
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+    </script>
+</body>
+</html>

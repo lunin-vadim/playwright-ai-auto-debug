@@ -33,11 +33,16 @@ export default defineConfig({
   
   use: {
     baseURL: 'https://playwright.dev',
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
     actionTimeout: 10000,
-    navigationTimeout: 30000
+    navigationTimeout: 30000,
+    
+    // Автоматическое покрытие UI - включается одной строкой!
+    autoCoverage: {
+      enabled: true,
+      outputDir: './coverage-reports',
+      generateReports: true,
+      trackAllPages: true
+    }
   },
 
   projects: [

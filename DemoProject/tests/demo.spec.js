@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../lib/simpleFixture.js';
+import { expect } from '@playwright/test';
 
 test.describe('🎯 AI Debug Integration Demo', () => {
   
@@ -9,13 +10,42 @@ test.describe('🎯 AI Debug Integration Demo', () => {
     });
     
     await test.step('Check main elements', async () => {
-      const getStartedButton = page.locator('text=Get started');
+      console.log('🔍 Проверяем основные элементы...');
+      
+      // Используем конкретный селектор из отчета
+      const getStartedButton = page.locator('a.getStarted_Sjon');
       await expect(getStartedButton).toBeVisible();
+      console.log('✅ Кнопка Get started найдена');
+      
+      // Кликаем по кнопке
+      await getStartedButton.click();
+      console.log('✅ Клик по кнопке Get started выполнен');
+      
+      // Дополнительное взаимодействие - клик по ссылке Docs
+      const docsLink = page.locator('a.navbar__item').filter({ hasText: 'Docs' });
+      await docsLink.click();
+      console.log('✅ Клик по ссылке Docs выполнен');
       
       const heading = page.locator('h1');
       await expect(heading).toContainText('Playwright');
+      console.log('✅ Заголовок проверен');
     });
   });
+
+  // test('✅ Successful navigation test', async ({ page }) => {
+  //   await test.step('Navigate to Playwright homepage', async () => {
+  //     await page.goto('/');
+  //     await expect(page).toHaveTitle(/Playwright/);
+  //   });
+    
+  //   await test.step('Check main elements', async () => {
+  //     const getStartedButton = page.locator('text=Get started');
+  //     await expect(getStartedButton).toBeVisible();
+      
+  //     const heading = page.locator('h1');
+  //     await expect(heading).toContainText('Playwright');
+  //   });
+  // });
 
   test('❌ Login timeout simulation', async ({ page }) => {
     await test.step('Navigate to page', async () => {

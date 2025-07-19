@@ -19,7 +19,7 @@ npx playwright-ai
 npx playwright-ai --use-mcp
 ```
 
-[📖 Подробная документация MCP](./MCP_INTEGRATION.md)
+[📖 Подробная документация MCP](./docs/MCP_INTEGRATION.md)
 
 <!-- ## 🎥 Demo Video
 
@@ -436,7 +436,7 @@ When a test fails, you'll see:
 - **🤖 AI Debug Analysis** attachment with solution
 
 The AI attachment contains:
-```markdown
+
 # 🤖 AI Debug Analysis
 
 **Test:** Login should work with valid credentials
@@ -450,7 +450,6 @@ The AI attachment contains:
 
 ## 💡 AI Solution
 [AI recommendations and solutions]
-```
 
 ## ⚙️ Requirements
 

@@ -1,0 +1,20 @@
+[
+  {
+    "action": "navigate",
+    "selector": "/",
+    "element": {},
+    "url": "about:blank",
+    "timestamp": 1752958004129,
+    "test": "❌ Missing checkout button"
+  },
+  {
+    "action": "click",
+    "selector": "#add-to-cart-btn",
+    "element": {
+      "error": "Element not found or not accessible"
+    },
+    "url": "https://playwright.dev/",
+    "timestamp": 1752958005329,
+    "test": "❌ Missing checkout button"
+  }
+]
