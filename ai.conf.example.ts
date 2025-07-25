@@ -1,7 +1,7 @@
 import type { AiConfig } from './types/index.js';
 
 export const ai_conf: AiConfig = {
-  api_key: process.env.API_KEY || ' ',
+  api_key: process.env.API_KEY || 'your-api-key-here',
   ai_server: 'https://api.mistral.ai',
   model: 'mistral-medium',
   results_dir: 'test-results',
@@ -17,19 +17,26 @@ export const ai_conf: AiConfig = {
     '*-error.md'
   ],
   save_ai_responses: true,
-  ai_responses_dir: 'ai-responses',
+  ai_responses_dir: 'test-results',
   ai_response_filename_template: 'ai-response-{timestamp}-{index}.md',
   include_metadata: true,
   allure_integration: true,
   allure_results_dir: 'allure-results',
+  mcp_integration: false,
+  mcp_ws_host: 'localhost',
+  mcp_ws_port: 3001,
+  mcp_timeout: 30000,
+  mcp_retry_attempts: 3,
+  mcp_command: 'npx',
+  mcp_args: ['@playwright/mcp@latest'],
   messages: [
     {
       role: 'system',
-      content: 'Ты AI помощник по отладке Playwright тестов. Анализируй ошибки и предлагай конкретные решения на русском языке. Отвечай кратко и по делу.'
+      content: 'You are an AI assistant for debugging Playwright tests. Analyze errors and suggest specific solutions in Russian. Be concise and practical with code examples.'
     },
     {
       role: 'system',
-      content: 'При анализе ошибок учитывай специфику нашего проекта: используем React, TypeScript и тестируем e-commerce функционал.'
+      content: 'When MCP DOM snapshots are available, use the exact element references (ref) provided. Focus on reliable selectors like getByRole, getByTestId, and getByText. Provide actionable Playwright code that can be validated through browser automation.'
     }
   ]
 }; 

@@ -36,6 +36,13 @@ export const ai_conf = {
   allure_integration: true,
   allure_results_dir: 'allure-results',
   
+  // 🔗 MCP интеграция (включается флагом --use-mcp)
+  mcp_integration: false,
+  mcp_ws_host: 'localhost',
+  mcp_ws_port: 3001,
+  mcp_timeout: 30000,
+  mcp_retry_attempts: 3,
+  
   // Настройки AI сообщений
   messages: [
     {

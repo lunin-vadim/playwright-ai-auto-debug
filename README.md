@@ -4,6 +4,23 @@
 
 [![npm version](https://img.shields.io/npm/v/playwright-ai-auto-debug.svg)](https://www.npmjs.com/package/playwright-ai-auto-debug)
 
+## 🔗 NEW: MCP Integration
+
+**Playwright MCP Integration** для получения структурированной информации о DOM:
+- 📸 **DOM snapshots** в AI промптах для точной локализации проблем
+- 🧪 **Валидация действий** через MCP browser automation
+- 🎯 **Точные селекторы** на основе реальной структуры страницы
+
+```bash
+# Standard mode
+npx playwright-ai
+
+# MCP mode with DOM snapshots
+npx playwright-ai --use-mcp
+```
+
+[📖 Подробная документация MCP](./docs/MCP_INTEGRATION.md)
+
 <!-- ## 🎥 Demo Video
 
 [![Demo Video](https://img.youtube.com/vi/mva6ktpKOKw/maxresdefault.jpg)](https://youtu.be/mva6ktpKOKw) -->
@@ -118,7 +135,17 @@ API_KEY=your_api_key_here
 ### CLI command
 
 ```bash
+# Standard mode
 npx playwright-ai
+
+# MCP mode with DOM snapshots
+npx playwright-ai --use-mcp
+
+# Custom project directory
+npx playwright-ai --project ./tests --use-mcp
+
+# Help
+npx playwright-ai --help
 ```
 
 ### Via npm scripts
@@ -155,6 +182,10 @@ npm run debug:ai
 | `ai_responses_dir` | string | ❌ | `ai-responses` | Directory for AI responses |
 | `allure_integration` | boolean | ❌ | `false` | Enable Allure integration |
 | `allure_results_dir` | string | ❌ | `allure-results` | Allure results directory |
+| `mcp_integration` | boolean | ❌ | `false` | Enable MCP DOM snapshots (use `--use-mcp` flag) |
+| `mcp_ws_host` | string | ❌ | `localhost` | MCP WebSocket host |
+| `mcp_ws_port` | number | ❌ | `3001` | MCP WebSocket port |
+| `mcp_timeout` | number | ❌ | `30000` | MCP request timeout (ms) |
 | `messages` | array | ❌ | System message | Custom AI messages |
 
 ### HTML Reports Search
@@ -405,7 +436,7 @@ When a test fails, you'll see:
 - **🤖 AI Debug Analysis** attachment with solution
 
 The AI attachment contains:
-```markdown
+
 # 🤖 AI Debug Analysis
 
 **Test:** Login should work with valid credentials
@@ -419,7 +450,6 @@ The AI attachment contains:
 
 ## 💡 AI Solution
 [AI recommendations and solutions]
-```
 
 ## ⚙️ Requirements
 

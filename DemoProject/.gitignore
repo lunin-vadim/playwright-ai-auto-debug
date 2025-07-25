@@ -12,6 +12,13 @@ allure-results/
 allure-report/
 ai-responses/
 
+# Coverage
+coverage-report/
+detailed-report/
+ui-coverage-reports/
+unified-coverage/
+unified-coverage-all/
+
 # Playwright
 /test-results/
 /playwright-report/
