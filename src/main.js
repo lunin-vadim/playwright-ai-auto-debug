@@ -1,19 +1,16 @@
-#!/usr/bin/env node
+// src/main.js
 
-// bin/index.js - Обновленная точка входа с новой архитектурой
-
-import { CliApplication } from '../src/presentation/cli/CliApplication.js';
+import { CliApplication } from './presentation/cli/CliApplication.js';
 
 /**
- * Главная точка входа в приложение (обновлена для новой архитектуры)
- * Перенаправляет на новое CLI приложение с Clean Architecture
+ * Главная точка входа в приложение
+ * Использует Clean Architecture с Dependency Injection
  */
 async function main() {
   try {
-    console.log('🏗️  Playwright AI Auto-Debug - Clean Architecture Edition');
-    console.log('🔄 Migrated from monolithic to modular architecture\n');
+    console.log('🚀 Starting Playwright AI Auto-Debug (Clean Architecture Edition)');
     
-    // Создаем CLI приложение с новой архитектурой
+    // Создаем CLI приложение
     const app = new CliApplication();
     
     // Получаем аргументы командной строки (исключая node и script)

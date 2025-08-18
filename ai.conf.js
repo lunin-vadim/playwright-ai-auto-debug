@@ -1,4 +1,4 @@
-export const ai_conf = {
+export default {
   api_key: process.env.API_KEY || '',
   ai_server: 'https://api.mistral.ai',
   model: 'mistral-medium',
@@ -7,8 +7,8 @@ export const ai_conf = {
   max_prompt_length: 2000,
   request_delay: 1000,
   error_file_patterns: [
+    '**/error-context.md',
     'copy-prompt.txt',
-    'error-context.md',
     'error.txt',
     'test-error.md',
     '*-error.txt',
@@ -20,6 +20,15 @@ export const ai_conf = {
   include_metadata: true,
   allure_integration: true,
   allure_results_dir: 'allure-results',
+  
+  // MCP Integration settings
+  mcp_integration: false, // Enabled via --use-mcp flag
+  mcp_ws_host: 'localhost',
+  mcp_ws_port: 3001,
+  mcp_timeout: 30000,
+  mcp_retry_attempts: 3,
+  mcp_command: 'npx',
+  mcp_args: ['@playwright/mcp@latest'],
   messages: [
     {
       role: 'system',

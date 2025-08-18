@@ -44,6 +44,27 @@ export interface AiConfig {
   /** Directory for Allure results (default: 'allure-results') */
   allure_results_dir?: string;
   
+  /** Enable MCP integration for DOM snapshots (default: false) */
+  mcp_integration?: boolean;
+  
+  /** MCP WebSocket host (default: 'localhost') */
+  mcp_ws_host?: string;
+  
+  /** MCP WebSocket port (default: 3001) */
+  mcp_ws_port?: number;
+  
+  /** MCP request timeout in ms (default: 30000) */
+  mcp_timeout?: number;
+  
+  /** MCP connection retry attempts (default: 3) */
+  mcp_retry_attempts?: number;
+  
+  /** MCP server command (default: 'npx') */
+  mcp_command?: string;
+  
+  /** MCP server arguments (default: ['@playwright/mcp@latest']) */
+  mcp_args?: string[];
+  
   /** Custom AI messages */
   messages?: Array<{
     role: 'system' | 'user' | 'assistant';

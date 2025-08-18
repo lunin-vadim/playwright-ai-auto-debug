@@ -7,12 +7,27 @@
     "test": "npx playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
+    "test:ui-coverage": "npx playwright test ui-coverage.spec.js",
+    "test:demo-coverage": "npx playwright test tests/demo.spec.js --reporter=list",
     "ai:debug": "npx playwright-ai",
+    "ai:debug:mcp": "npx playwright-ai --use-mcp",
     "allure:generate": "allure generate allure-results -o allure-report",
     "allure:open": "allure open allure-report",
     "allure:serve": "allure serve allure-results",
     "demo:full": "npm run test && npm run ai:debug && npm run allure:generate && npm run allure:open",
-    "clean": "rm -rf allure-results allure-report test-results playwright-report"
+    "demo:ui-coverage": "node demo-ui-coverage.js",
+    "demo:detailed-coverage": "node demo-detailed-coverage.js",
+    "demo:unified-coverage": "node demo-unified-coverage.js",
+    "demo:coverage": "npm run test:demo-coverage && echo '📊 Отчет покрытия создан в demo-coverage/'",
+    "show:coverage": "node show-coverage.js",
+    "test:unified-all": "npx playwright test tests/unified-coverage-all.spec.js --workers=1",
+    "demo:unified-all": "npm run test:unified-all",
+    "demo:complete": "./run-full-demo.sh && npm run demo:ui-coverage",
+    "test:detailed-coverage": "npx playwright test tests/detailed-coverage.spec.js --reporter=list",
+    "detailed-coverage:full": "npm run demo:detailed-coverage && npm run test:detailed-coverage",
+    "demo:auto": "node demo-auto-coverage.js",
+    "test:auto-coverage": "npx playwright test tests/auto-coverage.spec.js --reporter=list",
+    "clean": "rm -rf allure-results allure-report test-results playwright-report ui-coverage-reports golden-snapshots detailed-coverage demo-coverage coverage-reports"
   },
   "devDependencies": {
     "@playwright/test": "^1.53.0",
@@ -20,7 +35,7 @@
   },
   "dependencies": {
     "allure": "^3.0.0-beta.15",
-    "playwright-ai-auto-debug": "^1.2.6"
+    "playwright-ai-auto-debug": "^1.2.7"
   },
   "keywords": [
     "playwright",

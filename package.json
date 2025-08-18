@@ -10,10 +10,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:local": "node test-local.js",
-    "test:local:debug": "node --inspect-brk test-local.js",
     "clean:test": "node clean-test.js",
-    "demo": "npm run clean:test && npm run test:local",
+    "demo": "echo \"🎯 Run demo from DemoProject: cd DemoProject && npm run demo:full\"",
+    "demo:full": "cd DemoProject && npm run demo:full",
     "debug:cli": "node --inspect-brk ./bin/index.js",
     "debug:main": "node --inspect-brk ./lib/index.js",
     "version:patch": "npm version patch",
@@ -52,7 +51,8 @@
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
     "glob": "^11.0.0",
-    "tsx": "^4.7.0"
+    "tsx": "^4.7.0",
+    "ws": "^8.16.0"
   },
   "engines": {
     "node": ">=16.0.0"
@@ -62,11 +62,10 @@
     "lib/",
     "types/",
     "README.md",
-    "playwright.config.example.js",
+    "playwright.config.example.js", 
     "playwright.config.example.ts",
     "ai.conf.example.ts",
-    "architecture.md",
-    "CHANGELOG.md",
+    "docs/",
     "DemoProject/"
   ]
 }
