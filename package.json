@@ -1,15 +1,17 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "2.0.0",
+  "version": "3.0.2",
   "description": "Automatic Playwright test debugging with AI assistance",
   "type": "module",
-  "main": "lib/index.js",
+  "main": "src/main.js",
   "types": "types/index.d.ts",
   "bin": {
     "playwright-ai": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdir -p lib && echo 'export { CliApplication } from \"../src/presentation/cli/CliApplication.js\";' > lib/index.js",
+    "prepublishOnly": "npm run build",
     "clean:test": "node clean-test.js",
     "demo": "echo \"🎯 Run demo from DemoProject: cd DemoProject && npm run demo:full\"",
     "demo:full": "cd DemoProject && npm run demo:full",
@@ -59,6 +61,7 @@
   },
   "files": [
     "bin/",
+    "src/",
     "lib/",
     "types/",
     "README.md",
