@@ -26,7 +26,7 @@ export function configureContainer() {
     return new ConfigLoader();
   });
 
-  container.singleton('config', async (c) => {
+  container.transient('config', async (c) => {
     const configLoader = c.get('configLoader');
     return await configLoader.loadAiConfig();
   });
@@ -50,29 +50,28 @@ export function configureContainer() {
     return {
       create(providerType, config) {
         switch (providerType.toLowerCase()) {
-          case 'mistral':
-            // TODO: Реализовать MistralProvider
+          case 'auto':
+          default:
+            // Универсальный AI провайдер
             return {
               async generateResponse(prompt, config, domSnapshot) {
                 // Временная заглушка - использует legacy реализацию
                 const { sendToAI } = await import('../legacy/LegacySendToAI.js');
                 return await sendToAI(prompt, config, domSnapshot);
               },
-              getProviderName() { return 'Mistral AI'; },
-              getSupportedModels() { return ['mistral-medium', 'mistral-large']; },
+              getProviderName() { return 'AI Provider'; },
+              getSupportedModels() { return ['auto-detect']; },
               async validateConfiguration(config) { 
                 return { isValid: !!config.api_key, issues: [] }; 
               },
               async checkApiAvailability(config) { return true; }
             };
           case 'openai':
-            // TODO: Реализовать OpenAIProvider
-            throw new Error('OpenAI provider not implemented yet');
+            // TODO: Реализовать специфичный OpenAIProvider
+            return this.create('auto', config);
           case 'claude':
-            // TODO: Реализовать ClaudeProvider
-            throw new Error('Claude provider not implemented yet');
-          default:
-            throw new Error(`Unknown AI provider: ${providerType}`);
+            // TODO: Реализовать специфичный ClaudeProvider  
+            return this.create('auto', config);
         }
       }
     };
@@ -83,7 +82,7 @@ export function configureContainer() {
     const factory = c.get('aiProviderFactory');
     
     // Определяем провайдера на основе конфигурации
-    const providerType = config.ai_server?.includes('mistral') ? 'mistral' : 'mistral'; // default
+    const providerType = 'auto'; // auto-detect from config
     
     return factory.create(providerType, config);
   });

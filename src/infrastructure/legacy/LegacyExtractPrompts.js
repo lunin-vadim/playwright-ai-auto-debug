@@ -14,24 +14,30 @@ export async function findPromptFiles(config) {
   
   try {
     const resultsDir = config.results_dir || 'test-results';
-    const patterns = config.error_file_patterns || ['**/*.json', '**/*.html'];
+    const patterns = config.error_file_patterns || ['**/error-context.md', 'copy-prompt.txt', 'error.txt'];
     
     const files = [];
     
     for (const pattern of patterns) {
       let fullPattern;
+      
+      // Если паттерн начинается с **/, то это глобальный поиск
       if (pattern.startsWith('**/')) {
-        // Паттерн уже содержит путь относительно resultsDir
+        // Ищем везде, начиная с resultsDir
         fullPattern = path.join(resultsDir, pattern);
+      } else if (pattern.includes('*')) {
+        // Паттерн с wildcard - ищем в resultsDir
+        fullPattern = path.join(resultsDir, '**', pattern);
       } else {
-        // Обычный паттерн файла
-        fullPattern = path.join(resultsDir, pattern);
+        // Простое имя файла - ищем рекурсивно в resultsDir
+        fullPattern = path.join(resultsDir, '**', pattern);
       }
       
       console.log(`🔍 Searching with pattern: ${fullPattern}`);
       const matchedFiles = await glob(fullPattern, { 
         cwd: process.cwd(),
-        absolute: true 
+        absolute: true,
+        ignore: ['**/node_modules/**'] 
       });
       
       console.log(`📁 Found ${matchedFiles.length} files with pattern: ${pattern}`);
@@ -49,13 +55,23 @@ export async function findPromptFiles(config) {
     
     console.log(`📁 Found ${existingFiles.length} potential error files`);
     
-    // Возвращаем в формате, ожидаемом старой системой
-    return existingFiles.map(filePath => ({
-      filePath,
-      content: `Mock error content for ${path.basename(filePath)}`,
-      errorType: 'test_failure',
-      testName: path.basename(filePath, path.extname(filePath))
-    }));
+    // Читаем реальное содержимое файлов
+    const fileContents = [];
+    for (const filePath of existingFiles) {
+      try {
+        const content = fs.readFileSync(filePath, 'utf-8');
+        fileContents.push({
+          path: filePath,
+          content,
+          errorType: 'test_failure',
+          testName: path.basename(filePath, path.extname(filePath))
+        });
+      } catch (error) {
+        console.warn(`⚠️  Could not read file ${filePath}:`, error.message);
+      }
+    }
+    
+    return fileContents;
     
   } catch (error) {
     console.error('❌ Error finding files:', error.message);

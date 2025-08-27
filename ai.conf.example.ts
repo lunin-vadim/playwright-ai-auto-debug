@@ -2,8 +2,8 @@ import type { AiConfig } from './types/index.js';
 
 export const ai_conf: AiConfig = {
   api_key: process.env.API_KEY || 'your-api-key-here',
-  ai_server: 'https://api.mistral.ai',
-  model: 'mistral-medium',
+  ai_server: 'https://api.openai.com/v1/chat/completions',
+  model: 'gpt-3.5-turbo',
   results_dir: 'test-results',
   report_dir: 'playwright-report',
   max_prompt_length: 2000,

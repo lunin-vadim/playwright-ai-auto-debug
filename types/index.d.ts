@@ -5,10 +5,10 @@ export interface AiConfig {
   /** API key for AI service (required) */
   api_key: string;
   
-  /** AI server URL (default: 'https://api.mistral.ai') */
+  /** AI server URL (default: 'https://api.openai.com/v1/chat/completions') */
   ai_server?: string;
   
-  /** AI model for analysis (default: 'mistral-medium') */
+  /** AI model for analysis (default: 'gpt-3.5-turbo') */
   model?: string;
   
   /** Test results folder (default: 'test-results') */

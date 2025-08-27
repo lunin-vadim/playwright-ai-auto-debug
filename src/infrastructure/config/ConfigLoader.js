@@ -73,12 +73,18 @@ export class ConfigLoader {
     try {
       // Используем динамический импорт для ES модулей
       const configModule = await import(`file://${configPath}`);
-      return configModule.default || configModule;
+      
+      // Поддерживаем разные форматы экспорта:
+      // export default { ... }
+      // export const ai_conf = { ... }
+      // module.exports = { ... }
+      return configModule.default || configModule.ai_conf || configModule;
     } catch (error) {
       // Fallback для CommonJS
       try {
         delete require.cache[require.resolve(configPath)];
-        return require(configPath);
+        const config = require(configPath);
+        return config.ai_conf || config;
       } catch (fallbackError) {
         throw new Error(`Failed to load config from ${configPath}: ${error.message}`);
       }
@@ -97,7 +103,7 @@ export class ConfigLoader {
       ...defaultConfig,
       ...config,
       // Переопределяем API ключ из переменных окружения
-      api_key: config.api_key || process.env.API_KEY || process.env.MISTRAL_API_KEY,
+      api_key: config.api_key || process.env.API_KEY,
       // Обеспечиваем наличие обязательных полей
       results_dir: config.results_dir || defaultConfig.results_dir,
       error_file_patterns: config.error_file_patterns || defaultConfig.error_file_patterns
@@ -110,17 +116,19 @@ export class ConfigLoader {
    */
   getDefaultConfig() {
     return {
-      api_key: process.env.API_KEY || process.env.MISTRAL_API_KEY,
-      ai_server: 'https://api.mistral.ai/v1/chat/completions',
-      model: 'mistral-medium',
+      api_key: process.env.API_KEY,
+      ai_server: 'https://api.openai.com/v1/chat/completions',
+      model: 'gpt-3.5-turbo',
       allure_integration: false,
       mcp_integration: false,
       results_dir: 'test-results',
       error_file_patterns: [
-        '**/*.json',
-        '**/*.html',
-        '**/trace.zip',
-        '**/test-results/**/*'
+        '**/error-context.md',
+        'copy-prompt.txt',
+        'error.txt',
+        'test-error.md',
+        '*-error.txt',
+        '*-error.md'
       ],
       max_tokens: 4000,
       temperature: 0.1,

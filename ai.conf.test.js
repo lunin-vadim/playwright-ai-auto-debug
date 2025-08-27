@@ -1,7 +1,7 @@
 export default {
   api_key: 'test-key',
-  ai_server: 'https://api.mistral.ai',
-  model: 'mistral-medium',
+  ai_server: 'https://api.openai.com/v1/chat/completions',
+  model: 'gpt-3.5-turbo',
   results_dir: 'test-results',
   error_file_patterns: [
     '**/error-context.md',
