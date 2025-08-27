@@ -1,6 +1,6 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "3.1.2",
+  "version": "3.1.4",
   "description": "Automatic Playwright test debugging with AI assistance",
   "type": "module",
   "main": "src/main.js",
@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "ai:debug": "npx playwright-ai",
     "build": "mkdir -p lib && echo 'export { CliApplication } from \"../src/presentation/cli/CliApplication.js\";' > lib/index.js",
     "prepublishOnly": "npm run build",
     "clean:test": "node clean-test.js",

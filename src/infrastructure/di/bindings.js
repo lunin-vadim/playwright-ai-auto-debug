@@ -2,9 +2,9 @@
 
 import { Container } from './Container.js';
 
-// Импорты будущих реализаций (пока заглушки)
-// import { MistralProvider } from '../ai/MistralProvider.js';
-// import { FileErrorRepository } from '../repositories/FileErrorRepository.js';
+// Импорты реальных реализаций
+import { OpenAIProvider } from '../ai/OpenAIProvider.js';
+import { FileErrorRepository } from '../repositories/FileErrorRepository.js';
 // import { ReporterManager } from '../reporters/ReporterManager.js';
 // import { McpClient } from '../mcp/McpClient.js';
 import { ConfigLoader } from '../config/ConfigLoader.js';
@@ -34,14 +34,7 @@ export function configureContainer() {
   // ===== REPOSITORIES =====
   
   container.singleton('errorRepository', (c) => {
-    // TODO: Реализовать FileErrorRepository
-    return {
-      async findErrors(projectPath, config) {
-        // Временная заглушка - будет заменена на реальную реализацию
-        const { findPromptFiles } = await import('../legacy/LegacyExtractPrompts.js');
-        return await findPromptFiles(config);
-      }
-    };
+    return new FileErrorRepository();
   });
 
   // ===== AI PROVIDERS =====
@@ -50,28 +43,13 @@ export function configureContainer() {
     return {
       create(providerType, config) {
         switch (providerType.toLowerCase()) {
+          case 'openai':
           case 'auto':
           default:
-            // Универсальный AI провайдер
-            return {
-              async generateResponse(prompt, config, domSnapshot) {
-                // Временная заглушка - использует legacy реализацию
-                const { sendToAI } = await import('../legacy/LegacySendToAI.js');
-                return await sendToAI(prompt, config, domSnapshot);
-              },
-              getProviderName() { return 'AI Provider'; },
-              getSupportedModels() { return ['auto-detect']; },
-              async validateConfiguration(config) { 
-                return { isValid: !!config.api_key, issues: [] }; 
-              },
-              async checkApiAvailability(config) { return true; }
-            };
-          case 'openai':
-            // TODO: Реализовать специфичный OpenAIProvider
-            return this.create('auto', config);
+            return new OpenAIProvider();
           case 'claude':
-            // TODO: Реализовать специфичный ClaudeProvider  
-            return this.create('auto', config);
+            // TODO: Реализовать ClaudeProvider
+            throw new Error('Claude provider not implemented yet. Use OpenAI provider.');
         }
       }
     };
@@ -82,7 +60,13 @@ export function configureContainer() {
     const factory = c.get('aiProviderFactory');
     
     // Определяем провайдера на основе конфигурации
-    const providerType = 'auto'; // auto-detect from config
+    let providerType = 'openai'; // по умолчанию OpenAI
+    
+    if (config.ai_server && config.ai_server.includes('claude')) {
+      providerType = 'claude';
+    } else if (config.ai_server && config.ai_server.includes('openai')) {
+      providerType = 'openai';
+    }
     
     return factory.create(providerType, config);
   });
