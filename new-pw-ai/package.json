@@ -6,6 +6,11 @@
   "scripts": {
     "test": "npx playwright test",
     "ai:debug": "npx playwright-ai",
+    "ai:debug:mcp": "npx playwright-ai --use-mcp",
+    "ui:coverage": "npx playwright-ai ui-coverage",
+    "ui:coverage:mcp": "npx playwright-ai ui-coverage --use-mcp",
+    "ui:coverage:all": "npx playwright-ai ui-coverage --page all-tests --golden",
+    "ui:coverage:open": "open ui-coverage-reports/ui-coverage-*.html | tail -1",
     "allure:generate": "allure generate allure-results -o allure-report",
     "allure:open": "allure open allure-report"
   },
@@ -15,7 +20,7 @@
   },
   "dependencies": {
     "allure": "^3.0.0-beta.15",
-    "playwright-ai-auto-debug": "file:../."
+    "playwright-ai-auto-debug": "file:../"
   },
   "keywords": [
     "playwright",

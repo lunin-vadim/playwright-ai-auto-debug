@@ -1,6 +1,6 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "3.1.2",
+  "version": "3.1.5",
   "description": "Automatic Playwright test debugging with AI assistance",
   "type": "module",
   "main": "src/main.js",
@@ -54,7 +54,6 @@
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
     "glob": "^11.0.0",
-    "playwright-ai-auto-debug": "^3.1.1",
     "tsx": "^4.7.0",
     "ws": "^8.16.0"
   },
