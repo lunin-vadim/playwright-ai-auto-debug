@@ -45,7 +45,10 @@ export class FileErrorRepository {
     for (const pattern of patterns) {
       console.log(`🔍 Searching with pattern: ${pattern}`);
       
-      const fullPattern = path.join(searchPath, pattern);
+      // Добавляем **/ в начало паттерна если его нет для рекурсивного поиска
+      const searchPattern = pattern.startsWith('**/') ? pattern : `**/${pattern}`;
+      const fullPattern = path.join(searchPath, searchPattern);
+      
       const files = await glob(fullPattern, { 
         ignore: ['**/node_modules/**'],
         absolute: true 
@@ -102,11 +105,10 @@ export class FileErrorRepository {
 
       // Создаем TestError entity
       const testError = new TestError(
-        content,
         filePath,
+        content,
         errorType,
-        severity,
-        metadata
+        metadata.testName
       );
 
       // Добавляем дополнительные свойства

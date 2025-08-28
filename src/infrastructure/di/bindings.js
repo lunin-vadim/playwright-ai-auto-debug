@@ -4,6 +4,8 @@ import { Container } from './Container.js';
 
 // Импорты реальных реализаций
 import { OpenAIProvider } from '../ai/OpenAIProvider.js';
+import { MistralProvider } from '../ai/MistralProvider.js';
+import { LocalAIProvider } from '../ai/LocalAIProvider.js';
 import { FileErrorRepository } from '../repositories/FileErrorRepository.js';
 // import { ReporterManager } from '../reporters/ReporterManager.js';
 // import { McpClient } from '../mcp/McpClient.js';
@@ -44,12 +46,33 @@ export function configureContainer() {
       create(providerType, config) {
         switch (providerType.toLowerCase()) {
           case 'openai':
+            return new OpenAIProvider();
+          case 'mistral':
+            return new MistralProvider();
+          case 'local':
+          case 'ollama':
+          case 'lmstudio':
+            return new LocalAIProvider();
           case 'auto':
           default:
+            // Автоопределение по URL сервера
+            if (config.ai_server && config.ai_server.includes('mistral.ai')) {
+              return new MistralProvider();
+            } else if (config.ai_server && config.ai_server.includes('openai.com')) {
+              return new OpenAIProvider();
+            } else if (config.ai_server && (
+              config.ai_server.includes('localhost') || 
+              config.ai_server.includes('127.0.0.1') ||
+              config.ai_server.match(/192\.168\.\d+\.\d+/) ||
+              config.ai_server.match(/10\.\d+\.\d+\.\d+/) ||
+              config.ai_server.match(/172\.\d+\.\d+\.\d+/)
+            )) {
+              return new LocalAIProvider();
+            }
             return new OpenAIProvider();
           case 'claude':
             // TODO: Реализовать ClaudeProvider
-            throw new Error('Claude provider not implemented yet. Use OpenAI provider.');
+            throw new Error('Claude provider not implemented yet. Use OpenAI, Mistral or Local provider.');
         }
       }
     };
@@ -60,12 +83,22 @@ export function configureContainer() {
     const factory = c.get('aiProviderFactory');
     
     // Определяем провайдера на основе конфигурации
-    let providerType = 'openai'; // по умолчанию OpenAI
+    let providerType = 'auto'; // автоопределение
     
-    if (config.ai_server && config.ai_server.includes('claude')) {
-      providerType = 'claude';
-    } else if (config.ai_server && config.ai_server.includes('openai')) {
+    if (config.ai_server && config.ai_server.includes('mistral.ai')) {
+      providerType = 'mistral';
+    } else if (config.ai_server && config.ai_server.includes('openai.com')) {
       providerType = 'openai';
+    } else if (config.ai_server && config.ai_server.includes('claude')) {
+      providerType = 'claude';
+    } else if (config.ai_server && (
+      config.ai_server.includes('localhost') || 
+      config.ai_server.includes('127.0.0.1') ||
+      config.ai_server.match(/192\.168\.\d+\.\d+/) ||
+      config.ai_server.match(/10\.\d+\.\d+\.\d+/) ||
+      config.ai_server.match(/172\.\d+\.\d+\.\d+/)
+    )) {
+      providerType = 'local';
     }
     
     return factory.create(providerType, config);
@@ -99,15 +132,16 @@ export function configureContainer() {
         // TODO: Реализовать AllureReporter
         const { createAllureAttachment } = await import('../../../lib/sendToAI.js');
         
-        for (const result of results) {
+        for (let i = 0; i < results.length; i++) {
+          const result = results[i];
           if (result.aiResponse && result.testError) {
             const config = await c.get('config');
             await createAllureAttachment(
               result.aiResponse.content,
               result.testError.content,
               config,
-              0,
-              result.errorFile?.path
+              i,
+              result.testError.filePath
             );
           }
         }

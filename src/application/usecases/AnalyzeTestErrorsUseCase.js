@@ -72,17 +72,11 @@ export class AnalyzeTestErrorsUseCase {
 
       // 3. Анализ каждой ошибки
       for (let i = 0; i < errorFiles.length; i++) {
-        const errorFile = errorFiles[i];
-        console.log(`\n📝 Processing ${i + 1}/${errorFiles.length}: ${errorFile.path}`);
+        const testError = errorFiles[i]; // errorFiles уже содержит TestError объекты
+        console.log(`\n📝 Processing ${i + 1}/${errorFiles.length}: ${testError.filePath}`);
 
         try {
-          // Создаем доменную сущность ошибки
-          const testError = new TestError(
-            errorFile.path,
-            errorFile.content,
-            null, // автоопределение типа
-            null  // автоизвлечение имени теста
-          );
+          // TestError уже создан в repository, просто используем его
 
           console.log(`🎯 Error type: ${testError.errorType}`);
           console.log(`📊 Severity: ${testError.severity}`);
@@ -162,14 +156,14 @@ export class AnalyzeTestErrorsUseCase {
           await this.reporterManager.createReports([{
             testError,
             aiResponse,
-            errorFile,
+            errorFile: testError,
             timestamp: new Date()
           }]);
 
           results.analysisResults.push({
             testError,
             aiResponse,
-            errorFile,
+            errorFile: testError,
             success: true
           });
 
@@ -185,15 +179,15 @@ export class AnalyzeTestErrorsUseCase {
 
         } catch (error) {
           results.errors++;
-          console.error(`❌ Error processing ${errorFile.path}: ${error.message}`);
+          console.error(`❌ Error processing ${testError.filePath}: ${error.message}`);
           
           // Улучшенная обработка ошибок с конкретными рекомендациями
-          this.handleProcessingError(error, errorFile.path);
+          this.handleProcessingError(error, testError.filePath);
           
           results.analysisResults.push({
-            testError: null,
+            testError: testError,
             aiResponse: null,
-            errorFile,
+            errorFile: testError,
             success: false,
             error: error.message
           });

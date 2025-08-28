@@ -1,21 +1,23 @@
-// src/infrastructure/ai/OpenAIProvider.js
+// src/infrastructure/ai/MistralProvider.js
 
 /**
- * Реальный OpenAI провайдер для отправки запросов к OpenAI API
+ * Mistral AI провайдер для отправки запросов к Mistral API
  */
-export class OpenAIProvider {
+export class MistralProvider {
   constructor() {
-    this.providerName = 'OpenAI';
+    this.providerName = 'Mistral';
     this.supportedModels = [
-      'gpt-4',
-      'gpt-4-turbo',
-      'gpt-3.5-turbo',
-      'gpt-3.5-turbo-16k'
+      'mistral-tiny',
+      'mistral-small',
+      'mistral-medium',
+      'mistral-large',
+      'open-mistral-7b',
+      'open-mixtral-8x7b'
     ];
   }
 
   /**
-   * Генерирует ответ от OpenAI API
+   * Генерирует ответ от Mistral API
    * @param {string} prompt - промпт для анализа
    * @param {Object} config - конфигурация
    * @param {string} domSnapshot - DOM snapshot (опционально)
@@ -23,11 +25,11 @@ export class OpenAIProvider {
    */
   async generateResponse(prompt, config, domSnapshot = null) {
     if (!config.api_key) {
-      throw new Error('OpenAI API key is required. Set API_KEY environment variable or configure api_key in ai.conf.js');
+      throw new Error('Mistral API key is required. Set API_KEY environment variable or configure api_key in ai.conf.js');
     }
 
     const requestBody = {
-      model: config.model || 'gpt-3.5-turbo',
+      model: config.model || 'mistral-medium',
       messages: [
         ...config.messages || [],
         {
@@ -52,20 +54,20 @@ export class OpenAIProvider {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(`OpenAI API error: ${response.status} ${response.statusText} - ${errorData.error?.message || 'Unknown error'}`);
+        throw new Error(`Mistral API error: ${response.status} ${response.statusText} - ${errorData.message || 'Unknown error'}`);
       }
 
       const data = await response.json();
       
       if (!data.choices || data.choices.length === 0) {
-        throw new Error('No response choices returned from OpenAI API');
+        throw new Error('No response choices returned from Mistral API');
       }
 
       return data.choices[0].message.content.trim();
 
     } catch (error) {
       if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        throw new Error(`Network error: Unable to connect to OpenAI API. Check your internet connection and API endpoint: ${config.ai_server}`);
+        throw new Error(`Network error: Unable to connect to Mistral API. Check your internet connection and API endpoint: ${config.ai_server}`);
       }
       throw error;
     }
@@ -151,7 +153,7 @@ export class OpenAIProvider {
           'Authorization': `Bearer ${config.api_key}`
         },
         body: JSON.stringify({
-          model: config.model || 'gpt-3.5-turbo',
+          model: config.model || 'mistral-medium',
           messages: [{ role: 'user', content: 'test' }],
           max_tokens: 1
         })

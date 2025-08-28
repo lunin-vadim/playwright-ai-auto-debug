@@ -1,6 +1,6 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "3.1.4",
+  "version": "3.1.2",
   "description": "Automatic Playwright test debugging with AI assistance",
   "type": "module",
   "main": "src/main.js",
