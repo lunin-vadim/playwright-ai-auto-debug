@@ -22,6 +22,7 @@ export class CliApplication {
     this.commands.set('debug', this.createDebugCommand());
     this.commands.set('analyze', this.createDebugCommand()); // alias
     this.commands.set('ui-coverage', this.createUICoverageCommand());
+    this.commands.set('coverage', this.createCoverageCommand()); // НОВОЕ!
     this.commands.set('setup', this.createSetupCommand());
     this.commands.set('validate', this.createValidateCommand());
     this.commands.set('info', this.createInfoCommand());
@@ -396,6 +397,51 @@ export class CliApplication {
         const packageJson = await import('../../../package.json', { assert: { type: 'json' } });
         console.log(`playwright-ai-auto-debug v${packageJson.default.version}`);
         console.log('🏗️  Clean Architecture Edition');
+      }
+    };
+  }
+
+  /**
+   * Создает команду UI Test Coverage
+   * @returns {Object}
+   */
+  createCoverageCommand() {
+    return {
+      description: 'UI Test Coverage system setup and management',
+      usage: 'coverage <subcommand> [options]',
+      options: [
+        'init       Setup UI Test Coverage in current project',
+        'info       Show information about coverage system',
+        '--help     Show help for this command'
+      ],
+      async execute(args, options) {
+        try {
+          const { CoverageCommand } = await import('./CoverageCommand.js');
+          const coverageCmd = new CoverageCommand();
+          
+          const subcommand = args[1]; // coverage <subcommand>
+          
+          switch (subcommand) {
+            case 'init':
+              await coverageCmd.init(options);
+              break;
+            case 'info':
+              await coverageCmd.info();
+              break;
+            default:
+              console.log('🎯 UI Test Coverage');
+              console.log('\nДоступные команды:');
+              console.log('  npx playwright-ai coverage init  # Настройка в проекте');
+              console.log('  npx playwright-ai coverage info  # Информация о системе');
+              console.log('\n💡 После настройки:');
+              console.log('  npm run test:coverage            # Запуск тестов с покрытием');
+              console.log('  npm run coverage:open            # Открытие отчета');
+          }
+          
+        } catch (error) {
+          console.error('❌ Ошибка команды coverage:', error.message);
+          throw error;
+        }
       }
     };
   }

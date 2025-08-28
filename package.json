@@ -1,17 +1,24 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "3.1.5",
-  "description": "Automatic Playwright test debugging with AI assistance",
+  "version": "3.2.0",
+  "description": "Automatic Playwright test debugging with AI assistance + UI Test Coverage Analysis",
   "type": "module",
   "main": "src/main.js",
   "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./coverage": "./coverage.js"
+  },
   "bin": {
     "playwright-ai": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ai:debug": "npx playwright-ai",
-    "build": "mkdir -p lib && echo 'export { CliApplication } from \"../src/presentation/cli/CliApplication.js\";' > lib/index.js",
+    "build": "mkdir -p lib && cat > lib/index.js << 'EOF'\n// CLI\nexport { CliApplication } from \"../src/presentation/cli/CliApplication.js\";\n\n// Test Coverage System\nexport { test, expect } from \"../src/infrastructure/coverage/testCoverageFixture.js\";\nexport { TestElementTracker } from \"../src/infrastructure/coverage/testElementTracker.js\";\nexport { GlobalCoverageTracker } from \"../src/infrastructure/coverage/globalCoverageTracker.js\";\nEOF",
     "prepublishOnly": "npm run build",
     "clean:test": "node clean-test.js",
     "demo": "echo \"🎯 Run demo from DemoProject: cd DemoProject && npm run demo:full\"",
@@ -45,7 +52,10 @@
     "e2e",
     "artificial-intelligence",
     "test-automation",
-    "debugging"
+    "debugging",
+    "ui-coverage",
+    "test-coverage",
+    "element-tracking"
   ],
   "author": "lunin",
   "license": "MIT",
@@ -65,6 +75,7 @@
     "src/",
     "lib/",
     "types/",
+    "coverage.js",
     "README.md",
     "playwright.config.example.js",
     "playwright.config.example.ts",
