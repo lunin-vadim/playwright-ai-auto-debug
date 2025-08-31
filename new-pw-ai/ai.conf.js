@@ -4,11 +4,11 @@ dotenv.config();
 
 export const ai_conf = {
   // API ключ - установите через переменную окружения или замените на свой
-  api_key: '8C33pPUpKV8abmFBcxoH6T9JE44lWbBl',
+  api_key: process.env.API_KEY,
   
   // Настройки AI сервера
-  ai_server: 'http://192.168.100.8:1234/v1/chat/completions',
-  model: 'qwen3-14b', // Используем более доступную модель
+  ai_server: 'https://api.mistral.ai/v1/chat/completions',
+  model: 'codestral-latest', // Используем стабильную модель
   
   // Директории
   results_dir: 'test-results',
@@ -17,8 +17,8 @@ export const ai_conf = {
   
   // Настройки обработки
   max_prompt_length: 2000,
-  request_delay: 1000, // Увеличиваем задержку до 3 секунд
-  stream: true, // Включаем потоковую передачу ответов
+  request_delay: 1000,
+  stream: true, 
   
   // Паттерны файлов ошибок
   error_file_patterns: [

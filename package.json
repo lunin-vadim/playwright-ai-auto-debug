@@ -1,6 +1,6 @@
 {
   "name": "playwright-ai-auto-debug",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Automatic Playwright test debugging with AI assistance + UI Test Coverage Analysis",
   "type": "module",
   "main": "src/main.js",
@@ -32,7 +32,9 @@
     "release:github": "gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
     "release:patch": "npm run version:patch && npm run publish && npm run release:github",
     "release:minor": "npm run version:minor && npm run publish && npm run release:github",
-    "release:major": "npm run version:major && npm run publish && npm run release:github"
+    "release:major": "npm run version:major && npm run publish && npm run release:github",
+    "test:coverage": "npx playwright test && echo \"📊 Отчет: test-coverage-reports/index.html\"",
+    "coverage:open": "open test-coverage-reports/index.html"
   },
   "repository": {
     "type": "git",
