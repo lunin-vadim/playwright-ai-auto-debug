@@ -63,7 +63,7 @@ export class CliApplication {
           const results = await testDebugService.debugTests(projectPath, { useMcp });
 
           // Выводим результаты
-          self.displayResults(results);
+          await self.displayResults(results);
 
           return results;
 
@@ -988,7 +988,7 @@ ${recommendations.map(rec =>
    * Отображает результаты анализа
    * @param {Object} results - результаты анализа
    */
-  displayResults(results) {
+  async displayResults(results) {
     console.log('\n📊 Analysis Results Summary:');
     console.log('─'.repeat(50));
     
@@ -1018,8 +1018,63 @@ ${recommendations.map(rec =>
     
     if (results.success) {
       console.log('✅ Analysis completed successfully');
+      
+      // Показываем пользователю где найти отчеты
+      await this.showReportLocations();
     } else {
       console.log('⚠️  Analysis completed with some errors');
+    }
+  }
+
+  /**
+   * Показывает пользователю где найти созданные отчеты
+   */
+  async showReportLocations() {
+    try {
+      const config = await this.container.get('config');
+      const fs = await import('fs');
+      const path = await import('path');
+      const { glob } = await import('glob');
+      
+      console.log('\n📄 Где найти отчеты:');
+      
+      // Проверяем HTML отчеты
+      const reportDir = config.report_dir || 'playwright-report';
+      if (fs.existsSync(reportDir)) {
+        const htmlFiles = await glob(path.join(reportDir, 'ai-analysis-*.html'));
+        if (htmlFiles.length > 0) {
+          const latestHtml = htmlFiles[htmlFiles.length - 1];
+          console.log(`   🌐 HTML отчет: ${latestHtml}`);
+          console.log(`      💡 Откройте в браузере: open ${latestHtml}`);
+        }
+      }
+      
+      // Проверяем Markdown отчеты
+      const aiResponsesDir = config.ai_responses_dir || 'ai-responses';
+      if (fs.existsSync(aiResponsesDir)) {
+        const markdownFiles = await glob(path.join(aiResponsesDir, 'analysis-summary-*.md'));
+        if (markdownFiles.length > 0) {
+          const latestSummary = markdownFiles[markdownFiles.length - 1];
+          console.log(`   📝 Сводный отчет: ${latestSummary}`);
+        }
+        
+        const responseFiles = await glob(path.join(aiResponsesDir, 'ai-response-*.md'));
+        if (responseFiles.length > 0) {
+          console.log(`   📄 AI ответы: ${responseFiles.length} файлов в ${aiResponsesDir}/`);
+        }
+      }
+      
+      // Проверяем Allure
+      if (config.allure_integration) {
+        const allureDir = config.allure_results_dir || 'allure-results';
+        if (fs.existsSync(allureDir)) {
+          console.log(`   📊 Allure attachments: ${allureDir}/`);
+          console.log(`      💡 Запустите: npx allure serve ${allureDir}`);
+        }
+      }
+      
+    } catch (error) {
+      console.warn(`⚠️  Не удалось проверить отчеты: ${error.message}`);
     }
   }
 

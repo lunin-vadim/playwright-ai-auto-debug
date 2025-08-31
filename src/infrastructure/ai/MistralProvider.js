@@ -6,15 +6,6 @@
 export class MistralProvider {
   constructor() {
     this.providerName = 'Mistral';
-    this.supportedModels = [
-      'mistral-tiny',
-      'mistral-small',
-      'mistral-medium',
-      'mistral-large',
-      'open-mistral-7b',
-      'open-mixtral-8x7b',
-      'codestral-latest'
-    ];
   }
 
   /**
@@ -179,7 +170,8 @@ export class MistralProvider {
    * @returns {string[]}
    */
   getSupportedModels() {
-    return this.supportedModels;
+    // Возвращаем null чтобы указать что поддерживаем любые модели
+    return null;
   }
 
   /**
@@ -202,9 +194,8 @@ export class MistralProvider {
 
     if (!config.model) {
       issues.push('Model is required');
-    } else if (!this.supportedModels.includes(config.model)) {
-      issues.push(`Model "${config.model}" is not supported. Supported models: ${this.supportedModels.join(', ')}`);
     }
+    // Убираем проверку поддерживаемых моделей - позволяем пользователю использовать любые модели
 
     return {
       isValid: issues.length === 0,

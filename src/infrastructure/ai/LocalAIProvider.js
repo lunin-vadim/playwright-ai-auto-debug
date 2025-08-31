@@ -7,7 +7,6 @@
 export class LocalAIProvider {
   constructor() {
     this.providerName = 'Local AI';
-    this.supportedModels = ['auto-detect']; // Любые модели, которые поддерживает локальный сервер
   }
 
   /**
@@ -175,7 +174,8 @@ export class LocalAIProvider {
    * @returns {string[]}
    */
   getSupportedModels() {
-    return this.supportedModels;
+    // Возвращаем null чтобы указать что поддерживаем любые модели
+    return null;
   }
 
   /**

@@ -6,15 +6,6 @@
 export class OpenAIProvider {
   constructor() {
     this.providerName = 'OpenAI';
-    this.supportedModels = [
-      'gpt-4',
-      'gpt-4-turbo',
-      'gpt-3.5-turbo',
-      'gpt-3.5-turbo-16k',
-      'gpt-4o',
-      'gpt-4o-mini',
-      'gpt-5',
-    ];
   }
 
   /**
@@ -179,7 +170,8 @@ export class OpenAIProvider {
    * @returns {string[]}
    */
   getSupportedModels() {
-    return this.supportedModels;
+    // Возвращаем null чтобы указать что поддерживаем любые модели
+    return null;
   }
 
   /**
@@ -202,9 +194,8 @@ export class OpenAIProvider {
 
     if (!config.model) {
       issues.push('Model is required');
-    } else if (!this.supportedModels.includes(config.model)) {
-      issues.push(`Model "${config.model}" is not supported. Supported models: ${this.supportedModels.join(', ')}`);
     }
+    // Убираем проверку поддерживаемых моделей - позволяем пользователю использовать любые модели
 
     return {
       isValid: issues.length === 0,

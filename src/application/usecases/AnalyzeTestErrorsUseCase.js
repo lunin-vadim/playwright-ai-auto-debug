@@ -30,6 +30,12 @@ export class AnalyzeTestErrorsUseCase {
     console.log(`📁 Project path: ${projectPath}`);
     console.log(`🤖 AI Provider: ${this.aiProvider.getProviderName()}`);
     console.log(`🔗 MCP enabled: ${useMcp && this.mcpClient ? 'Yes' : 'No'}`);
+    console.log(`⚙️  Configuration check:`);
+    console.log(`   📝 save_ai_responses: ${config.save_ai_responses}`);
+    console.log(`   📁 ai_responses_dir: ${config.ai_responses_dir}`);
+    console.log(`   📊 allure_integration: ${config.allure_integration}`);
+    console.log(`   📁 allure_results_dir: ${config.allure_results_dir}`);
+    console.log(`   🌐 report_dir: ${config.report_dir}`);
 
     const results = {
       success: false,
@@ -153,11 +159,16 @@ export class AnalyzeTestErrorsUseCase {
 
           // Создаем отчеты
           console.log('📄 Creating reports...');
+          console.log(`📝 Report data: testError=${!!testError}, aiResponse=${!!aiResponse}`);
+          console.log(`📁 Test file: ${testError?.filePath || 'Unknown'}`);
+          console.log(`🤖 AI response length: ${aiResponse?.content?.length || 0} chars`);
+          
           await this.reporterManager.createReports([{
             testError,
             aiResponse,
             errorFile: testError,
-            timestamp: new Date()
+            timestamp: new Date(),
+            success: true
           }]);
 
           results.analysisResults.push({
@@ -209,6 +220,16 @@ export class AnalyzeTestErrorsUseCase {
       if (results.summary.topErrorTypes.length > 0) {
         console.log(`   🎯 Top error types: ${results.summary.topErrorTypes.slice(0, 3).join(', ')}`);
       }
+
+      console.log(`\n📄 Generated Reports:`);
+      console.log(`   🌐 HTML Report: ${config.report_dir || 'playwright-report'}/ai-analysis-*.html`);
+      console.log(`   📝 Markdown Reports: ${config.ai_responses_dir || 'ai-responses'}/`);
+      if (config.allure_integration) {
+        console.log(`   📊 Allure Attachments: ${config.allure_results_dir || 'allure-results'}/`);
+      }
+      
+      // Проверяем фактическое наличие созданных файлов
+      await this.verifyGeneratedReports(config);
 
       return results;
 
@@ -311,6 +332,64 @@ export class AnalyzeTestErrorsUseCase {
         .map(([severity]) => severity),
       processingTimeMs: results.processingTime
     };
+  }
+
+  /**
+   * Проверяет наличие созданных отчетов
+   * @param {Object} config - конфигурация
+   */
+  async verifyGeneratedReports(config) {
+    const fs = await import('fs');
+    const path = await import('path');
+    const { glob } = await import('glob');
+    
+    console.log(`\n🔍 Проверка созданных файлов отчетов:`);
+    
+    try {
+      // Проверяем HTML отчеты
+      const reportDir = config.report_dir || 'playwright-report';
+      if (fs.existsSync(reportDir)) {
+        const htmlFiles = await glob(path.join(reportDir, 'ai-analysis-*.html'));
+        if (htmlFiles.length > 0) {
+          console.log(`   ✅ HTML отчет: ${htmlFiles[htmlFiles.length - 1]}`);
+        } else {
+          console.log(`   ❌ HTML отчет не найден в ${reportDir}`);
+        }
+      } else {
+        console.log(`   ❌ Директория HTML отчетов не найдена: ${reportDir}`);
+      }
+      
+      // Проверяем Markdown отчеты
+      const aiResponsesDir = config.ai_responses_dir || 'ai-responses';
+      if (fs.existsSync(aiResponsesDir)) {
+        const markdownFiles = await glob(path.join(aiResponsesDir, '*.md'));
+        console.log(`   ✅ Markdown файлов: ${markdownFiles.length} в ${aiResponsesDir}`);
+        
+        // Показываем последние файлы
+        if (markdownFiles.length > 0) {
+          const recentFiles = markdownFiles.slice(-3);
+          recentFiles.forEach(file => {
+            console.log(`      📄 ${path.basename(file)}`);
+          });
+        }
+      } else {
+        console.log(`   ❌ Директория Markdown отчетов не найдена: ${aiResponsesDir}`);
+      }
+      
+      // Проверяем Allure attachments
+      if (config.allure_integration) {
+        const allureDir = config.allure_results_dir || 'allure-results';
+        if (fs.existsSync(allureDir)) {
+          const allureFiles = await glob(path.join(allureDir, 'ai-analysis-*.md'));
+          console.log(`   ✅ Allure attachments: ${allureFiles.length} в ${allureDir}`);
+        } else {
+          console.log(`   ❌ Директория Allure не найдена: ${allureDir}`);
+        }
+      }
+      
+    } catch (error) {
+      console.warn(`⚠️  Ошибка при проверке отчетов: ${error.message}`);
+    }
   }
 
   /**
