@@ -18,7 +18,7 @@ export const ai_conf = {
   // Настройки обработки
   max_prompt_length: 2000,
   request_delay: 1000,
-  stream: true, 
+  stream: false, 
   
   // Паттерны файлов ошибок
   error_file_patterns: [

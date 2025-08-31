@@ -109,9 +109,62 @@ export function configureContainer() {
   container.singleton('htmlReporter', (c) => {
     return {
       async generate(results) {
-        // TODO: Реализовать HTMLReporter
         const { updateHtmlReport } = await import('../../../lib/updateHtml.js');
+        const config = await c.get('config');
+        const fs = await import('fs');
+        const path = await import('path');
         
+        console.log(`🌐 HTML Reporter: Processing ${results.length} results...`);
+        
+        // Создаем HTML отчет с результатами анализа
+        const timestamp = Date.now();
+        const reportDir = config.report_dir || 'playwright-report';
+        const htmlPath = path.join(reportDir, `ai-analysis-${timestamp}.html`);
+        
+        // Создаем директорию если не существует
+        if (!fs.existsSync(reportDir)) {
+          fs.mkdirSync(reportDir, { recursive: true });
+          console.log(`📁 Created report directory: ${reportDir}`);
+        }
+        
+        // Генерируем HTML отчет
+        const htmlContent = this.generateHTMLReport(results, config);
+        fs.writeFileSync(htmlPath, htmlContent, 'utf-8');
+        console.log(`📄 Created HTML report: ${htmlPath}`);
+        
+        // Проверяем, есть ли основной HTML отчет Playwright и интегрируем туда AI анализ
+        const mainReportPath = path.join(reportDir, 'index.html');
+        if (fs.existsSync(mainReportPath) && results.length > 0) {
+          console.log('🔗 Integrating AI analysis into main Playwright report...');
+          
+          // Импортируем функцию извлечения имени теста
+          const { extractTestName } = await import('../../../lib/updateHtml.js');
+          
+          // Собираем все AI анализы для интеграции
+          const aiAnalyses = results
+            .filter(result => result.aiResponse?.content)
+            .map(result => {
+              // Извлекаем имя теста из пути к файлу
+              const filePath = result.testError?.filePath || '';
+              
+              let testName = extractTestName(result.testError?.content || '', filePath) ||
+                           result.testError?.testName ||
+                           'Unknown Test';
+                
+              return {
+                testName,
+                errorContent: result.testError?.content || '',
+                aiResponse: result.aiResponse?.content || '',
+                filePath
+              };
+            });
+          
+          if (aiAnalyses.length > 0) {
+            await this.integrateIntoMainReport(mainReportPath, aiAnalyses);
+          }
+        }
+        
+        // Также обновляем существующие HTML файлы если они есть
         for (const result of results) {
           if (result.errorFile?.htmlPath) {
             await updateHtmlReport(
@@ -119,9 +172,107 @@ export function configureContainer() {
               result.testError?.content || '',
               result.aiResponse?.content || ''
             );
+            console.log(`🔄 Updated existing HTML: ${result.errorFile.htmlPath}`);
           }
         }
       },
+      
+      async integrateIntoMainReport(mainReportPath, aiAnalyses) {
+        const fs = await import('fs');
+        const { updateHtmlReport } = await import('../../../lib/updateHtml.js');
+        
+        try {
+          // Интегрируем каждый AI анализ в основной отчет
+          for (const analysis of aiAnalyses) {
+            await updateHtmlReport(
+              mainReportPath,
+              analysis.errorContent,
+              analysis.aiResponse,
+              analysis.testName
+            );
+          }
+          
+          console.log(`✅ Successfully integrated ${aiAnalyses.length} AI analyses into main report`);
+        } catch (error) {
+          console.error(`❌ Failed to integrate AI analyses: ${error.message}`);
+        }
+      },
+      
+      generateHTMLReport(results, config) {
+        const timestamp = new Date().toISOString();
+        const successCount = results.filter(r => r.success).length;
+        
+        return `<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Анализ Ошибок Тестов</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: #f8f9fa; padding: 15px; border-radius: 6px; text-align: center; }
+        .success { border-left: 4px solid #28a745; }
+        .error { border-left: 4px solid #dc3545; }
+        .result-item { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 6px; }
+        .result-header { font-weight: bold; margin-bottom: 10px; }
+        .ai-response { background: #f8f9fa; padding: 15px; border-radius: 4px; margin-top: 10px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 4px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Анализ Ошибок Тестов</h1>
+            <p>Отчет создан: ${timestamp}</p>
+        </div>
+        
+        <div class="summary">
+            <div class="stat-card success">
+                <h3>✅ Успешно</h3>
+                <div style="font-size: 24px; font-weight: bold;">${successCount}</div>
+            </div>
+            <div class="stat-card error">
+                <h3>❌ Ошибок</h3>
+                <div style="font-size: 24px; font-weight: bold;">${results.length - successCount}</div>
+            </div>
+            <div class="stat-card">
+                <h3>📊 Всего</h3>
+                <div style="font-size: 24px; font-weight: bold;">${results.length}</div>
+            </div>
+        </div>
+        
+        <div class="results">
+            ${results.map((result, index) => `
+                <div class="result-item ${result.success ? 'success' : 'error'}">
+                    <div class="result-header">
+                        ${result.success ? '✅' : '❌'} Файл ${index + 1}: ${result.testError?.filePath || 'Неизвестно'}
+                    </div>
+                    ${result.testError ? `
+                        <p><strong>Тест:</strong> ${result.testError.testName || 'Не определен'}</p>
+                        <p><strong>Тип ошибки:</strong> ${result.testError.errorType || 'Неизвестно'}</p>
+                    ` : ''}
+                    ${result.aiResponse ? `
+                        <div class="ai-response">
+                            <h4>🤖 AI Рекомендации:</h4>
+                            <pre>${result.aiResponse.content}</pre>
+                        </div>
+                    ` : ''}
+                    ${result.error ? `
+                        <div style="color: #dc3545; margin-top: 10px;">
+                            <strong>Ошибка:</strong> ${result.error}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('')}
+        </div>
+    </div>
+</body>
+</html>`;
+      },
+      
       getName() { return 'HTML Reporter'; }
     };
   });
@@ -129,13 +280,20 @@ export function configureContainer() {
   container.singleton('allureReporter', (c) => {
     return {
       async generate(results) {
-        // TODO: Реализовать AllureReporter
         const { createAllureAttachment } = await import('../../../lib/sendToAI.js');
+        
+        console.log(`🎯 Allure Reporter: Processing ${results.length} results...`);
         
         for (let i = 0; i < results.length; i++) {
           const result = results[i];
           if (result.aiResponse && result.testError) {
             const config = await c.get('config');
+            
+            console.log(`\n📋 Processing result ${i + 1}/${results.length}:`);
+            console.log(`   Test error file: ${result.testError.filePath}`);
+            console.log(`   Test error content length: ${result.testError.content?.length || 0} chars`);
+            console.log(`   AI response length: ${result.aiResponse.content?.length || 0} chars`);
+            
             await createAllureAttachment(
               result.aiResponse.content,
               result.testError.content,
@@ -143,8 +301,14 @@ export function configureContainer() {
               i,
               result.testError.filePath
             );
+          } else {
+            console.log(`⚠️  Skipping result ${i + 1}: missing aiResponse or testError`);
+            if (!result.aiResponse) console.log(`     Missing aiResponse`);
+            if (!result.testError) console.log(`     Missing testError`);
           }
         }
+        
+        console.log(`\n✅ Allure Reporter: Completed processing ${results.length} results`);
       },
       getName() { return 'Allure Reporter'; }
     };
@@ -153,13 +317,25 @@ export function configureContainer() {
   container.singleton('markdownReporter', (c) => {
     return {
       async generate(results) {
-        // TODO: Реализовать MarkdownReporter
         const { saveResponseToMarkdown } = await import('../../../lib/sendToAI.js');
+        const config = await c.get('config');
+        const fs = await import('fs');
+        const path = await import('path');
         
+        console.log(`📝 Markdown Reporter: Processing ${results.length} results...`);
+        
+        const outputDir = config.ai_responses_dir || 'ai-responses';
+        
+        // Создаем директорию если не существует
+        if (!fs.existsSync(outputDir)) {
+          fs.mkdirSync(outputDir, { recursive: true });
+          console.log(`📁 Created AI responses directory: ${outputDir}`);
+        }
+        
+        // Сохраняем индивидуальные файлы
         for (let i = 0; i < results.length; i++) {
           const result = results[i];
           if (result.aiResponse && result.testError) {
-            const config = await c.get('config');
             saveResponseToMarkdown(
               result.aiResponse.content,
               result.testError.content,
@@ -168,7 +344,51 @@ export function configureContainer() {
             );
           }
         }
+        
+        // Создаем общий сводный отчет
+        const timestamp = Date.now();
+        const summaryPath = path.join(outputDir, `analysis-summary-${timestamp}.md`);
+        const summaryContent = this.generateSummaryReport(results, config);
+        fs.writeFileSync(summaryPath, summaryContent, 'utf-8');
+        console.log(`📄 Created summary report: ${summaryPath}`);
       },
+      
+      generateSummaryReport(results, config) {
+        const timestamp = new Date().toISOString();
+        const successCount = results.filter(r => r.success).length;
+        const errorCount = results.length - successCount;
+        
+        let summary = `# 🤖 AI Анализ Ошибок Тестов\n\n`;
+        summary += `**Дата создания:** ${timestamp}\n\n`;
+        summary += `## 📊 Сводка\n\n`;
+        summary += `- ✅ **Успешно обработано:** ${successCount}/${results.length}\n`;
+        summary += `- ❌ **Ошибок:** ${errorCount}/${results.length}\n`;
+        summary += `- 📈 **Процент успеха:** ${Math.round((successCount / results.length) * 100)}%\n\n`;
+        
+        if (successCount > 0) {
+          summary += `## ✅ Успешно проанализированные файлы\n\n`;
+          results.filter(r => r.success).forEach((result, index) => {
+            summary += `### ${index + 1}. ${result.testError?.testName || 'Неизвестный тест'}\n`;
+            summary += `**Файл:** \`${result.testError?.filePath || 'Неизвестно'}\`\n`;
+            summary += `**Тип ошибки:** ${result.testError?.errorType || 'Неизвестно'}\n\n`;
+            if (result.aiResponse) {
+              summary += `**AI Рекомендации:**\n\`\`\`\n${result.aiResponse.content}\n\`\`\`\n\n`;
+            }
+            summary += `---\n\n`;
+          });
+        }
+        
+        if (errorCount > 0) {
+          summary += `## ❌ Ошибки обработки\n\n`;
+          results.filter(r => !r.success).forEach((result, index) => {
+            summary += `### ${index + 1}. ${result.testError?.filePath || 'Неизвестный файл'}\n`;
+            summary += `**Ошибка:** ${result.error || 'Неизвестная ошибка'}\n\n`;
+          });
+        }
+        
+        return summary;
+      },
+      
       getName() { return 'Markdown Reporter'; }
     };
   });
@@ -193,15 +413,23 @@ export function configureContainer() {
       reporters,
       async createReports(results) {
         console.log(`📊 Creating reports using ${this.reporters.length} reporter(s)...`);
+        console.log(`📁 Results to process: ${results.length}`);
+        console.log(`⚙️  Config directories: ai_responses_dir="${config.ai_responses_dir}", allure_results_dir="${config.allure_results_dir}"`);
         
         for (const reporter of this.reporters) {
           try {
             console.log(`📄 Running ${reporter.getName()}...`);
             await reporter.generate(results);
+            console.log(`✅ ${reporter.getName()} completed successfully`);
           } catch (error) {
             console.warn(`⚠️  ${reporter.getName()} failed: ${error.message}`);
+            console.warn(`   Stack: ${error.stack}`);
           }
         }
+        
+        console.log(`📊 Report generation completed. Check directories:`);
+        console.log(`   📁 AI responses: ${config.ai_responses_dir || 'ai-responses'}`);
+        console.log(`   📁 Allure results: ${config.allure_results_dir || 'allure-results'}`);
       },
       addReporter(reporter) {
         this.reporters.push(reporter);
