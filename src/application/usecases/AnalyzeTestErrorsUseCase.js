@@ -24,7 +24,7 @@ export class AnalyzeTestErrorsUseCase {
    * @returns {Promise<Object>} - результат анализа
    */
   async execute(request) {
-    const { projectPath, config, useMcp = false } = request;
+    const { projectPath, config, useMcp = false, parallel } = request;
     
     console.log('🚀 Starting test error analysis...');
     console.log(`📁 Project path: ${projectPath}`);
@@ -75,11 +75,14 @@ export class AnalyzeTestErrorsUseCase {
 
       console.log(`📋 Found ${errorFiles.length} error file(s)`);
       results.total = errorFiles.length;
+      
+      // 3. Параллельная/последовательная обработка ошибок с ограничением concurrency
+      const parallelEnabled = config.parallel_enabled !== false;
+      const maxConcurrency = Math.max(1, Number(parallel || config.parallel_limit || 1));
+      console.log(`⚙️  Parallel: ${parallelEnabled ? 'ON' : 'OFF'} | Workers: ${parallelEnabled ? maxConcurrency : 1}`);
 
-      // 3. Анализ каждой ошибки
-      for (let i = 0; i < errorFiles.length; i++) {
-        const testError = errorFiles[i]; // errorFiles уже содержит TestError объекты
-        console.log(`\n📝 Processing ${i + 1}/${errorFiles.length}: ${testError.filePath}`);
+      const processOne = async (testError, index) => {
+        console.log(`\n📝 Processing ${index + 1}/${errorFiles.length}: ${testError.filePath}`);
 
         try {
           // TestError уже создан в repository, просто используем его
@@ -179,13 +182,15 @@ export class AnalyzeTestErrorsUseCase {
           });
 
           results.processed++;
-          console.log(`✅ Successfully processed file ${i + 1}/${errorFiles.length}`);
+          console.log(`✅ Successfully processed file ${index + 1}/${errorFiles.length}`);
 
-          // Пауза между запросами для соблюдения rate limits
-          if (i < errorFiles.length - 1) {
-            const delay = config.request_delay || 1000;
-            console.log(`⏳ Waiting ${delay}ms before next request...`);
-            await this.sleep(delay);
+          // Пауза между запросами для соблюдения rate limits (только при последовательной или малой конкуренции)
+          if (!parallelEnabled || maxConcurrency === 1) {
+            if (index < errorFiles.length - 1) {
+              const delay = config.request_delay || 1000;
+              console.log(`⏳ Waiting ${delay}ms before next request...`);
+              await this.sleep(delay);
+            }
           }
 
         } catch (error) {
@@ -203,6 +208,22 @@ export class AnalyzeTestErrorsUseCase {
             error: error.message
           });
         }
+      };
+
+      if (!parallelEnabled || maxConcurrency === 1) {
+        for (let i = 0; i < errorFiles.length; i++) {
+          await processOne(errorFiles[i], i);
+        }
+      } else {
+        // Простая параллельная обработка с ограничением concurrency
+        const promises = [];
+        for (let i = 0; i < errorFiles.length; i += maxConcurrency) {
+          const batch = errorFiles.slice(i, i + maxConcurrency);
+          const batchPromises = batch.map((errorFile, batchIndex) => 
+            processOne(errorFile, i + batchIndex)
+          );
+          await Promise.all(batchPromises);
+        }
       }
 
       // 4. Создание общего резюме
@@ -211,7 +232,7 @@ export class AnalyzeTestErrorsUseCase {
       results.endTime = new Date();
       results.processingTime = results.endTime - results.startTime;
 
-      // 5. Финальный отчет
+      // 6. Финальный отчет
       console.log(`\n📊 Analysis Summary:`);
       console.log(`   ✅ Successfully processed: ${results.processed}/${results.total}`);
       console.log(`   ❌ Errors encountered: ${results.errors}/${results.total}`);
@@ -227,9 +248,31 @@ export class AnalyzeTestErrorsUseCase {
       if (config.allure_integration) {
         console.log(`   📊 Allure Attachments: ${config.allure_results_dir || 'allure-results'}/`);
       }
+      if (config.summary_report !== false) {
+        console.log(`   📋 Summary Report: ${config.ai_responses_dir || 'ai-responses'}/summary-report-*.html`);
+      }
       
       // Проверяем фактическое наличие созданных файлов
       await this.verifyGeneratedReports(config);
+
+      // 5. Генерация общего отчета (если включен)
+      console.log(`🔍 Summary report check: enabled=${config.summary_report !== false}, results=${results.analysisResults.length}`);
+      if (config.summary_report !== false && results.analysisResults.length > 0) {
+        console.log('\n📊 Generating summary report...');
+        console.log(`📊 Summary report data: ${results.analysisResults.length} results`);
+        try {
+          // Создаем SummaryReporter напрямую для общего отчета
+          const { SummaryReporter } = await import('../../infrastructure/reporters/SummaryReporter.js');
+          const summaryReporter = new SummaryReporter(config);
+          await summaryReporter.generate(results.analysisResults);
+          console.log('✅ Summary report generated successfully');
+        } catch (error) {
+          console.warn(`⚠️  Failed to generate summary report: ${error.message}`);
+          console.warn(`   Stack: ${error.stack}`);
+        }
+      } else {
+        console.log('ℹ️  Summary report skipped');
+      }
 
       return results;
 
@@ -384,6 +427,16 @@ export class AnalyzeTestErrorsUseCase {
           console.log(`   ✅ Allure attachments: ${allureFiles.length} в ${allureDir}`);
         } else {
           console.log(`   ❌ Директория Allure не найдена: ${allureDir}`);
+        }
+      }
+      
+      // Проверяем общий отчет
+      if (config.summary_report !== false) {
+        const summaryFiles = await glob(path.join(aiResponsesDir, 'summary-report-*.html'));
+        if (summaryFiles.length > 0) {
+          console.log(`   ✅ Общий отчет: ${summaryFiles[summaryFiles.length - 1]}`);
+        } else {
+          console.log(`   ❌ Общий отчет не найден в ${aiResponsesDir}`);
         }
       }
       

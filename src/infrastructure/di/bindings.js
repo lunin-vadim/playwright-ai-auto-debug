@@ -106,11 +106,11 @@ export function configureContainer() {
 
   // ===== REPORTERS =====
 
-  container.singleton('htmlReporter', (c) => {
+  container.singleton('htmlReporter', async (c) => {
+    const config = await c.get('config');
     return {
       async generate(results) {
         const { updateHtmlReport } = await import('../../../lib/updateHtml.js');
-        const config = await c.get('config');
         const fs = await import('fs');
         const path = await import('path');
         
@@ -277,7 +277,8 @@ export function configureContainer() {
     };
   });
 
-  container.singleton('allureReporter', (c) => {
+  container.singleton('allureReporter', async (c) => {
+    const config = await c.get('config');
     return {
       async generate(results) {
         const { createAllureAttachment } = await import('../../../lib/sendToAI.js');
@@ -287,7 +288,6 @@ export function configureContainer() {
         for (let i = 0; i < results.length; i++) {
           const result = results[i];
           if (result.aiResponse && result.testError) {
-            const config = await c.get('config');
             
             console.log(`\n📋 Processing result ${i + 1}/${results.length}:`);
             console.log(`   Test error file: ${result.testError.filePath}`);
@@ -314,11 +314,11 @@ export function configureContainer() {
     };
   });
 
-  container.singleton('markdownReporter', (c) => {
+  container.singleton('markdownReporter', async (c) => {
+    const config = await c.get('config');
     return {
       async generate(results) {
         const { saveResponseToMarkdown } = await import('../../../lib/sendToAI.js');
-        const config = await c.get('config');
         const fs = await import('fs');
         const path = await import('path');
         
@@ -393,21 +393,34 @@ export function configureContainer() {
     };
   });
 
+  // Summary Reporter
+  container.singleton('summaryReporter', async (c) => {
+    const config = await c.get('config');
+    const { SummaryReporter } = await import('../reporters/SummaryReporter.js');
+    
+    return new SummaryReporter(config);
+  });
+
   container.singleton('reporterManager', async (c) => {
     const config = await c.get('config');
     
     const reporters = [];
     
     // Добавляем репортеры на основе конфигурации
-    reporters.push(c.get('htmlReporter')); // всегда включен
+    reporters.push(await c.get('htmlReporter')); // всегда включен
     
     if (config.allure_integration) {
-      reporters.push(c.get('allureReporter'));
+      reporters.push(await c.get('allureReporter'));
     }
     
     if (config.save_ai_responses) {
-      reporters.push(c.get('markdownReporter'));
+      reporters.push(await c.get('markdownReporter'));
     }
+    
+    // Общий отчет добавляется отдельно в AnalyzeTestErrorsUseCase
+    // if (config.summary_report !== false) {
+    //   reporters.push(await c.get('summaryReporter'));
+    // }
 
     return {
       reporters,
@@ -418,11 +431,13 @@ export function configureContainer() {
         
         for (const reporter of this.reporters) {
           try {
-            console.log(`📄 Running ${reporter.getName()}...`);
+            const reporterName = typeof reporter.getName === 'function' ? reporter.getName() : 'Unknown Reporter';
+            console.log(`📄 Running ${reporterName}...`);
             await reporter.generate(results);
-            console.log(`✅ ${reporter.getName()} completed successfully`);
+            console.log(`✅ ${reporterName} completed successfully`);
           } catch (error) {
-            console.warn(`⚠️  ${reporter.getName()} failed: ${error.message}`);
+            const reporterName = typeof reporter.getName === 'function' ? reporter.getName() : 'Unknown Reporter';
+            console.warn(`⚠️  ${reporterName} failed: ${error.message}`);
             console.warn(`   Stack: ${error.stack}`);
           }
         }

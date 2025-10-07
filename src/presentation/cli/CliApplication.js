@@ -25,6 +25,7 @@ export class CliApplication {
     this.commands.set('coverage', this.createCoverageCommand()); // НОВОЕ!
     this.commands.set('setup', this.createSetupCommand());
     this.commands.set('validate', this.createValidateCommand());
+    this.commands.set('doctor', this.createDoctorCommand());
     this.commands.set('info', this.createInfoCommand());
     this.commands.set('help', this.createHelpCommand());
     this.commands.set('version', this.createVersionCommand());
@@ -42,6 +43,7 @@ export class CliApplication {
       options: [
         '--use-mcp     Enable MCP DOM snapshots',
         '--project     Project directory (default: current)',
+        '--parallel    Parallel AI workers (default: from config)',
         '--help        Show help for this command'
       ],
       async execute(args, options) {
@@ -55,12 +57,14 @@ export class CliApplication {
           // Извлекаем опции из аргументов
           const projectPath = self.extractOption(args, '--project') || process.cwd();
           const useMcp = args.includes('--use-mcp');
+          const parallelArg = self.extractOption(args, '--parallel');
+          const parallel = parallelArg ? Math.max(1, Number(parallelArg)) : undefined;
 
           console.log(`📁 Project path: ${projectPath}`);
           console.log(`🔗 MCP enabled: ${useMcp}`);
 
           // Выполняем анализ
-          const results = await testDebugService.debugTests(projectPath, { useMcp });
+          const results = await testDebugService.debugTests(projectPath, { useMcp, parallel });
 
           // Выводим результаты
           await self.displayResults(results);
@@ -306,6 +310,146 @@ export class CliApplication {
   }
 
   /**
+   * Создает команду проверки окружения/путей
+   * @returns {Object}
+   */
+  createDoctorCommand() {
+    const self = this;
+    return {
+      description: 'Check paths and required files based on ai.conf',
+      usage: 'doctor [--project <path>] [--fix] [--json]',
+      options: [
+        '--project     Project directory (default: current)',
+        '--fix         Create missing folders (no files)',
+        '--json        Output JSON report'
+      ],
+      async execute(args, options) {
+        const projectPath = self.extractOption(args, '--project') || process.cwd();
+        const doFix = args.includes('--fix');
+        const asJson = args.includes('--json');
+
+        const fs = await import('fs');
+        const path = await import('path');
+        const { glob } = await import('glob');
+
+        // Загружаем конфиг через DI контейнер
+        let config;
+        try {
+          config = await self.container.get('config');
+        } catch (e) {
+          config = {};
+        }
+
+        // Нормализуем директории относительно projectPath
+        const resultsDir = path.join(projectPath, config.results_dir || 'test-results');
+        const reportDir = path.join(projectPath, config.report_dir || 'playwright-report');
+        const aiResponsesDir = path.join(projectPath, config.ai_responses_dir || 'ai-responses');
+        const allureDir = path.join(projectPath, config.allure_results_dir || 'allure-results');
+        const patterns = Array.isArray(config.error_file_patterns) && config.error_file_patterns.length
+          ? config.error_file_patterns
+          : ['**/error-context.md', 'copy-prompt.txt', 'error.txt', 'test-error.md', '*-error.txt', '*-error.md'];
+
+        // Список проверок
+        const checks = [];
+
+        function ensureDir(dirPath) {
+          const exists = fs.existsSync(dirPath);
+          if (!exists && doFix) {
+            fs.mkdirSync(dirPath, { recursive: true });
+          }
+          return fs.existsSync(dirPath);
+        }
+
+        const dirsToCheck = [
+          { key: 'results_dir', path: resultsDir },
+          { key: 'report_dir', path: reportDir },
+          { key: 'ai_responses_dir', path: aiResponsesDir },
+        ];
+
+        if (config.allure_integration) {
+          dirsToCheck.push({ key: 'allure_results_dir', path: allureDir });
+        }
+
+        // Проверяем папки
+        for (const item of dirsToCheck) {
+          const ok = ensureDir(item.path);
+          checks.push({ type: 'dir', key: item.key, path: item.path, ok });
+        }
+
+        // Проверяем файлы по паттернам в results_dir
+        const filesReport = [];
+        try {
+          for (const pattern of patterns) {
+            const matches = await glob(path.join(resultsDir, pattern));
+            filesReport.push({ pattern, count: matches.length, samples: matches.slice(0, 5) });
+          }
+        } catch (e) {
+          // игнорируем ошибки glob
+        }
+
+        // Проверяем типовые артефакты
+        const expectedArtifacts = [
+          { label: 'Playwright HTML report', path: path.join(reportDir, 'index.html') },
+          { label: 'Allure results dir', path: allureDir, onlyIf: !!config.allure_integration },
+        ];
+
+        const artifacts = expectedArtifacts
+          .filter(a => a.onlyIf === undefined || a.onlyIf)
+          .map(a => ({ label: a.label, path: a.path, ok: fs.existsSync(a.path) }));
+
+        // Итоговый статус
+        const hasMissingDirs = checks.some(c => c.type === 'dir' && !c.ok);
+        const hasNoErrorFiles = filesReport.every(fr => fr.count === 0);
+
+        const summary = {
+          projectPath,
+          fixed: doFix,
+          status: hasMissingDirs ? 'incomplete' : 'ok',
+          hints: [
+            hasMissingDirs ? 'Создайте недостающие директории или запустите с --fix' : null,
+            hasNoErrorFiles ? 'Файлы ошибок не найдены — это нормально, если сейчас нет упавших тестов' : null,
+          ].filter(Boolean)
+        };
+
+        if (asJson) {
+          console.log(JSON.stringify({ summary, checks, files: filesReport, artifacts }, null, 2));
+        } else {
+          console.log('🩺 Environment Doctor\n');
+          console.log(`📁 Project: ${projectPath}`);
+          console.log(`🔧 Fix mode: ${doFix ? 'ON' : 'OFF'}`);
+          console.log('\n📂 Directories:');
+          for (const c of checks) {
+            console.log(`  ${c.ok ? '✅' : '❌'} ${c.key.padEnd(18)} ${c.path}`);
+          }
+          console.log('\n📝 Error file patterns:');
+          for (const fr of filesReport) {
+            console.log(`  ${fr.count > 0 ? '✅' : '⚠️ '} ${fr.pattern} — найдено: ${fr.count}`);
+            if (fr.samples.length > 0) {
+              fr.samples.forEach(s => console.log(`     • ${path.relative(projectPath, s)}`));
+            }
+          }
+          console.log('\n📦 Artifacts:');
+          for (const a of artifacts) {
+            console.log(`  ${a.ok ? '✅' : '⚠️ '} ${a.label}: ${a.path}`);
+          }
+          if (summary.hints.length) {
+            console.log('\n💡 Hints:');
+            summary.hints.forEach(h => console.log(`  • ${h}`));
+          }
+        }
+
+        if (hasMissingDirs) {
+          process.exitCode = 2;
+        } else {
+          process.exitCode = 0;
+        }
+
+        return { summary, checks, files: filesReport, artifacts };
+      }
+    };
+  }
+
+  /**
    * Создает команду информации о системе
    * @returns {Object}
    */
@@ -512,6 +656,7 @@ export class CliApplication {
     console.log('  playwright-ai debug --use-mcp    # Use MCP for DOM snapshots');
     console.log('  playwright-ai setup              # Interactive configuration');
     console.log('  playwright-ai validate           # Validate configuration');
+    console.log('  playwright-ai doctor             # Check paths and required files');
     console.log('  playwright-ai info               # Show system information');
     
     console.log('\n🏗️  Architecture Features:');

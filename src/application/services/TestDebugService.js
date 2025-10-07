@@ -33,7 +33,10 @@ export class TestDebugService {
         config: this.config,
         useMcp: options.useMcp || false,
         patterns: options.patterns || ['**/*.spec.js', '**/*.test.js'],
-        verbose: options.verbose || false
+        verbose: options.verbose || false,
+        parallel: typeof options.parallel === 'number' && !Number.isNaN(options.parallel)
+          ? Math.max(1, options.parallel)
+          : undefined
       };
 
       // Выполняем анализ через Use Case

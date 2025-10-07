@@ -1,6 +1,6 @@
 import { test, expect } from '../../coverage-lib/fixture.js';
 
-test.describe('🎯 AI Debug Integration Demo', () => {
+test.describe.only('🎯 AI Debug Integration Demo', () => {
   
   test('✅ Successful navigation test', async ({ page }) => {
     await test.step('Navigate to Playwright homepage', async () => {

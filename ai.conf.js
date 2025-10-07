@@ -6,6 +6,9 @@ export default {
   report_dir: 'playwright-report',
   max_prompt_length: 2000,
   request_delay: 1000,
+  // Параллельная обработка AI дебага
+  parallel_enabled: true,
+  parallel_limit: Math.max(1, Number(process.env.PW_AI_PARALLEL || 4)),
   error_file_patterns: [
     '**/error-context.md',
     'copy-prompt.txt',
@@ -20,6 +23,10 @@ export default {
   include_metadata: true,
   allure_integration: true,
   allure_results_dir: 'allure-results',
+  
+  // Summary report settings
+  summary_report: true, // Генерировать общий отчет по всем дефектам
+  summary_report_formats: ['html', 'markdown', 'json'], // Форматы общего отчета
   
   // MCP Integration settings
   mcp_integration: false, // Enabled via --use-mcp flag
