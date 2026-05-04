@@ -26,15 +26,14 @@ npm install playwright-ai-auto-debug
 # 2. Создание конфигурации
 echo "export const ai_conf = { api_key: 'your-api-key' };" > ai.conf.js
 
-# 3. Интерактивная настройка (новое в v2.0+)
-node src/main.js setup
+# 3. Интерактивная настройка
+npx playwright-ai setup
 
 # 4. Запуск анализа
-npx playwright-ai                    # Legacy CLI (обратная совместимость)
-node src/main.js debug               # Новая архитектура
+npx playwright-ai debug
 
 # 5. Запуск с MCP (DOM snapshots)
-node src/main.js debug --use-mcp     # Рекомендуется для точной диагностики
+npx playwright-ai debug --use-mcp    # Рекомендуется для точной диагностики
 ```
 
 ## 🎯 UI Test Coverage (НОВОЕ!)
@@ -128,23 +127,24 @@ npm run coverage:open                   # Открытие отчета
 
 ```bash
 # 🔍 Основные команды
-node src/main.js debug              # Анализ ошибок тестов
-node src/main.js debug --use-mcp    # С DOM snapshots через MCP
-node src/main.js info               # Информация о системе и конфигурации
-node src/main.js setup              # Интерактивная настройка проекта
-node src/main.js validate           # Проверка конфигурации
+npx playwright-ai debug              # Анализ ошибок тестов
+npx playwright-ai debug --use-mcp    # С DOM snapshots через MCP
+npx playwright-ai debug --parallel 4 # Параллельная обработка
+npx playwright-ai info               # Информация о системе и конфигурации
+npx playwright-ai setup              # Интерактивная настройка проекта
+npx playwright-ai validate           # Проверка конфигурации
+npx playwright-ai doctor             # Диагностика путей и артефактов
+npx playwright-ai doctor --fix       # Автоматически создать недостающие папки
+npx playwright-ai doctor --json      # Вывод в JSON
 
-# 🎯 UI Test Coverage (НОВОЕ!)
-npx playwright-ai coverage init    # Настройка системы покрытия
-npx playwright-ai coverage info    # Информация о покрытии
+# 🎯 UI Test Coverage
+npx playwright-ai coverage init      # Настройка системы покрытия
+npx playwright-ai coverage info      # Информация о покрытии
+npx playwright-ai ui-coverage        # Анализ покрытия с MCP DOM snapshots
 
-# 📊 Дополнительные опции
-node src/main.js debug --verbose    # Подробный вывод
-node src/main.js debug --dry-run    # Тестовый запуск без изменений
-node src/main.js --help             # Справка по всем командам
-
-# 🔄 Legacy поддержка
-npx playwright-ai                   # Старый CLI через legacy слой
+# 📊 Справка
+npx playwright-ai help               # Справка по всем командам
+npx playwright-ai help debug         # Справка по конкретной команде
 ```
 
 <!-- ## 🎥 Demo Video
@@ -202,18 +202,15 @@ npm run demo:full  # Полная демонстрация с AI анализо�
 - **🧩 DI Container** - Dependency Injection для управления зависимостями
 
 ```bash
-# Новые CLI команды
-node src/main.js debug --use-mcp    # Анализ ошибок с MCP
-node src/main.js info               # Информация о системе
-node src/main.js setup              # Интерактивная настройка
-node src/main.js validate           # Проверка конфигурации
+npx playwright-ai debug --use-mcp    # Анализ ошибок с MCP
+npx playwright-ai info               # Информация о системе
+npx playwright-ai setup              # Интерактивная настройка
+npx playwright-ai validate           # Проверка конфигурации
+npx playwright-ai doctor             # Диагностика путей и окружения
 
 # UI Test Coverage
-npx playwright-ai coverage init    # Настройка покрытия (НОВОЕ!)
-npx playwright-ai coverage info    # Информация о покрытии
-
-# Старый CLI (обратная совместимость)
-npx playwright-ai                   # Работает через legacy слой
+npx playwright-ai coverage init      # Настройка покрытия
+npx playwright-ai coverage info      # Информация о покрытии
 ```
 
 ## 🤖 AI Провайдеры

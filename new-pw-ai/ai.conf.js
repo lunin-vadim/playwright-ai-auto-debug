@@ -20,6 +20,9 @@ export const ai_conf = {
   max_prompt_length: 2000,
   request_delay: 1000,
   stream: false, 
+
+  summary_report: true, // Генерировать общий отчет по всем дефектам
+  summary_report_formats: ['html', 'markdown', 'json'], // Форматы общего отчета
   
   // Паттерны файлов ошибок
   error_file_patterns: [

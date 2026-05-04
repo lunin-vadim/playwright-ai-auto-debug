@@ -80,14 +80,10 @@ export class ConfigLoader {
       // module.exports = { ... }
       return configModule.default || configModule.ai_conf || configModule;
     } catch (error) {
-      // Fallback для CommonJS
-      try {
-        delete require.cache[require.resolve(configPath)];
-        const config = require(configPath);
-        return config.ai_conf || config;
-      } catch (fallbackError) {
-        throw new Error(`Failed to load config from ${configPath}: ${error.message}`);
-      }
+      throw new Error(
+        `Failed to load config from ${configPath}: ${error.message}\n` +
+        `Config file must use ES module syntax: export default { ... }`
+      );
     }
   }
 

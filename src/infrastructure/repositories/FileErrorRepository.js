@@ -133,11 +133,21 @@ export class FileErrorRepository {
     const basename = path.basename(filePath);
     const parts = dirname.split(path.sep);
 
+    let timestamp = new Date();
+    let fileSize = 0;
+    try {
+      const stat = fs.statSync(filePath);
+      timestamp = stat.mtime;
+      fileSize = stat.size;
+    } catch {
+      // file removed or permission denied between glob and stat — use defaults
+    }
+
     return {
       testName: this.extractTestNameFromPath(parts),
       browser: this.extractBrowserFromPath(parts),
-      timestamp: fs.statSync(filePath).mtime,
-      fileSize: fs.statSync(filePath).size
+      timestamp,
+      fileSize
     };
   }
 

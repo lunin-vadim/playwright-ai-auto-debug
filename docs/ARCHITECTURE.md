@@ -635,17 +635,20 @@ export class AIResponse {
 ### Запуск через новый CLI
 
 ```bash
-# Использование новой архитектуры
-node src/main.js debug
+# Анализ ошибок
+npx playwright-ai debug
 
 # С MCP интеграцией
-node src/main.js debug --use-mcp
+npx playwright-ai debug --use-mcp
 
 # Информация о системе
-node src/main.js info
+npx playwright-ai info
 
 # Настройка проекта
-node src/main.js setup
+npx playwright-ai setup
+
+# Диагностика путей
+npx playwright-ai doctor
 ```
 
 ### Программное использование
@@ -702,11 +705,7 @@ console.log(`Total errors processed: ${metrics.totalProcessed}`);
 ### Переход на новую архитектуру
 
 ```bash
-# Старый способ (legacy)
-npx playwright-ai
-
-# Новый способ (clean architecture)
-node src/main.js debug
+npx playwright-ai debug
 ```
 
 ## 🎯 Преимущества новой архитектуры

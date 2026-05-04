@@ -1,5 +1,8 @@
 // src/domain/entities/AIResponse.js
 
+import { TestError } from './TestError.js';
+import { hashString } from '../utils/HashUtils.js';
+
 /**
  * Доменная сущность - Ответ ИИ
  * Содержит ответ ИИ и методы для его анализа и обработки
@@ -33,7 +36,7 @@ export class AIResponse {
    * @returns {string}
    */
   generateId() {
-    const hash = this.hashString(this.content + this.testError.id);
+    const hash = hashString(this.content + this.testError.id);
     return `response_${hash}_${this.metadata.timestamp.getTime()}`;
   }
 
@@ -345,21 +348,6 @@ export class AIResponse {
     markdown += `## Полный ответ\n\n${this.content}`;
     
     return markdown;
-  }
-
-  /**
-   * Простая хеш-функция
-   * @param {string} str 
-   * @returns {string}
-   */
-  hashString(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(36);
   }
 
   /**

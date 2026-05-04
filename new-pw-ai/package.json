@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "allure": "^3.0.0-beta.15",
-    "playwright-ai-auto-debug": "file:../"
+    "playwright-ai-auto-debug": "3.2.4"
   },
   "keywords": [
     "playwright",

@@ -1,5 +1,7 @@
 // src/domain/entities/TestError.js
 
+import { hashString } from '../utils/HashUtils.js';
+
 /**
  * Доменная сущность - Ошибка теста
  * Содержит всю информацию об ошибке и бизнес-логику для её анализа
@@ -25,7 +27,7 @@ export class TestError {
    * @returns {string}
    */
   generateId() {
-    const hash = this.hashString(this.filePath + this.content);
+    const hash = hashString(this.filePath + this.content);
     return `error_${hash}_${this.timestamp.getTime()}`;
   }
 
@@ -225,21 +227,6 @@ export class TestError {
     return domKeywords.some(keyword => 
       this.content.toLowerCase().includes(keyword)
     );
-  }
-
-  /**
-   * Простая хеш-функция для генерации ID
-   * @param {string} str 
-   * @returns {string}
-   */
-  hashString(str) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32-bit integer
-    }
-    return Math.abs(hash).toString(36);
   }
 
   /**

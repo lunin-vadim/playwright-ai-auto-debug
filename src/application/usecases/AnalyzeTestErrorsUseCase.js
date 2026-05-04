@@ -147,14 +147,12 @@ export class AnalyzeTestErrorsUseCase {
           }
 
           // Валидация действий через MCP (если доступен)
+          let mcpValidation = null;
           if (this.mcpClient && aiResponse.hasExecutableCode()) {
             try {
               console.log('🧪 Validating actions through MCP...');
-              const validationResults = await this.validateActionsViaMcp(aiResponse);
-              
-              // Обогащаем ответ результатами валидации
-              aiResponse.mcpValidation = validationResults;
-              console.log(`✅ MCP validation: ${validationResults.successfulActions}/${validationResults.totalActions} successful`);
+              mcpValidation = await this.validateActionsViaMcp(aiResponse);
+              console.log(`✅ MCP validation: ${mcpValidation.successfulActions}/${mcpValidation.totalActions} successful`);
             } catch (error) {
               console.warn(`⚠️  MCP validation failed: ${error.message}`);
             }
@@ -165,21 +163,19 @@ export class AnalyzeTestErrorsUseCase {
           console.log(`📝 Report data: testError=${!!testError}, aiResponse=${!!aiResponse}`);
           console.log(`📁 Test file: ${testError?.filePath || 'Unknown'}`);
           console.log(`🤖 AI response length: ${aiResponse?.content?.length || 0} chars`);
-          
-          await this.reporterManager.createReports([{
+
+          const analysisRecord = {
             testError,
             aiResponse,
+            mcpValidation,
             errorFile: testError,
             timestamp: new Date(),
             success: true
-          }]);
+          };
 
-          results.analysisResults.push({
-            testError,
-            aiResponse,
-            errorFile: testError,
-            success: true
-          });
+          await this.reporterManager.createReports([analysisRecord]);
+
+          results.analysisResults.push(analysisRecord);
 
           results.processed++;
           console.log(`✅ Successfully processed file ${index + 1}/${errorFiles.length}`);

@@ -31,10 +31,10 @@ export const ai_conf = {
 
 ```bash
 # Обычный режим
-npx playwright-ai
+npx playwright-ai debug
 
 # Режим с MCP DOM snapshots
-npx playwright-ai --use-mcp
+npx playwright-ai debug --use-mcp
 ```
 
 ## 🏗️ Архитектура MCP интеграции
@@ -220,15 +220,8 @@ await server.start();
 ### Проверка подключения
 
 ```bash
-# Проверить доступность MCP сервера
-npx playwright-ai --test-mcp-connection
-```
-
-### Получение тестового snapshot'а
-
-```bash
-# Получить snapshot текущей страницы
-npx playwright-ai --get-mcp-snapshot
+# Диагностика конфигурации и путей
+npx playwright-ai doctor
 ```
 
 ### Демо с MCP
@@ -303,7 +296,7 @@ mcp_element_filters: {
   run: npx playwright test
 
 - name: AI analysis with MCP
-  run: npx playwright-ai --use-mcp
+  run: npx playwright-ai debug --use-mcp
   env:
     API_KEY: ${{ secrets.MISTRAL_API_KEY }}
 ```
@@ -313,7 +306,7 @@ mcp_element_filters: {
 ```groovy
 stage('AI Debug Analysis') {
   steps {
-    sh 'npx playwright-ai --use-mcp'
+    sh 'npx playwright-ai debug --use-mcp'
   }
   post {
     always {
@@ -345,8 +338,8 @@ console.log(`Success rate: ${mcpStats.successRate}%`);
 ### Health Check
 
 ```bash
-# Проверка состояния MCP
-npx playwright-ai --mcp-health-check
+# Диагностика и проверка MCP конфигурации
+npx playwright-ai doctor
 ```
 
 ## 🚀 Следующие шаги

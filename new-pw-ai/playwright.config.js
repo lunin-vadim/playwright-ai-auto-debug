@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   
   reporter: [
-    //['html', { outputFolder: 'playwright-report' }],
+    ['html', { outputFolder: 'playwright-report' }],
     ['allure-playwright', {
       detail: true,
       outputFolder: 'allure-results',
@@ -33,9 +33,6 @@ export default defineConfig({
   
   use: {
     baseURL: 'https://playwright.dev',
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
     actionTimeout: 10000,
     navigationTimeout: 30000
   },

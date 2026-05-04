@@ -90,17 +90,17 @@ npx playwright test
 
 ### Стандартный режим
 ```bash
-npx playwright-ai
+npx playwright-ai debug
 ```
 
 ### Режим с MCP (DOM snapshots)
 ```bash
-npx playwright-ai --use-mcp
+npx playwright-ai debug --use-mcp
 ```
 
 ### С указанием папки проекта
 ```bash
-npx playwright-ai --project ./my-tests
+npx playwright-ai debug --project ./my-tests
 ```
 
 ## 📊 Шаг 6: Просмотр результатов
@@ -140,7 +140,7 @@ npx allure open allure-report
 Выполните команду для проверки:
 
 ```bash
-npx playwright-ai --help
+npx playwright-ai help
 ```
 
 Вы должны увидеть:

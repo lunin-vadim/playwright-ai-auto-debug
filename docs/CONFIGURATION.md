@@ -685,14 +685,10 @@ export const ai_conf = {
 
 ```bash
 # Проверка конфигурации
-npx playwright-ai --validate-config
+npx playwright-ai validate
 
-# Вывод:
-✅ Конфигурация валидна
-📋 Найден ai.conf.js
-🔑 API ключ установлен
-🔌 MCP настройки корректны
-📊 Allure интеграция настроена
+# Информация о загруженной конфигурации
+npx playwright-ai info
 ```
 
 ## 📊 Мониторинг конфигурации
@@ -700,17 +696,8 @@ npx playwright-ai --validate-config
 ### Отображение текущей конфигурации
 
 ```bash
-# Показать активную конфигурацию
-npx playwright-ai --show-config
-
-# Вывод:
-⚙️ Активная конфигурация:
-   📁 Источник: ai.conf.js
-   🤖 AI сервер: https://api.mistral.ai
-   🎯 Модель: mistral-medium
-   📊 Allure: включен
-   🔌 MCP: включен (localhost:3001)
-   📄 Паттерны ошибок: 6 типов
+# Показать загруженную конфигурацию и систему
+npx playwright-ai info
 ```
 
 ### Health check конфигурации
@@ -749,12 +736,7 @@ export const ai_conf = {
 
 ### Автоматическая миграция
 
-```bash
-# Миграция конфигурации
-npx playwright-ai --migrate-config
-
-# Создаст ai.conf.js на основе playwright.config.js
-```
+Создайте `ai.conf.js` вручную на основе примера из `ai.conf.example.js` в корне проекта.
 
 ## 🎯 Лучшие практики
 

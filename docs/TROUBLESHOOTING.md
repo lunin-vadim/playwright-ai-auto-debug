@@ -679,16 +679,16 @@ export const ai_conf = {
 
 ```bash
 # Проверка конфигурации
-npx playwright-ai --validate-config
+npx playwright-ai validate
 
-# Показать активную конфигурацию  
-npx playwright-ai --show-config
+# Информация о системе и активной конфигурации
+npx playwright-ai info
 
-# Тест MCP подключения
-npx playwright-ai --test-mcp-connection
+# Диагностика путей, папок и артефактов
+npx playwright-ai doctor
 
-# Информация о системе
-npx playwright-ai --system-info
+# Создать недостающие папки автоматически
+npx playwright-ai doctor --fix
 ```
 
 ### Анализ логов
@@ -790,12 +790,12 @@ npm list playwright-ai-auto-debug
 
 ```bash
 # Соберите диагностическую информацию
-npx playwright-ai --system-info > system-info.txt
-npx playwright-ai --show-config > config-info.txt
+npx playwright-ai info > system-info.txt
+npx playwright-ai doctor --json > doctor-info.txt
 npm list > dependencies.txt
 
 # Запустите с debug логами
-DEBUG=* npx playwright-ai > debug.log 2>&1
+DEBUG=* npx playwright-ai debug > debug.log 2>&1
 ```
 
 ### Где получить помощь
