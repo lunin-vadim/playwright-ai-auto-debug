@@ -1,5 +1,6 @@
 // src/application/usecases/AnalyzeTestErrorsUseCase.js
 
+import { SUMMARY_REPORT_SUBDIR } from '../../constants/summaryReport.js';
 import { TestError } from '../../domain/entities/TestError.js';
 import { AIResponse } from '../../domain/entities/AIResponse.js';
 
@@ -245,7 +246,7 @@ export class AnalyzeTestErrorsUseCase {
         console.log(`   📊 Allure Attachments: ${config.allure_results_dir || 'allure-results'}/`);
       }
       if (config.summary_report !== false) {
-        console.log(`   📋 Summary Report: ${config.ai_responses_dir || 'ai-responses'}/summary-report-*.html`);
+        console.log(`   📋 Summary Report: ${config.ai_responses_dir || 'ai-responses'}/${SUMMARY_REPORT_SUBDIR}/summary-report-*.html`);
       }
       
       // Проверяем фактическое наличие созданных файлов
@@ -428,11 +429,11 @@ export class AnalyzeTestErrorsUseCase {
       
       // Проверяем общий отчет
       if (config.summary_report !== false) {
-        const summaryFiles = await glob(path.join(aiResponsesDir, 'summary-report-*.html'));
+        const summaryFiles = await glob(path.join(aiResponsesDir, SUMMARY_REPORT_SUBDIR, 'summary-report-*.html'));
         if (summaryFiles.length > 0) {
           console.log(`   ✅ Общий отчет: ${summaryFiles[summaryFiles.length - 1]}`);
         } else {
-          console.log(`   ❌ Общий отчет не найден в ${aiResponsesDir}`);
+          console.log(`   ❌ Общий отчет не найден в ${path.join(aiResponsesDir, SUMMARY_REPORT_SUBDIR)}`);
         }
       }
       

@@ -3,6 +3,8 @@
 import fs from 'fs';
 import path from 'path';
 
+import { SUMMARY_REPORT_SUBDIR } from '../../constants/summaryReport.js';
+
 /**
  * Репортер для создания общего отчета по всем дефектам
  * Агрегирует результаты анализа всех ошибок в единый отчет
@@ -451,7 +453,7 @@ ${failedResults.map(result =>
   getSummaryPath(extension) {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const dir = this.config.ai_responses_dir || 'ai-responses';
-    return path.join(dir, `summary-report-${timestamp}.${extension}`);
+    return path.join(dir, SUMMARY_REPORT_SUBDIR, `summary-report-${timestamp}.${extension}`);
   }
 
   async ensureDirectoryExists(dirPath) {

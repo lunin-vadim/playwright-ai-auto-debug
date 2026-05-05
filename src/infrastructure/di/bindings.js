@@ -190,7 +190,6 @@ export function configureContainer() {
       return null;
     }
 
-    // TODO: Реализовать новый MCP клиент
     const { McpClient } = await import('../mcp/McpClient.js');
     return new McpClient(config);
   });
