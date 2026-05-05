@@ -1,37 +1,23 @@
 {
   "name": "playwright-ai-demo",
   "version": "1.0.0",
-  "description": "Demo project for playwright-ai-auto-debug integration",
+  "description": "Demo project for playwright-ai-auto-debug",
   "type": "module",
   "scripts": {
-    "test": "npx playwright test",
-    "test:coverage": "npx playwright test && echo '📊 Отчет покрытия создан в test-coverage-reports/'",
-    "test:unified": "npx playwright test && echo '🎯 Объединенный отчет: test-coverage-reports/index.html'",
-    "coverage:open": "open test-coverage-reports/index.html",
-    "ai:debug": "npx playwright-ai debug",
-    "ai:debug:mcp": "npx playwright-ai debug --use-mcp",
-    "ui:coverage": "npx playwright-ai ui-coverage",
-    "ui:coverage:mcp": "npx playwright-ai ui-coverage --use-mcp",
-    "ui:coverage:all": "npx playwright-ai ui-coverage --page all-tests --golden",
-    "ui:coverage:open": "open ui-coverage-reports/ui-coverage-*.html | tail -1",
+    "test": "playwright test",
+    "report": "playwright show-report",
+    "ai:debug": "playwright-ai debug",
+    "ai:debug:mcp": "playwright-ai debug --use-mcp",
     "allure:generate": "allure generate allure-results -o allure-report",
     "allure:open": "allure open allure-report"
   },
   "devDependencies": {
     "@playwright/test": "^1.53.0",
-    "allure-playwright": "^3.2.2"
+    "allure-playwright": "^3.2.2",
+    "dotenv": "^16.3.1"
   },
   "dependencies": {
     "allure": "^3.0.0-beta.15",
     "playwright-ai-auto-debug": "file:.."
-  },
-  "keywords": [
-    "playwright",
-    "ai",
-    "debug",
-    "allure",
-    "demo"
-  ],
-  "author": "playwright-ai-auto-debug",
-  "license": "MIT"
+  }
 }
